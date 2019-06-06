@@ -5,11 +5,11 @@ module.exports = function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
-      'axios'
+      'axios',
     ],
 
     css: [
-      'app.styl'
+      'app.styl',
     ],
 
     extras: [
@@ -37,17 +37,18 @@ module.exports = function (ctx) {
         'QList',
         'QItem',
         'QItemSection',
-        'QItemLabel'
+        'QItemLabel',
+        'QInput',
       ],
 
       directives: [
-        'Ripple'
+        'Ripple',
       ],
 
       // Quasar plugins
       plugins: [
-        'Notify'
-      ]
+        'Notify',
+      ],
 
       // iconSet: 'ionicons-v4'
       // lang: 'de' // Quasar language
