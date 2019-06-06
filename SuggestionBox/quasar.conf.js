@@ -5,11 +5,11 @@ module.exports = function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
-      'axios',
+      'AXIOS'
     ],
 
     css: [
-      'app.styl',
+      'app.styl'
     ],
 
     extras: [
@@ -39,16 +39,21 @@ module.exports = function (ctx) {
         'QItemSection',
         'QItemLabel',
         'QInput',
+        'QSelect',
+        'QAvatar',
+        'QTab',
+        'QTabs',
+        'QRouteTab',
       ],
 
       directives: [
-        'Ripple',
+        'Ripple'
       ],
 
       // Quasar plugins
       plugins: [
-        'Notify',
-      ],
+        'Notify'
+      ]
 
       // iconSet: 'ionicons-v4'
       // lang: 'de' // Quasar language
@@ -63,12 +68,15 @@ module.exports = function (ctx) {
       // gzip: true,
       // analyze: true,
       // extractCSS: false,
-      extendWebpack (cfg) {
+      extendWebpack(cfg) {
         cfg.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /node_modules/
+          exclude: /node_modules/,
+          options: {
+            cache: false,
+          },
         })
       }
     },
@@ -135,7 +143,7 @@ module.exports = function (ctx) {
     electron: {
       // bundler: 'builder', // or 'packager'
 
-      extendWebpack (cfg) {
+      extendWebpack(cfg) {
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
       },
