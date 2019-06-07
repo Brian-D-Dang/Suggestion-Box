@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div>
-      <q-btn @click = "save" color="primary" v-bind:disabled="enable" label="Primary"/>
-    </div>
+    <q-btn @click="save" color="primary" :disabled="enable" label="Primary"/>
   </div>
 </template>
 
@@ -19,7 +17,5 @@ export default {
 </script>
 
 <style scoped>
-  [v-cloak] {
-    display: none;
-  }
+
 </style>
