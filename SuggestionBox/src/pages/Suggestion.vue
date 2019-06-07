@@ -3,19 +3,19 @@
     <br>
     <p class="titleSize">DROPDOWN</p>
     <div class="q-pa-md" style="max-width: 300px">
-      <q-select outlined v-model="survey.DROPDOWN" :options="options" label="DropDown Subjects"/>
+      <q-select outlined v-model="survey.dropDown" :options="options" label="DropDown Subjects"/>
     </div>
     <br>
 
     <p class="titleSize">Subject</p>
     <div class="q-pa-md" style="max-width: 300px">
-      <q-input square outlined v-model="survey.SUBJECT" label="Subject" />
+      <q-input square outlined v-model="survey.subject" label="Subject" />
     </div>
     <br>
 
     <p class="titleSize">Description</p>
     <div class="q-pa-md" style="max-width: 300px">
-      <q-input square outlined v-model="survey.DESCRIPTION" label="Description" />
+      <q-input square outlined v-model="survey.description" label="Description" />
     </div>
     <br>
     <div><q-btn @click="save" color="primary" label="Primary"/></div>
@@ -30,14 +30,14 @@ export default {
   data() {
     return {
       survey: {
-        DROPDOWN: '',
-        SUBJECT: ' ',
-        DESCRIPTION: ' ',
+        dropDown: ' ',
+        subject: ' ',
+        description: ' ',
       },
       savedSurvey: {
-        savedDROPDOWN: ' ',
-        savedSUBJECT: ' ',
-        savedDESCRIPTION: ' ',
+        dropDown: ' ',
+        subject: ' ',
+        description: ' ',
       },
       options: [
         'Company Improvement', 'Employee Happiness', 'Other',
@@ -46,15 +46,18 @@ export default {
   },
   methods: {
     save() {
-      this.savedSurvey.savedDROPDOWN = this.survey.DROPDOWN;
-      this.savedSurvey.savedSUBJECT = this.survey.SUBJECT;
-      this.savedSurvey.savedDESCRIPTION = this.survey.DESCRIPTION;
+      const { dropDown: dd, subject: sub, description: desc } = this.survey;
+      this.savedSurvey = {
+        dropDown: dd,
+        subject: sub,
+        description: desc,
+      };
     },
   },
   computed: {
     showIt() {
-      const { savedDROPDOWN, savedSUBJECT, savedDESCRIPTION } = this.savedSurvey;
-      return savedDROPDOWN + ' ' + savedSUBJECT + ' ' + savedDESCRIPTION;
+      const { dropDown, subject, description } = this.savedSurvey;
+      return dropDown + ' ' + subject + ' ' + description;
     },
   },
 };
