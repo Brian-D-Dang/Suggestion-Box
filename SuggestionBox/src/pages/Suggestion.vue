@@ -1,19 +1,19 @@
 <template>
   <div>
     <br>
-    <p class="titleSize">DROPDOWN</p>
+    <p class="title-size">Dropdown</p>
     <div class="q-pa-md" style="max-width: 300px">
       <q-select outlined v-model="survey.dropDown" :options="options" label="DropDown Subjects"/>
     </div>
     <br>
 
-    <p class="titleSize">Subject</p>
+    <p class="title-size">Subject</p>
     <div class="q-pa-md" style="max-width: 300px">
       <q-input square outlined v-model="survey.subject" label="Subject" />
     </div>
     <br>
 
-    <p class="titleSize">Description</p>
+    <p class="title-size">Description</p>
     <div class="q-pa-md" style="max-width: 300px">
       <q-input square outlined v-model="survey.description" label="Description" />
     </div>
@@ -63,7 +63,7 @@ export default {
 };
 </script>
 <style scoped>
-  .titleSize {
+  .title-size {
     font-size: 20px;
   }
 </style>
