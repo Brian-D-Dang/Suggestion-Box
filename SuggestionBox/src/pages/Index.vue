@@ -6,7 +6,7 @@
     <q-input
       type="password" square outlined v-model="cred.password" label="Password"
     ></q-input>
-    <q-btn color="primary" :disabled="!activateButton" label="LOGIN" to="/suggestion" />
+    <q-btn color="primary" :disabled="!activateButton" label="LOGIN" to="/home" />
   </div>
 </template>
 
