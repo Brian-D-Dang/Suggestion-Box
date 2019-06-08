@@ -1,15 +1,12 @@
 <template>
   <div>
-    <p class = "title-size">Email:</p>
-    <div>
-      <q-input square outlined v-model="cred.username" label="Email" />
-    </div>
-    <p class = "title-size">Password:</p>
-    <div>
-      <q-input square outlined v-model="cred.password" label="Password" />
-    </div>
-    <q-btn color="primary" :disabled="!activate" label="LOGIN"/>
-    <!-- to="/suggestion" -->
+    <p class="title-size">Email:</p>
+    <q-input square outlined v-model="cred.username" label="Email" />
+    <p class="title-size">Password:</p>
+    <q-input
+      type="password" square outlined v-model="cred.password" label="Password"
+    ></q-input>
+    <q-btn color="primary" :disabled="!activateButton" label="LOGIN" to="/suggestion" />
   </div>
 </template>
 
@@ -22,7 +19,7 @@ export default {
     };
   },
   computed: {
-    activate() {
+    activateButton() {
       const { username, password } = this.cred;
       return username && password;
     },
