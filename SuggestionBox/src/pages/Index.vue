@@ -6,7 +6,7 @@
     <q-input
       type="password" square outlined v-model="cred.password" label="Password"
     ></q-input>
-    <q-btn color="primary" :disabled="!activateButton" label="LOGIN" :to="activateLogin" />
+    <q-btn color="primary" :disable="!activateButton" label="LOGIN" to="/home" />
   </div>
 </template>
 
@@ -23,16 +23,6 @@ export default {
     activateButton() {
       const { username, password } = this.cred;
       return username && password;
-    },
-    activateLogin() {
-      const { username, password } = this.cred;
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      this.routePath = '/';
-      if (username && password) {
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.routePath = '/home';
-      }
-      return this.routePath;
     },
   },
 };
