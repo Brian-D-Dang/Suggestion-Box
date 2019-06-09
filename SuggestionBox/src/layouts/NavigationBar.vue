@@ -11,7 +11,7 @@
 
       <q-tabs align="left">
         <q-route-tab to="/dashboard" label="Dashboard" />
-        <q-route-tab to="/login" label="LOGOUT" />
+        <q-route-tab to="/" label="LOGOUT" />
       </q-tabs>
     </q-header>
     <q-page-container>
