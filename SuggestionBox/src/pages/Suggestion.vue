@@ -18,7 +18,9 @@
       <q-input square outlined v-model="survey.description" label="Description" />
     </div>
     <br>
-    <div><q-btn @click="save" color="primary" label="Primary"/></div>
+      <q-btn class="block"
+        @click="save" color="primary" label="Submit" :disable="!activateButton" to="/dashboard"
+      />
     <!-- to="/index"-->
     <p> {{ showIt }} </p>
   </div>
@@ -30,14 +32,14 @@ export default {
   data() {
     return {
       survey: {
-        dropDown: ' ',
-        subject: ' ',
-        description: ' ',
+        dropDown: '',
+        subject: '',
+        description: '',
       },
       savedSurvey: {
-        dropDown: ' ',
-        subject: ' ',
-        description: ' ',
+        dropDown: '',
+        subject: '',
+        description: '',
       },
       options: [
         'Company Improvement', 'Employee Happiness', 'Other',
@@ -52,9 +54,15 @@ export default {
         subject: sub,
         description: desc,
       };
+      alert('Form Submitted');
+      //  replace the alert with a more clean alert screen
     },
   },
   computed: {
+    activateButton() {
+      const { dropDown, subject, description } = this.survey;
+      return dropDown && subject && description;
+    },
     showIt() {
       const { dropDown, subject, description } = this.savedSurvey;
       return dropDown + ' ' + subject + ' ' + description;
