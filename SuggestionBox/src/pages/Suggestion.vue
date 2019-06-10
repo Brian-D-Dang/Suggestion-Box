@@ -18,11 +18,9 @@
       <q-input square outlined v-model="survey.description" label="Description" />
     </div>
     <br>
-    <div>
-      <q-btn
-        @click="save" color="primary" label="Primary" :disable="!activateButton" to="/dashboard"
+      <q-btn class="block"
+        @click="save" color="primary" label="Submit" :disable="!activateButton" to="/dashboard"
       />
-    </div>
     <!-- to="/index"-->
     <p> {{ showIt }} </p>
   </div>
@@ -62,8 +60,8 @@ export default {
   },
   computed: {
     activateButton() {
-      const { dropDown: dd, subject: sub, description: desc } = this.survey;
-      return dd && sub && desc;
+      const { dropDown, subject, description } = this.survey;
+      return dropDown && subject && description;
     },
     showIt() {
       const { dropDown, subject, description } = this.savedSurvey;
