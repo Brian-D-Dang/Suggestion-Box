@@ -1,24 +1,26 @@
 <template>
   <div>
-    <p v-for="suggestion in suggestionRows" :key="suggestion.id">{{ suggestion }}</p>
+    <p v-for="suggestion in suggestionDisplay" :key="suggestion.id">{{ suggestion }}</p>
     <q-btn to="/suggestion" color="primary" label="SuggestionForm"/>
   </div>
 </template>
 
 <script>
-import dataService from 'src/service/data-service.js';
+import DataService from 'src/service/data-service.js';
 
 export default {
   name: 'Dashboard',
   data() {
     return {
-      suggestionRows: null,
+      suggestionDisplay: null,
+      suggestionForms: null,
     };
   },
   created() {
     (async () => {
-      this.suggestionRows = dataService.savedForms;
-      console.log(this.suggestionRows);
+      this.suggestionForms = DataService.getSuggestionForms();
+      this.suggestionDisplay = DataService.savedForms;
+      console.log(this.suggestionForms);
     })();
   },
 };

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import dataService from 'src/service/data-service.js';
+import DataService from 'src/service/data-service.js';
 
 export default {
   name: 'Suggestion',
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     save() {
-      const suggestionRows = dataService.savedForms;
+      const suggestionRows = DataService.savedForms;
       const { dropDown, subject, description } = this.survey;
       const copy = Object.assign({}, {
         company: dropDown, subject, description,
