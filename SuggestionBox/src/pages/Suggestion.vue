@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import DataService from 'src/service/data-service.js';
+
 export default {
   name: 'Suggestion',
   data() {
@@ -48,12 +50,12 @@ export default {
   },
   methods: {
     save() {
-      const { dropDown: dd, subject: sub, description: desc } = this.survey;
-      this.savedSurvey = {
-        dropDown: dd,
-        subject: sub,
-        description: desc,
-      };
+      const suggestionRows = DataService.savedForms;
+      const { dropDown, subject, description } = this.survey;
+      const copy = Object.assign({}, {
+        company: dropDown, subject, description,
+      });
+      suggestionRows.push(copy);
       alert('Form Submitted');
       //  replace the alert with a more clean alert screen
     },
