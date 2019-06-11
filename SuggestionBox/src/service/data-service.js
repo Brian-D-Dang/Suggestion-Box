@@ -1,6 +1,6 @@
 export default {
   savedForms: [],
   async getSuggestionRows() {
-    return 'hello';
+    console.log('hello');
   },
 };

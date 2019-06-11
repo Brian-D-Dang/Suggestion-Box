@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <p v-for="suggestion in suggestionRows" :key="suggestion.id">{{ suggestion }}</p> -->
     <p v-for="suggestion in suggestionRows" :key="suggestion.id">{{ suggestion }}</p>
     <q-btn to="/suggestion" color="primary" label="SuggestionForm"/>
   </div>
