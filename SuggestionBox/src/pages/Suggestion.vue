@@ -19,7 +19,7 @@
     </div>
     <br>
       <q-btn class="block"
-        @click="save" color="primary" label="Submit" :disable="!activateButton" to="/dashboard"
+        @click="save" color="primary" label="Submit" :disable="!activateButton"
       />
     <!-- to="/index"-->
     <p> {{ showIt }} </p>
@@ -33,6 +33,8 @@ export default {
   name: 'Suggestion',
   data() {
     return {
+      amountOfFormsSent: 0,
+      formsSent: [],
       survey: {
         dropDown: '',
         subject: '',
@@ -50,13 +52,22 @@ export default {
   },
   methods: {
     save() {
+      this.formsSent.push(this.amountOfFormsSent += 1);
       const suggestionRows = DataService.savedForms;
       const { dropDown, subject, description } = this.survey;
       const copy = Object.assign({}, {
         company: dropDown, subject, description,
       });
       suggestionRows.push(copy);
-      alert('Form Submitted');
+      (async () => {
+        const returnSuccessful = await DataService.formSentSuccessful(this.formsSent.length);
+        console.log(returnSuccessful);
+        this.$q.notify({
+          message: 'Form sent successfully',
+          color: 'blue',
+        });
+      })();
+      this.$router.push('/home');
       //  replace the alert with a more clean alert screen
     },
   },
