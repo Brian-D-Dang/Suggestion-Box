@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import loginInfo from 'src/service/data-service.js';
+import LoginInfo from 'src/service/data-service.js';
 
 export default {
   name: 'PageIndex',
@@ -22,15 +22,12 @@ export default {
   data() {
     return {
       cred: {},
-      test: null,
     };
   },
   methods: {
     checkCred() {
       (async () => {
-        console.log(this.cred);
-        const checkLogin = await loginInfo.getUser(this.cred);
-        console.log(checkLogin);
+        const checkLogin = await LoginInfo.getUser(this.cred);
         if (checkLogin) {
           this.$router.push('/home');
         } else {

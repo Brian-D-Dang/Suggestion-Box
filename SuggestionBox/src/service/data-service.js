@@ -15,14 +15,14 @@ export default {
     },
   ],
 
-  async getUser(usersExist) {
+  async getUser({ username }) {
     let exist = false;
-    this.users.forEach((user) => {
-      if (usersExist.username === user.username) {
+    this.users.forEach(({ username: name }) => {
+      if (username === name) {
         exist = true;
       }
     });
-    console.log(usersExist);
+    console.log(username);
     return exist;
   },
   async getSuggestionForms() {
