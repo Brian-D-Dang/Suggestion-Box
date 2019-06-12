@@ -1,4 +1,5 @@
 export default {
+  formsSent: [],
   savedForms: [],
   users: [
     {
@@ -14,9 +15,13 @@ export default {
       password: '42069',
     },
   ],
-  async formSentSuccessful(resolve) {
+  async saveSurvey(survey, saved) {
     let formSent = false;
-    if (resolve === this.savedForms.length) {
+    console.log(this.formSent);
+    if (this.formsSent.length === this.savedForms.length) {
+      console.log('hello');
+      this.formsSent.push(survey);
+      this.savedForms.push(saved);
       formSent = true;
     }
     return formSent;

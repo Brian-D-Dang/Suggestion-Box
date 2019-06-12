@@ -52,15 +52,12 @@ export default {
   },
   methods: {
     save() {
-      this.formsSent.push(this.amountOfFormsSent += 1);
-      const suggestionRows = DataService.savedForms;
       const { dropDown, subject, description } = this.survey;
       const copy = Object.assign({}, {
         company: dropDown, subject, description,
       });
-      suggestionRows.push(copy);
       (async () => {
-        const returnSuccessful = await DataService.formSentSuccessful(this.formsSent.length);
+        const returnSuccessful = await DataService.saveSurvey(this.amountOfFormsSent, copy);
         console.log(returnSuccessful);
         this.$q.notify({
           message: 'Form sent successfully',
