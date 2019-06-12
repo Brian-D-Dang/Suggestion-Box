@@ -68,7 +68,6 @@ export default {
         });
       })();
       this.$router.push('/home');
-      //  replace the alert with a more clean alert screen
     },
   },
   computed: {
