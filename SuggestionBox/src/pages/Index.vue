@@ -6,11 +6,15 @@
     <q-input
       type="password" square outlined v-model="cred.password" label="Password"
     ></q-input>
-    <q-btn color="primary" :disable="!activateButton" label="LOGIN" to="/home" />
+    <q-btn
+      color="primary"
+      :disable="!activateButton" @click="checkCred" label="LOGIN"
+    />
   </div>
 </template>
 
 <script>
+import LoginInfo from 'src/service/data-service.js';
 
 export default {
   name: 'PageIndex',
@@ -19,6 +23,18 @@ export default {
     return {
       cred: {},
     };
+  },
+  methods: {
+    checkCred() {
+      (async () => {
+        const checkLogin = await LoginInfo.getUser(this.cred);
+        if (checkLogin) {
+          this.$router.push('/home');
+        } else {
+          alert('Incorrect username or password');
+        }
+      })();
+    },
   },
   computed: {
     activateButton() {
