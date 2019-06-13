@@ -22,7 +22,6 @@
         @click="save" color="primary" label="Submit" :disable="!activateButton"
       />
     <!-- to="/index"-->
-    <p> {{ showIt }} </p>
   </div>
 </template>
 
@@ -34,11 +33,6 @@ export default {
   data() {
     return {
       survey: {
-        dropDown: '',
-        subject: '',
-        description: '',
-      },
-      savedSurvey: {
         dropDown: '',
         subject: '',
         description: '',
@@ -55,7 +49,7 @@ export default {
         console.log(returnSuccessful);
         this.$q.notify({
           message: 'Form sent successfully',
-          color: 'blue',
+          color: 'primary',
         });
       })();
       this.$router.push('/home');
@@ -65,10 +59,6 @@ export default {
     activateButton() {
       const { dropDown, subject, description } = this.survey;
       return dropDown && subject && description;
-    },
-    showIt() {
-      const { dropDown, subject, description } = this.savedSurvey;
-      return dropDown + ' ' + subject + ' ' + description;
     },
   },
 };
