@@ -7,7 +7,7 @@
       {{ suggestion }}
     </p>
     <q-btn to="/suggestion" color="primary" label="SuggestionForm"/>
-    {{ sortedArray }}
+    <p v-show="hidden">{{ sortedArray }}</p>
   </div>
 </template>
 
