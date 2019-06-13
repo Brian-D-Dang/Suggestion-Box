@@ -1,5 +1,4 @@
 export default {
-  formsSent: [],
   savedForms: [],
   users: [
     {
@@ -15,16 +14,13 @@ export default {
       password: '42069',
     },
   ],
-  async saveSurvey(survey, saved) {
-    let formSent = false;
-    console.log(this.formSent);
-    if (this.formsSent.length === this.savedForms.length) {
-      console.log('hello');
-      this.formsSent.push(survey);
-      this.savedForms.push(saved);
-      formSent = true;
-    }
-    return formSent;
+  async saveSurvey(saved) {
+    const { dropDown, subject, description } = saved;
+    const copy = Object.assign({}, {
+      company: dropDown, subject, description,
+    });
+    this.savedForms.push(copy);
+    return this.savedForms;
   },
   async getUser({ username }) {
     let exist = false;

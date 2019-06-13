@@ -33,8 +33,6 @@ export default {
   name: 'Suggestion',
   data() {
     return {
-      amountOfFormsSent: 0,
-      formsSent: [],
       survey: {
         dropDown: '',
         subject: '',
@@ -52,12 +50,8 @@ export default {
   },
   methods: {
     save() {
-      const { dropDown, subject, description } = this.survey;
-      const copy = Object.assign({}, {
-        company: dropDown, subject, description,
-      });
       (async () => {
-        const returnSuccessful = await DataService.saveSurvey(this.amountOfFormsSent, copy);
+        const returnSuccessful = await DataService.saveSurvey(this.survey);
         console.log(returnSuccessful);
         this.$q.notify({
           message: 'Form sent successfully',
