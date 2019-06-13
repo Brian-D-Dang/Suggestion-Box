@@ -1,5 +1,21 @@
 export default {
-  savedForms: [],
+  savedForms: [
+    {
+      company: 'BBB',
+      subject: 'BBB',
+      description: 'BBB',
+    },
+    {
+      company: 'AAA',
+      subject: 'AAA',
+      description: 'AAA',
+    },
+    {
+      company: 'CCC',
+      subject: 'CCC',
+      description: 'CCC',
+    },
+  ],
   users: [
     {
       username: 'daddy',
@@ -15,9 +31,10 @@ export default {
     },
   ],
   async saveSurvey(saved) {
+    const theDate = new Date();
     const { dropDown, subject, description } = saved;
     const copy = Object.assign({}, {
-      company: dropDown, subject, description,
+      dropDown, subject, description, date: theDate,
     });
     this.savedForms.push(copy);
     return this.savedForms;
