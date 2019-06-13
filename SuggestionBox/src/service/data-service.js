@@ -1,21 +1,5 @@
 export default {
-  savedForms: [
-    {
-      company: 'BBB',
-      subject: 'BBB',
-      description: 'BBB',
-    },
-    {
-      company: 'AAA',
-      subject: 'AAA',
-      description: 'AAA',
-    },
-    {
-      company: 'CCC',
-      subject: 'CCC',
-      description: 'CCC',
-    },
-  ],
+  savedForms: [],
   users: [
     {
       username: 'daddy',

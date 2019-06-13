@@ -3,8 +3,8 @@
     <div class="q-pa-md" style="max-width: 300px">
       <q-select outlined v-model='nothing' :options="options" label="Sort"/>
     </div>
-    <p v-for="(i, suggestion) in suggestionForms" :key="suggestion.id">
-      {{ i }}  {{ suggestion }}
+    <p v-for="( suggestion) in suggestionForms" :key="suggestion.id">
+      {{ suggestion }}
     </p>
     <q-btn to="/suggestion" color="primary" label="SuggestionForm"/>
     {{ sortedArray }}
@@ -32,17 +32,16 @@ export default {
   },
   computed: {
     sortedArray() {
-      function hello(a, b) {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
+      if (this.nothing === 'Date Ascending') {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.suggestionForms.sort((a, b) => a.date - b.date);
+      } else if (this.nothing === 'Date Descending') {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.suggestionForms.sort((a, b) => b.date - a.date);
       }
-      return this.arrays.sort(compare);
+      return this.suggestionForms;
     },
+
   },
   created() {
     (async () => {
