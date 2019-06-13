@@ -1,14 +1,15 @@
 <template>
   <div>
     <div class="q-pa-md" style="max-width: 300px">
-      <q-select outlined v-model='nothing' :options="options" label="Sort"/>
+      <q-select outlined v-model='sortingList' :options="options" label="Sort"/>
     </div>
-    <p v-for="( suggestion) in suggestionForms" :key="suggestion.id">
+    <p v-for="(suggestion) in sortedArray" :key="suggestion.id">
       {{ suggestion }}
     </p>
+
     <q-btn to="/suggestion" color="primary" label="SuggestionForm"/>
-    <p v-show="hidden">{{ sortedArray }}</p>
   </div>
+
 </template>
 
 <script>
@@ -18,13 +19,8 @@ export default {
   name: 'Dashboard',
   data() {
     return {
-      test: [
-        3,
-        1,
-        2,
-      ],
       suggestionForms: null,
-      nothing: null,
+      sortingList: null,
       options: [
         'Date Ascending', 'Date Descending',
       ],
@@ -32,10 +28,10 @@ export default {
   },
   computed: {
     sortedArray() {
-      if (this.nothing === 'Date Ascending') {
+      if (this.sortingList === 'Date Ascending') {
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.suggestionForms.sort((a, b) => a.date - b.date);
-      } else if (this.nothing === 'Date Descending') {
+      } else if (this.sortingList === 'Date Descending') {
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.suggestionForms.sort((a, b) => b.date - a.date);
       }
