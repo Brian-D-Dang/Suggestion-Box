@@ -1,12 +1,14 @@
 <template>
   <div>
     <div class="q-pa-md" style="max-width: 300px">
-      <q-select outlined v-model='sortingList' :options="options" label="Sort"/>
+      <q-select outlined v-model='sortingList' :options="options" label="Sort" />
     </div>
-    <p v-for="(suggestion) in sortedArray" :key="suggestion.id">
+    <div class="q-pa-md" style="max-width: 300px">
+      <q-select outlined v-model='sortingCategory' :options="Category" label="Category" />
+    </div>
+    <p v-for="(suggestion) in sortedDate" :key="suggestion.id">
       {{ suggestion }}
     </p>
-
     <q-btn to="/suggestion" color="primary" label="SuggestionForm"/>
   </div>
 
@@ -21,13 +23,20 @@ export default {
     return {
       suggestionForms: null,
       sortingList: null,
+      sortingCategory: 'All',
       options: [
         'Date Ascending', 'Date Descending',
+      ],
+      Category: [
+        'All', 'Company Improvement', 'Employee Happiness', 'Other',
       ],
     };
   },
   computed: {
-    sortedArray() {
+    sortedDate() {
+      if (!this.suggestionForms) {
+        return this.suggestionForms;
+      }
       if (this.sortingList === 'Date Ascending') {
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.suggestionForms.sort((a, b) => a.date - b.date);
@@ -35,9 +44,11 @@ export default {
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.suggestionForms.sort((a, b) => b.date - a.date);
       }
-      return this.suggestionForms;
+      if (this.sortingCategory === 'All') {
+        return this.suggestionForms;
+      }
+      return this.suggestionForms.filter(topic => topic.dropDown === this.sortingCategory);
     },
-
   },
   created() {
     (async () => {
