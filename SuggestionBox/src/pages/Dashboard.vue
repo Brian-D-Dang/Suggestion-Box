@@ -6,7 +6,7 @@
     <div class="q-pa-md" style="max-width: 300px">
       <q-select outlined v-model='sortingCategory' :options="Category" label="Category" />
     </div>
-    <p v-for="(suggestion) in sortedTime" :key="suggestion.id">
+    <p v-for="(suggestion) in sortedDate" :key="suggestion.id">
       {{ suggestion }}
     </p>
     <q-btn to="/suggestion" color="primary" label="SuggestionForm"/>
@@ -33,7 +33,7 @@ export default {
     };
   },
   computed: {
-    sortedTime() {
+    sortedDate() {
       if (!this.suggestionForms) {
         return this.suggestionForms;
       }
@@ -47,7 +47,7 @@ export default {
       if (this.sortingCategory === 'All') {
         return this.suggestionForms;
       }
-      return this.suggestionForms.filter(Topic => Topic.dropDown === this.sortingCategory);
+      return this.suggestionForms.filter(topic => topic.dropDown === this.sortingCategory);
     },
   },
   created() {

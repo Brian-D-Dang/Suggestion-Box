@@ -52,7 +52,7 @@ export default {
           color: 'primary',
         });
       })();
-      this.$router.push('/home');
+      this.$router.push('/dashboard');
     },
   },
   computed: {
