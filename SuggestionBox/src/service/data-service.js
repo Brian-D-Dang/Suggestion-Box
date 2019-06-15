@@ -37,7 +37,6 @@ export default {
         exist = true;
       }
     });
-    console.log(userExist);
     if (!exist) {
       throw new Error('Incorrect username or password');
     }
