@@ -1,10 +1,11 @@
 <template>
   <div>
     <p class="title-size">Email:</p>
-    <q-input square outlined v-model="cred.username" label="Email" />
+    <q-input square outlined v-model="cred.username" label="Email" autofocus />
     <p class="title-size">Password:</p>
     <q-input
       type="password" square outlined v-model="cred.password" label="Password"
+      @keyup.enter="checkCred"
     ></q-input>
     <q-btn
       color="primary"
@@ -27,11 +28,13 @@ export default {
   methods: {
     checkCred() {
       (async () => {
-        const checkLogin = await LoginInfo.getUser(this.cred);
-        if (checkLogin) {
-          this.$router.push('/home');
-        } else {
-          alert('Incorrect username or password');
+        try {
+          const checkLogin = await LoginInfo.getUser(this.cred);
+          if (checkLogin) {
+            this.$router.push('/home');
+          }
+        } catch (error) {
+          alert(error);
         }
       })();
     },

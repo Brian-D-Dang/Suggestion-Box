@@ -23,14 +23,24 @@ export default {
     this.savedForms.push(copy);
     return this.savedForms;
   },
-  async getUser({ username }) {
+  // async getUser({ username }) {
+  // let exist = false;
+  // this.users.forEach(({ username: name }) => {
+  //   if (username === name) {
+  //     exist = true;
+  //   }
+  // });
+  async getUser(userExist) {
     let exist = false;
-    this.users.forEach(({ username: name }) => {
-      if (username === name) {
+    this.users.forEach((user) => {
+      if ((userExist.username === user.username) && (userExist.password === user.password)) {
         exist = true;
       }
     });
-    console.log(username);
+    console.log(userExist);
+    if (!exist) {
+      throw new Error('Incorrect username or password');
+    }
     return exist;
   },
   async getSuggestionForms() {
