@@ -23,14 +23,14 @@ export default {
     this.savedForms.push(copy);
     return this.savedForms;
   },
-  async getUser({ username }) {
-    let exist = false;
-    this.users.forEach(({ username: name }) => {
-      if (username === name) {
-        exist = true;
-      }
-    });
-    console.log(username);
+  async getUser(userExist) {
+    const exist = this.users.some(user => (
+      (userExist.username === user.username) && (userExist.password === user.password)
+    ));
+    console.log(exist);
+    if (!exist) {
+      throw new Error('Incorrect username or password');
+    }
     return exist;
   },
   async getSuggestionForms() {
