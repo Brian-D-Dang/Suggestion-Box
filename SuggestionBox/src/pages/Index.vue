@@ -1,12 +1,13 @@
 <template>
   <div>
-    <p class="title-size">Email:</p>
+    <p class="title-size">Username:</p>
     <q-input square outlined v-model="cred.username" label="Email" autofocus />
     <p class="title-size">Password:</p>
-    <q-input
+    <form @submit.prevent.stop="checkCred">
+      <q-input
       type="password" square outlined v-model="cred.password" label="Password"
-      @keyup.enter="checkCred"
-    ></q-input>
+      ></q-input>
+    </form>
     <q-btn
       color="primary"
       :disable="!activateButton" @click="checkCred" label="LOGIN"
@@ -26,17 +27,15 @@ export default {
     };
   },
   methods: {
-    checkCred() {
-      (async () => {
-        try {
-          const checkLogin = await LoginInfo.getUser(this.cred);
-          if (checkLogin) {
-            this.$router.push('/home');
-          }
-        } catch (error) {
-          alert(error);
+    async checkCred() {
+      try {
+        const checkLogin = await LoginInfo.getUser(this.cred);
+        if (checkLogin) {
+          this.$router.push('/home');
         }
-      })();
+      } catch (error) {
+        alert(error);
+      }
     },
   },
   computed: {

@@ -30,13 +30,24 @@ export default {
   //     exist = true;
   //   }
   // });
+  // async getUser(userExist) {
+  //   let exist = false;
+  //   this.users.forEach((user) => {
+  //     if ((userExist.username === user.username) && (userExist.password === user.password)) {
+  //       exist = true;
+  //     }
+  //   });
+  //   if (!exist) {
+  //     throw new Error('Incorrect username or password');
+  //   }
+  //   return exist;
+  // },
   async getUser(userExist) {
     let exist = false;
-    this.users.forEach((user) => {
-      if ((userExist.username === user.username) && (userExist.password === user.password)) {
-        exist = true;
-      }
-    });
+    exist = this.users.some(user => (
+      (userExist.username === user.username) && (userExist.password === user.password)
+    ));
+    console.log(exist);
     if (!exist) {
       throw new Error('Incorrect username or password');
     }
