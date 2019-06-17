@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="title-size">Username:</p>
-    <q-input square outlined v-model="cred.username" label="Email" autofocus />
+    <q-input square outlined v-model="cred.username" label="Username" autofocus />
     <p class="title-size">Password:</p>
     <form @submit.prevent.stop="checkCred">
       <q-input

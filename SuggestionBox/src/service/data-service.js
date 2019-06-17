@@ -43,8 +43,7 @@ export default {
   //   return exist;
   // },
   async getUser(userExist) {
-    let exist = false;
-    exist = this.users.some(user => (
+    const exist = this.users.some(user => (
       (userExist.username === user.username) && (userExist.password === user.password)
     ));
     console.log(exist);
