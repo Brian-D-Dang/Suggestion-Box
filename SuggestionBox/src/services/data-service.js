@@ -16,9 +16,9 @@ export default {
   ],
   async saveSurvey(saved) {
     const theDate = new Date();
-    const { dropDown, subject, description } = saved;
+    const { category, subject, description } = saved;
     const copy = Object.assign({}, {
-      dropDown, subject, description, date: theDate,
+      category, subject, description, date: theDate,
     });
     this.savedForms.push(copy);
     return this.savedForms;

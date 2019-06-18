@@ -47,18 +47,15 @@ export default {
       if (this.sortingCategory === 'All') {
         return this.suggestionForms;
       }
-      return this.suggestionForms.filter(topic => topic.dropDown === this.sortingCategory);
+      return this.suggestionForms.filter(topic => topic.category === this.sortingCategory);
     },
   },
-  created() {
-    (async () => {
-      this.suggestionForms = await DataService.getSuggestionForms();
-      console.log(this.suggestionForms);
-    })();
+  async created() {
+    this.suggestionForms = await DataService.getSuggestionForms();
+    console.log(this.suggestionForms);
   },
 };
 </script>
 
 <style scoped>
-
 </style>
