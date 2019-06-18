@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p class="title-size">Username:</p>
+    <p>Username:</p>
     <q-input square outlined v-model="cred.username" label="Username" autofocus />
-    <p class="title-size">Password:</p>
+    <p>Password:</p>
     <form @submit.prevent.stop="checkCred">
       <q-input
       type="password" square outlined v-model="cred.password" label="Password"
@@ -48,7 +48,4 @@ export default {
 </script>
 
 <style scoped>
-  .title-size {
-    font-size: 20px;
-  }
 </style>

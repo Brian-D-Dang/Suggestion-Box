@@ -27,7 +27,6 @@ export default {
     const exist = this.users.some(user => (
       (userExist.username === user.username) && (userExist.password === user.password)
     ));
-    console.log(exist);
     if (!exist) {
       throw new Error('Incorrect username or password');
     }
