@@ -7,40 +7,50 @@ created_date TIMESTAMP,
 CONSTRAINT suggestion_pk PRIMARY KEY (suggestion_id),
 CONSTRAINT user_account_fk FOREIGN KEY (user_account_id) REFERENCES USER_ACCOUNT(user_account_id)
 );
-
+Select all users from USER_ACCOUNT that have a first name beginning with "A".
 1. SELECT * FROM USER_ACCOUNT WHERE first_name LIKE 'A%';
 
+Update user account "Ashley" in USER_ACCOUNT to be a manager.
 2. UPDATE USER_ACCOUNT SET Manager = 1 WHERE user_account_id = 1;
 
+Join tables USER_ACCOUNT and PASSWORD to display email and password only.
 3. SELECT ua.email, password
 FROM USER_ACCOUNT ua JOIN PASSWORD pd
 ON ua.user_account_id = pd.user_account_id;
 
+Based on previous query, Select only results where the user account is a manager.
 4. SELECT ua.email, pd.password
 FROM USER_ACCOUNT ua JOIN PASSWORD pd
 ON ua.user_account_id = pd.user_account_id
 WHERE ua.Manager = 1;
 
+Join tables USER_ACCOUNT and SUGGESTION to display first name, last name, suggestion, category and date created.
+
 5. SELECT ua.first_name, ua.last_name, sn.suggestion, sn.category, sn.created_date
 FROM USER_ACCOUNT ua JOIN SUGGESTION sn
 ON ua.user_account_id = sn.user_account_id;
 
+Select only suggestions that were created in 2020.
 6. SELECT created_date
 FROM SUGGESTION
 WHERE created_date > '31/DEC/2019'
 AND created_date < '1/JAN/2021';
 
+Join tables USER_ACCOUNT and SUGGESTION and display the count of suggestions made by each user grouped by first name. I.E. How many suggestions were made by each user.
 7. SELECT COUNT(sn.user_account_id),
 ua.first_name
 FROM SUGGESTION sn JOIN USER_ACCOUNT ua
 ON ua.user_account_id = sn.user_account_id
 GROUP BY ua.first_name;
 
+Select suggestion and date created from SUGGESTION and order results by date created.
 8. SELECT created_date
 FROM SUGGESTION
 ORDER BY created_date DESC;
 
+Select emails where the third letter is a "v" from USER_ACCOUNT.
 9. SELECT email FROM USER_ACCOUNT WHERE email LIKE '__v%';
 
+Select only distinct categories from SUGGESTION.
 10. SELECT DISTINCT category
 FROM SUGGESTION;
