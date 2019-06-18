@@ -1,0 +1,46 @@
+CREATE TABLE SUGGESTION (
+suggestion_id number(8) generated always as identity,
+user_account_id number(8) not null,
+suggestion varchar(64) not null,
+category varchar(64) not null,
+created_date TIMESTAMP,
+CONSTRAINT suggestion_pk PRIMARY KEY (suggestion_id),
+CONSTRAINT user_account_fk FOREIGN KEY (user_account_id) REFERENCES USER_ACCOUNT(user_account_id)
+);
+
+1. SELECT * FROM USER_ACCOUNT WHERE first_name LIKE 'A%';
+
+2. UPDATE USER_ACCOUNT SET Manager = 1 WHERE user_account_id = 1;
+
+3. SELECT ua.email, password
+FROM USER_ACCOUNT ua JOIN PASSWORD pd
+ON ua.user_account_id = pd.user_account_id;
+
+4. SELECT ua.email, pd.password
+FROM USER_ACCOUNT ua JOIN PASSWORD pd
+ON ua.user_account_id = pd.user_account_id
+WHERE ua.Manager = 1;
+
+5. SELECT ua.first_name, ua.last_name, sn.suggestion, sn.category, sn.created_date
+FROM USER_ACCOUNT ua JOIN SUGGESTION sn
+ON ua.user_account_id = sn.user_account_id;
+
+6. SELECT created_date
+FROM SUGGESTION
+WHERE created_date > '31/DEC/2019'
+AND created_date < '1/JAN/2021';
+
+7. SELECT COUNT(sn.user_account_id),
+ua.first_name
+FROM SUGGESTION sn JOIN USER_ACCOUNT ua
+ON ua.user_account_id = sn.user_account_id
+GROUP BY ua.first_name;
+
+8. SELECT created_date
+FROM SUGGESTION
+ORDER BY created_date DESC;
+
+9. SELECT email FROM USER_ACCOUNT WHERE email LIKE '__v%';
+
+10. SELECT DISTINCT category
+FROM SUGGESTION;
