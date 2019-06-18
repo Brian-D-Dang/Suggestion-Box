@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import LoginInfo from 'src/service/data-service.js';
+import LoginInfo from 'src/services/data-service.js';
 
 export default {
   name: 'PageIndex',

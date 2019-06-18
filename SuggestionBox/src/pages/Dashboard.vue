@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import DataService from 'src/service/data-service.js';
+import DataService from 'src/services/data-service.js';
 
 export default {
   name: 'Dashboard',
