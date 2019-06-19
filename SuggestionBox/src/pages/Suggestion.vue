@@ -39,8 +39,7 @@ export default {
   },
   methods: {
     async save() {
-      const returnSuccessful = await DataService.saveSurvey(this.survey);
-      console.log(returnSuccessful);
+      await DataService.saveSurvey(this.survey);
       this.$q.notify({
         message: 'Form sent successfully',
         color: 'primary',
