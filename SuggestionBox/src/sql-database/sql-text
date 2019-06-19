@@ -31,7 +31,7 @@ FROM USER_ACCOUNT ua JOIN SUGGESTION sn
 ON ua.user_account_id = sn.user_account_id;
 
 Select only suggestions that were created in 2020.
-6. SELECT EXTRACT(YEAR FROM SUGGESTION.created_date)
+6. SELECT SUGGESTION.suggestion
 FROM SUGGESTION
 WHERE EXTRACT(YEAR FROM SUGGESTION.created_date) = '2020';
 
