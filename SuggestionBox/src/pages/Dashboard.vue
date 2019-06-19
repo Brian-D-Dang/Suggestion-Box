@@ -52,7 +52,6 @@ export default {
   },
   async created() {
     this.suggestionForms = await DataService.getSuggestionForms();
-    console.log(this.suggestionForms);
   },
 };
 </script>

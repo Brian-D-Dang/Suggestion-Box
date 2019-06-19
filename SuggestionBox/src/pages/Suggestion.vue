@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="q-pa-md" style="max-width: 300px">
-      <q-select outlined v-model="survey.category" :options="options" label="Category"/>
+      <q-select outlined v-model="survey.category" :options="category" label="Category"/>
     </div>
     <br>
     <div class="q-pa-md" style="max-width: 300px">
@@ -32,7 +32,7 @@ export default {
         subject: '',
         description: '',
       },
-      options: [
+      category: [
         'Company Improvement', 'Employee Happiness', 'Other',
       ],
     };

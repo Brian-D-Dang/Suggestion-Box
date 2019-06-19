@@ -2,11 +2,11 @@ export default {
   savedForms: [],
   users: [
     {
-      username: 'daddy',
+      username: 'brian',
       password: '12345q',
     },
     {
-      username: 'dad',
+      username: 'david',
       password: '1',
     },
     {
