@@ -14,7 +14,7 @@ Update user account "Ashley" in USER_ACCOUNT to be a manager.
 2. UPDATE USER_ACCOUNT SET Manager = 1 WHERE user_account_id = 1;
 
 Join tables USER_ACCOUNT and PASSWORD to display email and password only.
-3. SELECT ua.email, password
+3. SELECT ua.email, pd.password
 FROM USER_ACCOUNT ua JOIN PASSWORD pd
 ON ua.user_account_id = pd.user_account_id;
 
@@ -31,10 +31,9 @@ FROM USER_ACCOUNT ua JOIN SUGGESTION sn
 ON ua.user_account_id = sn.user_account_id;
 
 Select only suggestions that were created in 2020.
-6. SELECT created_date
+6. SELECT EXTRACT(YEAR FROM SUGGESTION.created_date)
 FROM SUGGESTION
-WHERE created_date > '31/DEC/2019'
-AND created_date < '1/JAN/2021';
+WHERE EXTRACT(YEAR FROM SUGGESTION.created_date) = '2020';
 
 Join tables USER_ACCOUNT and SUGGESTION and display the count of suggestions made by each user grouped by first name. I.E. How many suggestions were made by each user.
 7. SELECT COUNT(sn.user_account_id),
