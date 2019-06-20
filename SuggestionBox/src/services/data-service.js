@@ -10,8 +10,8 @@ export default {
       password: '1',
     },
     {
-      username: 'alanIsMyDaddy',
-      password: '42069',
+      username: 'brandon',
+      password: 'soup',
     },
   ],
   async saveSurvey(saved) {
@@ -24,8 +24,9 @@ export default {
     return this.savedForms;
   },
   async getUser(userExist) {
+    const lowerCase = userExist.username.toLowerCase();
     const exist = this.users.some(user => (
-      (userExist.username === user.username) && (userExist.password === user.password)
+      (lowerCase === user.username) && (userExist.password === user.password)
     ));
     if (!exist) {
       throw new Error('Incorrect username or password');
