@@ -24,9 +24,9 @@ export default {
     return this.savedForms;
   },
   async getUser(userExist) {
-    const setToLowerCase = userExist.username.toLowerCase();
+    const lowerCaseUserName = userExist.username.toLowerCase();
     const exist = this.users.some(user => (
-      (setToLowerCase === user.username) && (userExist.password === user.password)
+      (lowerCaseUserName === user.username) && (userExist.password === user.password)
     ));
     if (!exist) {
       throw new Error('Incorrect username or password');
