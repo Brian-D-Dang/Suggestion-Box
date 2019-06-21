@@ -1,12 +1,14 @@
 <template>
   <div>
     <p>Username:</p>
-    <q-input square outlined v-model="cred.username" label="Username" autofocus />
+    <q-input
+      square outlined v-model="cred.username" label="Username" autofocus
+    />
     <p>Password:</p>
     <form @submit.prevent.stop="checkCred">
       <q-input
       type="password" square outlined v-model="cred.password" label="Password"
-      ></q-input>
+      />
     </form>
     <q-btn
       color="primary"
@@ -16,7 +18,7 @@
 </template>
 
 <script>
-import LoginInfo from 'src/service/data-service.js';
+import LoginInfo from 'src/services/data-service.js';
 
 export default {
   name: 'PageIndex',

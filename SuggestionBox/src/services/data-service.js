@@ -2,30 +2,31 @@ export default {
   savedForms: [],
   users: [
     {
-      username: 'daddy',
+      username: 'brian',
       password: '12345q',
     },
     {
-      username: 'dad',
+      username: 'david',
       password: '1',
     },
     {
-      username: 'alanIsMyDaddy',
-      password: '42069',
+      username: 'brandon',
+      password: 'soup',
     },
   ],
   async saveSurvey(saved) {
     const theDate = new Date();
-    const { dropDown, subject, description } = saved;
+    const { category, subject, description } = saved;
     const copy = Object.assign({}, {
-      dropDown, subject, description, date: theDate,
+      category, subject, description, date: theDate,
     });
     this.savedForms.push(copy);
     return this.savedForms;
   },
   async getUser(userExist) {
+    const lowerCaseUserName = userExist.username.toLowerCase();
     const exist = this.users.some(user => (
-      (userExist.username === user.username) && (userExist.password === user.password)
+      (lowerCaseUserName === user.username) && (userExist.password === user.password)
     ));
     if (!exist) {
       throw new Error('Incorrect username or password');
