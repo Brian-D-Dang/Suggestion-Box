@@ -26,7 +26,7 @@ public class GreetingController {
     public ResponseEntity<Object> createProduct(@RequestBody Greeting greeting) {
         productRepo.put(greeting.getId(), greeting);
         double rand = Math.random();
-        return new ResponseEntity<>(rand, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(rand, HttpStatus.CREATED);
     }
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
