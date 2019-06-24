@@ -5,7 +5,7 @@
       <q-toolbar>
 
         <q-toolbar-title>
-          <img src="statics/icons/logo.png">
+          <img src="../statics/icons/logo.png">
         </q-toolbar-title>
       </q-toolbar>
 
