@@ -31,9 +31,6 @@ export default {
       category, subject, description, date: theDate,
     });
     this.savedForms.push(copy);
-    if (!this.savedForms.push(copy)) {
-      throw new Error('Suggestion did not send through.');
-    }
     return this.savedForms;
   },
   async getUser(userExist) {
