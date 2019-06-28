@@ -1,5 +1,4 @@
 import { axiosInstance } from 'src/boot/axios.js';
-import axios from 'axios';
 
 export default {
   async getHelloWorld() {
@@ -35,7 +34,7 @@ export default {
     return this.savedForms;
   },
   async getUser(userExist) {
-    return axios.get('/User/getUser', {
+    return axiosInstance.get('/User/getUser', {
       params: {
         name: userExist.username,
         pass: userExist.password,
