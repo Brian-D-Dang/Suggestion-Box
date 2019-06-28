@@ -26,17 +26,22 @@ export default {
   data() {
     return {
       cred: {},
+      // testing
     };
   },
   methods: {
     async checkCred() {
       try {
         const checkLogin = await LoginInfo.getUser(this.cred);
-        if (checkLogin) {
+        if (!checkLogin.data) {
+          throw new Error('Incorrect username or password.');
+        }
+        if (checkLogin.data) {
           this.$router.push('/home');
         }
       } catch (error) {
-        alert(error);
+        // eslint-disable-next-line no-alert
+        alert(error.message);
       }
     },
   },

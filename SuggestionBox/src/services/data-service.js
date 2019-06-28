@@ -31,21 +31,17 @@ export default {
       category, subject, description, date: theDate,
     });
     this.savedForms.push(copy);
-    if (!this.savedForms.push(copy)) {
-      throw new Error('Suggestion did not send through.');
-    }
     return this.savedForms;
   },
   async getUser(userExist) {
-    this.getHelloWorld();
-    const lowerCaseUserName = userExist.username.toLowerCase();
-    const exist = this.users.some(user => (
-      (lowerCaseUserName === user.username) && (userExist.password === user.password)
-    ));
-    if (!exist) {
-      throw new Error('Incorrect username or password');
-    }
-    return exist;
+    return axiosInstance.get('/User/getUser', {
+      params: {
+        name: userExist.username,
+        pass: userExist.password,
+      },
+    })
+    // eslint-disable-next-line no-return-assign
+      .then(response => response);
   },
   async getSuggestionForms() {
     return this.savedForms;
