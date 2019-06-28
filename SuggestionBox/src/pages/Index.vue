@@ -19,6 +19,7 @@
 
 <script>
 import LoginInfo from 'src/services/data-service.js';
+import axios from 'axios';
 
 export default {
   name: 'PageIndex',
@@ -30,6 +31,12 @@ export default {
   },
   methods: {
     async checkCred() {
+      axios.get('http://localhost:8090/#/User/getUser', {
+        params: {
+          id: this.cred,
+        },
+      });
+      //
       try {
         const checkLogin = await LoginInfo.getUser(this.cred);
         if (checkLogin) {
