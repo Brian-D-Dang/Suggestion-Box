@@ -1,4 +1,5 @@
 import { axiosInstance } from 'src/boot/axios.js';
+import axios from 'axios';
 
 export default {
   async getHelloWorld() {
@@ -34,15 +35,14 @@ export default {
     return this.savedForms;
   },
   async getUser(userExist) {
-    this.getHelloWorld();
-    const lowerCaseUserName = userExist.username.toLowerCase();
-    const exist = this.users.some(user => (
-      (lowerCaseUserName === user.username) && (userExist.password === user.password)
-    ));
-    if (!exist) {
-      throw new Error('Incorrect username or password');
-    }
-    return exist;
+    return axios.get('/User/getUser', {
+      params: {
+        name: userExist.username,
+        pass: userExist.password,
+      },
+    })
+    // eslint-disable-next-line no-return-assign
+      .then(response => response);
   },
   async getSuggestionForms() {
     return this.savedForms;

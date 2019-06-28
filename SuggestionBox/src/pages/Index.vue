@@ -19,7 +19,6 @@
 
 <script>
 import LoginInfo from 'src/services/data-service.js';
-import axios from 'axios';
 
 export default {
   name: 'PageIndex',
@@ -27,23 +26,23 @@ export default {
   data() {
     return {
       cred: {},
+      info: {},
+      // testing
     };
   },
   methods: {
     async checkCred() {
-      axios.get('http://localhost:8090/#/User/getUser', {
-        params: {
-          id: this.cred,
-        },
-      });
-      //
       try {
         const checkLogin = await LoginInfo.getUser(this.cred);
-        if (checkLogin) {
+        if (!checkLogin.data) {
+          throw new Error('Incorrect username or password.');
+        }
+        if (checkLogin.data) {
           this.$router.push('/home');
         }
       } catch (error) {
-        alert(error);
+        // eslint-disable-next-line no-alert
+        alert(error.message);
       }
     },
   },

@@ -15,31 +15,17 @@ public class UserController {
     private UserServiceImpl UserServiceImpl;
 
     @RequestMapping(value = "/getUser", produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean hardCodeUsers(@RequestParam(value="brian") String brian) {
+    public boolean hardCodeUsers(@RequestParam(value="name") String username, @RequestParam(value="pass") String password) {
         boolean exist = false;
         ArrayList<User> users = new ArrayList<>();
         users.add(new User ("brian", "12345q"));
         users.add(new User ("david", "1"));
         users.add(new User ("alan", "boto"));
         for (User user : users) {
-            if (brian.equals(user.getUsername())) {
+            if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                 exist = true;
             }
         }
         return exist;
-//
-//        exist = users.get(0);
-//        if (!exist) {
-//            throw new Error("Incorrect username or password");
-//        }
-//        return exist;
     }
-
-//    @RequestMapping(value = "/getHelloWorld", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public String helloWorld() {
-//        return UserServiceImpl.getHelloWorld();
-//    }
-//    public static void main(String[] args) {
-//
-//    }
 }
