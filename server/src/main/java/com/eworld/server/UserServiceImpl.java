@@ -22,10 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean getUser(String username, String password) {
         UserAccountEntity userAccountEntity = userRepository.getUserAccountEntityByUsername(username);
-        if(userAccountEntity == null) {
-            return false;
-        }
-        return username.equals(userAccountEntity.getUsername());
+        return userAccountEntity != null;
     }
 
 }

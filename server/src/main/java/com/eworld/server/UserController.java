@@ -16,7 +16,7 @@ public class UserController {
     private UserServiceImpl userServiceImpl;
 
     @RequestMapping(value = "/getUser", produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean getUser(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
+    public boolean checkIfUserExist(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
         return userServiceImpl.getUser(username, password);
     }
 }
