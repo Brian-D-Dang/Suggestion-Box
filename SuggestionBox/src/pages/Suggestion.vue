@@ -40,11 +40,21 @@ export default {
   methods: {
     async save() {
       await DataService.saveSurvey(this.survey);
-      this.$q.notify({
-        message: 'Form sent successfully',
-        color: 'primary',
-      });
-      this.$router.push('/dashboard');
+      try {
+        if (DataService.saveSurvey) {
+          this.$q.notify({
+            message: 'Form sent successfully',
+            color: 'primary',
+          });
+          this.$router.push('/dashboard');
+        }
+        if (!DataService.saveSurvey) {
+          throw new Error('Survey did not send correctly.');
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-alert
+        alert(error.message);
+      }
     },
   },
   computed: {
