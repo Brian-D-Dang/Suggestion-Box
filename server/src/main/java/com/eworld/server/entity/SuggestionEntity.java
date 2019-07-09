@@ -1,32 +1,41 @@
 package com.eworld.server.entity;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "SUGGESTION")
 public class SuggestionEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "SUGGESTION_ID")
     private int suggestionId;
 
     @Column(name = "USER_ACCOUNT_ID")
-    private int id;
+    private int userAccountId;
 
-    @Column(name = "suggestion")
+    @Column(name = "SUGGESTION")
     private String suggestion;
 
-    @Column(name = "category")
+    @Column(name = "CATEGORY")
     private String category;
 
-    @Column(name = "created_date")
-    private String date;
+    @Column(name = "CREATED_DATE")
+    private Date date;
+
+    @Column(name = "SUBJECT")
+    private String subject;
 
     public SuggestionEntity() {}
 
+    public SuggestionEntity(String category, String subject, String suggestion, Date date, int userAccountId) {
+        this.category = category;
+        this.subject = subject;
+        this.suggestion = suggestion;
+        this.date = date;
+        this.userAccountId = userAccountId;
+    }
     public int getSuggestionId() {
         return suggestionId;
     }
@@ -34,11 +43,11 @@ public class SuggestionEntity {
         this.suggestionId = suggestionId;
     }
 
-    public int getId() {
-        return id;
+    public int getUserAccountId() {
+        return userAccountId;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setUserAccountId(int userAccountId) {
+        this.userAccountId = userAccountId;
     }
 
     public String getSuggestion() {
@@ -55,10 +64,19 @@ public class SuggestionEntity {
         this.category = category;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
+
+    public String getSubject() {
+        return subject;
+    }
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+
 }
