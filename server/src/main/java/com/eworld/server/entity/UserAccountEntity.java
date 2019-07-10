@@ -11,7 +11,7 @@ public class UserAccountEntity {
     @Id
     @GeneratedValue
     @Column(name = "USER_ACCOUNT_ID")
-    private int id;
+    private int userAccountId;
 
     @Column(name = "email")
     private String email;
@@ -31,10 +31,10 @@ public class UserAccountEntity {
     public UserAccountEntity() {}
 
     public int getId() {
-        return id;
+        return userAccountId;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int userAccountId) {
+        this.userAccountId = userAccountId;
     }
 
     public String getEmail() {

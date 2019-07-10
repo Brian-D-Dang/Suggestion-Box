@@ -20,9 +20,13 @@ public class UserServiceImpl implements UserService {
         return "Hello World";
     }
     @Override
-    public boolean getUser(String username, String password) {
+    public int getUserAccountId(String username, String password) {
         UserAccountEntity userAccountEntity = userRepository.getUserAccountEntityByUsername(username);
-        return userAccountEntity != null;
+        if (userAccountEntity != null) {
+            return userAccountEntity.getId();
+        }
+        return 0;
+//        int userId = userAccountEntity.getId();
     }
 
 }

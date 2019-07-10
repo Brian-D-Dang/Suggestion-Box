@@ -1,35 +1,18 @@
 import { axiosInstance } from 'src/boot/axios.js';
 
 export default {
-  // async getHelloWorld() {
-  //   try {
-  //     const response = axiosInstance.get('/');
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // },
   savedForms: [],
-  // async saveSurvey(saved) {
-  //   const theDate = new Date();
-  //   const { category, subject, description } = saved;
-  //   const copy = Object.assign({}, {
-  //     category, subject, description, date: theDate,
-  //   });
-  //   this.savedForms.push(copy);
-  //   return this.savedForms;
-  // },
+  saveAccountId: 0,
   async saveSurvey(saved) {
-    const theDate = new Date();
-    const { category: cat, subject: sub, description: des } = saved;
-    return axiosInstance.get('/SuggestionForm/saveSurvey', {
-      params: {
-        category: cat,
-        subject: sub,
-        description: des,
-        date: theDate,
-      },
-    })
+    const { category: cat, subject: sub, suggestion: sug } = saved;
+    const objTest = {
+      category: cat,
+      subject: sub,
+      suggestion: sug,
+      userAccountId: this.saveAccountId,
+    };
+    console.log(this.saveAccountId);
+    return axiosInstance.post('/SuggestionForm/save-suggestion', objTest)
       .then(response => response);
   },
   async getUser(userExist) {
@@ -41,6 +24,10 @@ export default {
     })
     // eslint-disable-next-line no-return-assign
       .then(response => response);
+  },
+  async setUserAccountId(saved) {
+    this.saveAccountId = saved;
+    return this.saveAccountId;
   },
   // eslint-disable-next-line no-return-assign
   async getSuggestionForms() {
