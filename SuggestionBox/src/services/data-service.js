@@ -5,14 +5,13 @@ export default {
   saveAccountId: 0,
   async saveSurvey(saved) {
     const { category: cat, subject: sub, suggestion: sug } = saved;
-    const objTest = {
+    const suggestion = {
       category: cat,
       subject: sub,
       suggestion: sug,
       userAccountId: this.saveAccountId,
     };
-    console.log(this.saveAccountId);
-    return axiosInstance.post('/SuggestionForm/addSuggestion', objTest)
+    return axiosInstance.post('/SuggestionForm/addSuggestion', suggestion)
       .then(response => response);
   },
   async getUser(userExist) {

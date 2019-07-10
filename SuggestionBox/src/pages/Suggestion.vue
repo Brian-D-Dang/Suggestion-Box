@@ -48,10 +48,10 @@ export default {
           });
           this.$router.push('/dashboard');
         } else {
-          throw this.$q.notify({
+          throw new Error(this.$q.notify({
             message: 'Form did not send successfully',
-            color: 'primary',
-          });
+            color: 'red',
+          }));
         }
       } catch (error) {
         this.$q.notify(error);
