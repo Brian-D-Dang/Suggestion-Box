@@ -12,8 +12,8 @@ public class SuggestionController {
     private SuggestionServiceImpl suggestionServiceImpl;
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, value = "/save-suggestion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "addSuggestion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean addSuggestion(@RequestBody Suggestion suggestion) {
-        return suggestionServiceImpl.setSuggestion(suggestion.getCategory(), suggestion.getSubject(), suggestion.getSuggestion(), suggestion.getUserAccountId());
+        return suggestionServiceImpl.saveSuggestion(suggestion);
     }
 }

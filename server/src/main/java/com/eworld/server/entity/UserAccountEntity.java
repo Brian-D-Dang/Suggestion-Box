@@ -30,10 +30,10 @@ public class UserAccountEntity {
 
     public UserAccountEntity() {}
 
-    public int getId() {
+    public int getUserAccountId() {
         return userAccountId;
     }
-    public void setId(int userAccountId) {
+    public void setUserAccountId(int userAccountId) {
         this.userAccountId = userAccountId;
     }
 

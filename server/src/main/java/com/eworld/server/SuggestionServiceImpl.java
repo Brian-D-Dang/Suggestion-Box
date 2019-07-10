@@ -17,9 +17,9 @@ public class SuggestionServiceImpl implements SuggestionService {
     }
 
     @Override
-    public boolean setSuggestion(String category, String subject, String suggestion, int userAccountId) {
+    public boolean saveSuggestion(Suggestion suggestion) {
         Date todayDate = new Date();
-        SuggestionEntity suggestionEntity = new SuggestionEntity(category, subject, suggestion, todayDate, userAccountId);
+        SuggestionEntity suggestionEntity = new SuggestionEntity(suggestion.getCategory(), suggestion.getSubject(), suggestion.getSuggestion(), todayDate, suggestion.getUserAccountId());
         suggestionEntity = suggestionRepository.save(suggestionEntity);
         return suggestionEntity != null;
     }

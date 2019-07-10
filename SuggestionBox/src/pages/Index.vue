@@ -38,8 +38,7 @@ export default {
         }
         if (checkLogin.data >= 1) {
           this.$router.push('/home');
-          const savedID = await LoginInfo.setUserAccountId(checkLogin.data);
-          console.log(savedID);
+          LoginInfo.setUserAccountId(checkLogin.data);
         }
       } catch (error) {
         // eslint-disable-next-line no-alert

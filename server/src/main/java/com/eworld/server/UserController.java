@@ -16,7 +16,7 @@ public class UserController {
     private UserServiceImpl userServiceImpl;
 
 
-    @RequestMapping(value = "/getUser", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/returnUserAccountId", produces = MediaType.APPLICATION_JSON_VALUE)
     public int returnUserAccountId(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
         return userServiceImpl.getUserAccountId(username, password);
     }

@@ -12,11 +12,11 @@ export default {
       userAccountId: this.saveAccountId,
     };
     console.log(this.saveAccountId);
-    return axiosInstance.post('/SuggestionForm/save-suggestion', objTest)
+    return axiosInstance.post('/SuggestionForm/addSuggestion', objTest)
       .then(response => response);
   },
   async getUser(userExist) {
-    return axiosInstance.get('/User/getUser', {
+    return axiosInstance.get('/User/returnUserAccountId', {
       params: {
         username: userExist.username,
         password: userExist.password,
@@ -25,7 +25,7 @@ export default {
     // eslint-disable-next-line no-return-assign
       .then(response => response);
   },
-  async setUserAccountId(saved) {
+  setUserAccountId(saved) {
     this.saveAccountId = saved;
     return this.saveAccountId;
   },
