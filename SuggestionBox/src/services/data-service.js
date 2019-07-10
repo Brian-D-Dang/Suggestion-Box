@@ -27,7 +27,6 @@ export default {
   },
   setUserAccountId(saved) {
     this.saveAccountId = saved;
-    return this.saveAccountId;
   },
   // eslint-disable-next-line no-return-assign
   async getSuggestionForms() {

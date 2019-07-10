@@ -49,7 +49,7 @@ export default {
           this.$router.push('/dashboard');
         } else {
           throw this.$q.notify({
-            message: 'Form sent successfully',
+            message: 'Form did not send successfully',
             color: 'primary',
           });
         }
