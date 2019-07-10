@@ -15,8 +15,9 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @RequestMapping(value = "/getUser", produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean checkIfUserExist(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
-        return userServiceImpl.getUser(username, password);
+
+    @RequestMapping(value = "/returnUserAccountId", produces = MediaType.APPLICATION_JSON_VALUE)
+    public int returnUserAccountId(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
+        return userServiceImpl.getUserAccountId(username, password);
     }
 }

@@ -10,7 +10,7 @@
     <br>
     <div class="q-pa-md" style="max-width: 300px">
       <form @submit.prevent.stop="save">
-      <q-input square outlined v-model="survey.description" label="Description" />
+      <q-input square outlined v-model="survey.suggestion" label="Description" />
       </form>
     </div>
     <br>
@@ -30,7 +30,7 @@ export default {
       survey: {
         category: '',
         subject: '',
-        description: '',
+        suggestion: '',
       },
       category: [
         'Company Improvement', 'Employee Happiness', 'Other',
@@ -39,18 +39,27 @@ export default {
   },
   methods: {
     async save() {
-      await DataService.saveSurvey(this.survey);
-      this.$q.notify({
-        message: 'Form sent successfully',
-        color: 'primary',
-      });
-      this.$router.push('/dashboard');
+      try {
+        const suggestionCheck = await DataService.saveSurvey(this.survey);
+        if (suggestionCheck) {
+          this.$q.notify({
+            message: 'Form sent successfully',
+            color: 'primary',
+          });
+          this.$router.push('/dashboard');
+        }
+      } catch (error) {
+        this.$q.notify({
+          message: 'Form did not send successfully',
+          color: 'red',
+        });
+      }
     },
   },
   computed: {
     activateButton() {
-      const { category, subject, description } = this.survey;
-      return category && subject && description;
+      const { category, subject, suggestion } = this.survey;
+      return category && subject && suggestion;
     },
   },
 };
