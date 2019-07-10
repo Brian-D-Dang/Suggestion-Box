@@ -47,14 +47,12 @@ export default {
             color: 'primary',
           });
           this.$router.push('/dashboard');
-        } else {
-          throw new Error(this.$q.notify({
-            message: 'Form did not send successfully',
-            color: 'red',
-          }));
         }
       } catch (error) {
-        this.$q.notify(error);
+        this.$q.notify({
+          message: 'Form did not send successfully',
+          color: 'red',
+        });
       }
     },
   },
