@@ -26,10 +26,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public int getUserAccountId(String username, String password) {
         UserAccountEntity userAccountEntity = userRepository.getUserAccountEntityByUsername(username);
-        PasswordEntity passwordEntity = passwordRepository.getPasswordEntityByPassword(password);
-        if ((userAccountEntity != null)&&(passwordEntity != null)) {
-            if (userAccountEntity.getUserAccountId() == passwordEntity.getUserAccountId()) {
-                return userAccountEntity.getUserAccountId();
+        if (userAccountEntity != null) {
+            PasswordEntity passwordEntity = passwordRepository.getPasswordEntityByUserAccountId(userAccountEntity.getUserAccountId());
+            if (passwordEntity != null) {
+                if (password.equals(passwordEntity.getPassword())) {
+                    return userAccountEntity.getUserAccountId();
+                }
             }
         }
         return 0;

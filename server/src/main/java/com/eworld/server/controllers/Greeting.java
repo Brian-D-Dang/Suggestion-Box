@@ -1,7 +1,9 @@
 package com.eworld.server.controllers;
 
-public class Greeting {
+import java.util.Date;
 
+public class Greeting {
+    private Date date = new Date();
     private long id;
     private String content;
 
@@ -10,6 +12,14 @@ public class Greeting {
     public Greeting(long id, String content) {
         this.id = id;
         this.content = content;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public long getId() {

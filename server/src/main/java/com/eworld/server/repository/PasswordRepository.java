@@ -4,5 +4,5 @@ import com.eworld.server.entity.PasswordEntity;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PasswordRepository extends CrudRepository<PasswordEntity, Integer> {
-    PasswordEntity getPasswordEntityByPassword(String password);
+    PasswordEntity getPasswordEntityByUserAccountId(int userAccountId);
 }
