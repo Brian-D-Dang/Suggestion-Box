@@ -11,9 +11,13 @@ import java.util.Date;
 public class SuggestionServiceImpl implements SuggestionService {
     @Autowired
     private SuggestionRepository suggestionRepository;
-
     public SuggestionServiceImpl() {
 
+    }
+
+    @Override
+    public String returnSuggestions(SuggestionEntity suggestionEntity) {
+        return suggestionEntity.getCategory();
     }
 
     @Override

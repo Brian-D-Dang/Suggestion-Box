@@ -28,7 +28,15 @@ export default {
     this.saveAccountId = saved;
   },
   // eslint-disable-next-line no-return-assign
+
   async getSuggestionForms() {
-    return this.savedForms;
+    return axiosInstance.get('/User/getSuggestion')
+    // eslint-disable-next-line no-return-assign
+      .then(response => response);
   },
+  // async getSuggestionForms() {
+  //   return this.savedForms;
+  // },
+  // this is the old getsuggest
+
 };
