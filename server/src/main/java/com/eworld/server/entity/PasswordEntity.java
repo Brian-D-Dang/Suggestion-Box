@@ -16,7 +16,7 @@ public class PasswordEntity {
     @Column(name = "USER_ACCOUNT_ID")
     private int userAccountId;
 
-    @Column(name = "password")
+    @Column(name = "PASSWORD")
     private String password;
 
     public PasswordEntity() {

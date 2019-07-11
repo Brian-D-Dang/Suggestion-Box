@@ -13,19 +13,19 @@ public class UserAccountEntity {
     @Column(name = "USER_ACCOUNT_ID")
     private int userAccountId;
 
-    @Column(name = "email")
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "first_name")
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "Manager")
+    @Column(name = "MANAGER")
     private int manager;
 
-    @Column(name = "username")
+    @Column(name = "USERNAME")
     private String username;
 
     public UserAccountEntity() {}
