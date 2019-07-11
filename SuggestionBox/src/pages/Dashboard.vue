@@ -9,7 +9,7 @@
     <p v-for="(suggestion) in sortedDate" :key="suggestion.id">
       {{ suggestion }}
     </p>
-    <q-btn to="/suggestion" color="primary" label="SuggestionForm"/>
+    <q-btn to="/suggestion" color="primary" label="Suggestion Form"/>
   </div>
 
 </template>

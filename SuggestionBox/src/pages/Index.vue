@@ -33,16 +33,17 @@ export default {
     async checkCred() {
       try {
         const checkLogin = await LoginInfo.getUser(this.cred);
-        if (checkLogin.data < 1) {
-          throw new Error('Incorrect username or password.');
-        }
         if (checkLogin.data >= 1) {
           this.$router.push('/home');
           LoginInfo.setUserAccountId(checkLogin.data);
+        } else {
+          throw new Error();
         }
       } catch (error) {
-        // eslint-disable-next-line no-alert
-        alert(error.message);
+        this.$q.notify({
+          message: 'Username or password is incorrect',
+          color: 'red',
+        });
       }
     },
   },
