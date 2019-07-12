@@ -11,7 +11,6 @@ import java.util.*;
 public class SuggestionServiceImpl implements SuggestionService {
     @Autowired
     private SuggestionRepository suggestionRepository;
-    private Suggestion suggestion;
     public SuggestionServiceImpl() {
 
     }

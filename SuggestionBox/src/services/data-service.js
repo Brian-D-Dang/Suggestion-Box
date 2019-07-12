@@ -33,9 +33,4 @@ export default {
     // eslint-disable-next-line no-return-assign
       .then(response => response);
   },
-  // async getSuggestionForms() {
-  //   return this.savedForms;
-  // },
-  // this is the old getsuggest
-
 };
