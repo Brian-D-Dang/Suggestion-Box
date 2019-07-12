@@ -48,8 +48,8 @@ export default {
   },
   created() {
     (async () => {
-      const hello = await DataService.getSuggestionForms();
-      this.suggestionForms = hello.data;
+      const displaySuggestion = await DataService.getSuggestionForms();
+      this.suggestionForms = displaySuggestion.data;
     })();
   },
 };
