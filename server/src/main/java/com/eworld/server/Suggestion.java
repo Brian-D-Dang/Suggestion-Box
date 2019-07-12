@@ -1,6 +1,5 @@
 package com.eworld.server;
 
-import org.springframework.web.bind.annotation.RequestParam;
 
 public class Suggestion {
     private String category;

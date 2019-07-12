@@ -6,5 +6,5 @@ import java.util.Date;
 
 public interface SuggestionService {
     boolean saveSuggestion(Suggestion suggestion);
-    String returnSuggestions(SuggestionEntity suggestionEntity);
+    Iterable<SuggestionEntity> returnSuggestions();
 }

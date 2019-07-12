@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.eworld.server.repository.SuggestionRepository;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 @Service
 public class SuggestionServiceImpl implements SuggestionService {
@@ -16,8 +18,15 @@ public class SuggestionServiceImpl implements SuggestionService {
     }
 
     @Override
-    public String returnSuggestions(SuggestionEntity suggestionEntity) {
-        return suggestionEntity.getCategory();
+    public Iterable<SuggestionEntity> returnSuggestions() {
+        Iterable<SuggestionEntity> suggestions = suggestionRepository.findAll();
+        Iterator iterator = suggestions.iterator();
+        while (iterator.hasNext()) {
+            SuggestionEntity suggestionEntity = (SuggestionEntity)iterator.next();
+            
+        }
+        suggestionEntity;
+        return suggestions;
     }
 
     @Override

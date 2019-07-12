@@ -12,9 +12,9 @@ public class SuggestionController {
     @Autowired
     private SuggestionServiceImpl suggestionServiceImpl;
 
-    @RequestMapping(value = "/getSuggestion", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getSuggestion(SuggestionEntity suggestionEntity) {
-        return suggestionServiceImpl.returnSuggestions(suggestionEntity);
+    @RequestMapping(value = "/getSuggestions", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<SuggestionEntity> getSuggestions() {
+        return suggestionServiceImpl.returnSuggestions();
     }
 
     @ResponseBody
