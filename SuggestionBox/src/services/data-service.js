@@ -1,7 +1,7 @@
 import { axiosInstance } from 'src/boot/axios.js';
 
 export default {
-  savedForms: [],
+  savedForms: null,
   saveAccountId: 0,
   async saveSurvey(saved) {
     const { category: cat, subject: sub, suggestion: sug } = saved;
@@ -29,6 +29,8 @@ export default {
   },
   // eslint-disable-next-line no-return-assign
   async getSuggestionForms() {
-    return this.savedForms;
+    return axiosInstance.get('/SuggestionForm/getSuggestions')
+    // eslint-disable-next-line no-return-assign
+      .then(response => response);
   },
 };

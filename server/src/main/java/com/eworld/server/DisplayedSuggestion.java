@@ -1,19 +1,11 @@
 package com.eworld.server;
 
-
-public class Suggestion {
+public class DisplayedSuggestion {
     private String category;
     private String subject;
     private String suggestion;
-    private Integer userAccountId;
 
-    public Suggestion() {
-    }
-    public Suggestion(String category, String subject, String suggestion, Integer userAccountId) {
-        this.category = category;
-        this.subject = subject;
-        this.suggestion = suggestion;
-        this.userAccountId = userAccountId;
+    public DisplayedSuggestion() {
     }
 
     public String getCategory() {
@@ -37,10 +29,4 @@ public class Suggestion {
         this.suggestion = suggestion;
     }
 
-    public Integer getUserAccountId() {
-        return userAccountId;
-    }
-    public void setUserAccountId(Integer userAccountId) {
-        this.userAccountId = userAccountId;
-    }
 }

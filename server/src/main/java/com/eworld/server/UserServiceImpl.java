@@ -6,7 +6,6 @@ import com.eworld.server.repository.PasswordRepository;
 import com.eworld.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.security.util.Password;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,10 +18,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl() {
 
     }
-    @Override
-    public String getHelloWorld() {
-        return "Hello World";
-    }
+
     @Override
     public int getUserAccountId(String username, String password) {
         UserAccountEntity userAccountEntity = userRepository.getUserAccountEntityByUsername(username);
