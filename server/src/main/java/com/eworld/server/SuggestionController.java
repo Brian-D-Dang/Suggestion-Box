@@ -5,6 +5,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/SuggestionForm")
@@ -13,7 +15,7 @@ public class SuggestionController {
     private SuggestionServiceImpl suggestionServiceImpl;
 
     @RequestMapping(value = "/getSuggestions", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<SuggestionEntity> getSuggestions() {
+    public List<DisplayedSuggestion> getSuggestions() {
         return suggestionServiceImpl.returnSuggestions();
     }
 

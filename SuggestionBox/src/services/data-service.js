@@ -29,7 +29,7 @@ export default {
   },
   // eslint-disable-next-line no-return-assign
   async getSuggestionForms() {
-    return axiosInstance.get('/SuggestionForm/getSuggestion')
+    return axiosInstance.get('/SuggestionForm/getSuggestions')
     // eslint-disable-next-line no-return-assign
       .then(response => response);
   },
