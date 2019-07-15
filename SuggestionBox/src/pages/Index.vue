@@ -37,6 +37,8 @@ export default {
         if (checkLogin.data[0].userAccountId >= 1) {
           this.$router.push('/home');
           LoginInfo.setUserAccountId(checkLogin.data.userAccountId);
+          LoginInfo.setUserFirstName();
+          LoginInfo.setUserLastName();
         } else {
           throw new Error();
         }
