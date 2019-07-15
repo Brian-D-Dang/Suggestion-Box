@@ -1,5 +1,7 @@
 package com.eworld.server;
 
+import java.util.List;
+
 public interface UserService {
-    int getUserAccountId(String username, String password);
+     List<User> getUserAccountId (String username, String password);
 }

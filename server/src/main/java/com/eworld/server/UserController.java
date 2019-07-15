@@ -1,11 +1,12 @@
 package com.eworld.server;
 
-import java.util.ArrayList;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/User")
@@ -16,7 +17,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/returnUserAccountId", produces = MediaType.APPLICATION_JSON_VALUE)
-    public int returnUserAccountId(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
+    public List<User> getUser(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
         return userServiceImpl.getUserAccountId(username, password);
     }
 }
