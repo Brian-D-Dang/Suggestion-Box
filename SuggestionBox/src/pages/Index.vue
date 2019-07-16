@@ -8,22 +8,22 @@
     >
       <img src="../statics/icons/logo.png">
       <p class="text">Suggestion Box</p>
-      <q-input dark
-        color="white"
-        class='col q-pt-sm' style="min-width:500px"
-        square outlined v-model="cred.username" label="Username" autofocus
-      />
       <form @submit.PREVENT.stop="checkCred">
         <q-input dark
+        color="white"
+        class="col q-pt-sm" style="min-width:500px"
+        square outlined v-model="cred.username" label="Username" autofocus
+      />
+        <q-input dark
           color="white"
-          class='col q-py-md' style="min-width:500px"
+          class="col q-py-md" style="min-width:500px"
         type="password" square outlined v-model="cred.password" label="Password"
         />
       </form>
       <q-btn
         unelevated
         size="17px"
-        class = 'col q-py-md' style = "min-width:500px"
+        class ="col q-py-md" style="min-width:500px"
         color="brand"
         :disable="!activateButton" @click="checkCred" label="LOGIN"
       />
