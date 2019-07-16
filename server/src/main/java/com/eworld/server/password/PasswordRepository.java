@@ -1,6 +1,6 @@
-package com.eworld.server.repository;
+package com.eworld.server.password;
 
-import com.eworld.server.entity.PasswordEntity;
+import com.eworld.server.password.PasswordEntity;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PasswordRepository extends CrudRepository<PasswordEntity, Integer> {

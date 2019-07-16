@@ -1,8 +1,5 @@
-package com.eworld.server;
+package com.eworld.server.suggestion;
 
-import com.eworld.server.entity.SuggestionEntity;
-
-import java.util.Date;
 import java.util.List;
 
 public interface SuggestionService {

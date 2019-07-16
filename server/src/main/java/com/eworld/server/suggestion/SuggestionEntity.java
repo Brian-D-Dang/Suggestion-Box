@@ -1,4 +1,4 @@
-package com.eworld.server.entity;
+package com.eworld.server.suggestion;
 
 import javax.persistence.*;
 import java.util.Date;
