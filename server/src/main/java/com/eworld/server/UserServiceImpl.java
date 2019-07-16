@@ -7,6 +7,8 @@ import com.eworld.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -20,17 +22,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int getUserAccountId(String username, String password) {
+    public User getUserAccountId(String username, String password) {
         UserAccountEntity userAccountEntity = userRepository.getUserAccountEntityByUsername(username);
         if (userAccountEntity != null) {
             PasswordEntity passwordEntity = passwordRepository.getPasswordEntityByUserAccountId(userAccountEntity.getUserAccountId());
             if (passwordEntity != null) {
                 if (password.equals(passwordEntity.getPassword())) {
-                    return userAccountEntity.getUserAccountId();
+//                  Password and username gets checked with the database if true the data is then put into an object list
+                    int userAccountId = passwordEntity.getUserAccountId();
+                    Iterable<UserAccountEntity> userAccounts = userRepository.findAll();
+                    Iterator<UserAccountEntity> iterator = userAccounts.iterator();
+                    User userData= new User();
+                    while (iterator.hasNext()) {
+                        UserAccountEntity nextFirstLastName = iterator.next();
+                        //this creates a new object and iterates through the list of firstnames and lastnames
+                        if (userAccountId == nextFirstLastName.getUserAccountId()) {
+                            // if the userAccountId from the passwordEntity matches with the iterated nextFirstLastname account id
+                            // then the data from that iteration will be saved into the object and returned.
+                            userData.setUserAccountId(nextFirstLastName.getUserAccountId());
+                            userData.setFirstName(nextFirstLastName.getFirstName());
+                            userData.setLastName(nextFirstLastName.getLastName());
+                        }
+                    }
+                    return userData;
                 }
             }
         }
-        return 0;
+        // if nothing in the if statements work then return null = nothing.
+        return null;
     }
 
 }

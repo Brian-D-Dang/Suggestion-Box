@@ -5,7 +5,7 @@
       square outlined v-model="cred.username" label="Username" autofocus
     />
     <p>Password:</p>
-    <form @submit.prevent.stop="checkCred">
+    <form @submit.PREVENT.stop="checkCred">
       <q-input
       type="password" square outlined v-model="cred.password" label="Password"
       />
@@ -32,10 +32,13 @@ export default {
   methods: {
     async checkCred() {
       try {
+        this.cred.username = this.cred.username.toLowerCase();
         const checkLogin = await LoginInfo.getUser(this.cred);
-        if (checkLogin.data >= 1) {
+        if (checkLogin.data.userAccountId >= 1) {
           this.$router.push('/home');
-          LoginInfo.setUserAccountId(checkLogin.data);
+          LoginInfo.setUserAccountId(checkLogin.data.userAccountId);
+          LoginInfo.setUserFirstName(checkLogin.data.firstName);
+          LoginInfo.setUserLastName(checkLogin.data.lastName);
         } else {
           throw new Error();
         }
