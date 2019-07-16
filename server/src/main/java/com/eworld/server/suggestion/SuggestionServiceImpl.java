@@ -1,9 +1,7 @@
-package com.eworld.server;
+package com.eworld.server.suggestion;
 
-import com.eworld.server.entity.SuggestionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.eworld.server.repository.SuggestionRepository;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com.eworld.server;
+package com.eworld.server.suggestion;
 
 
 public class Suggestion {

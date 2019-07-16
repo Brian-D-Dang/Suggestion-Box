@@ -1,4 +1,4 @@
-package com.eworld.server;
+package com.eworld.server.suggestion;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

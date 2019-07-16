@@ -1,9 +1,7 @@
-package com.eworld.server;
+package com.eworld.server.user;
 
-import com.eworld.server.entity.PasswordEntity;
-import com.eworld.server.entity.UserAccountEntity;
-import com.eworld.server.repository.PasswordRepository;
-import com.eworld.server.repository.UserRepository;
+import com.eworld.server.password.PasswordEntity;
+import com.eworld.server.password.PasswordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

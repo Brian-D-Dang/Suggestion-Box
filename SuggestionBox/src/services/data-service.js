@@ -17,6 +17,7 @@ export default {
       .then(response => response);
   },
   async getUser(userExist) {
+    console.log('hello');
     return axiosInstance.get('/User/returnUserAccountId', {
       params: {
         username: userExist.username,

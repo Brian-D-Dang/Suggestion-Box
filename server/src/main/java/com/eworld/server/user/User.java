@@ -1,4 +1,4 @@
-package com.eworld.server;
+package com.eworld.server.user;
 
 public class User {
     private String firstName;

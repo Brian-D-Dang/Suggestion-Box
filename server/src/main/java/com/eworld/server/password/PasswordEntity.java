@@ -1,4 +1,4 @@
-package com.eworld.server.entity;
+package com.eworld.server.password;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
