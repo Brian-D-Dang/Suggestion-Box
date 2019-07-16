@@ -1,31 +1,31 @@
 package com.eworld.server;
 
 public class User {
-    private String username;
-    private String password;
+    private String firstName;
+    private String lastName;
     private int userAccountId;
 
     public User() {
     }
-    public User(String username, String password, int userAccountId) {
+    public User(String firstName, String lastName, int userAccountId) {
 
-        this.username = username;
-        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.userAccountId = userAccountId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFirstName() {
+        return firstName;
     }
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLastName() {
+        return lastName;
     }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getUserAccountId() {
@@ -34,4 +34,5 @@ public class User {
     public void setUserAccountId(int userAccountId) {
         this.userAccountId = userAccountId;
     }
+
 }

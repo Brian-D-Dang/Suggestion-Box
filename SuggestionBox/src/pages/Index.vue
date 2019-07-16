@@ -34,11 +34,11 @@ export default {
       try {
         this.cred.username = this.cred.username.toLowerCase();
         const checkLogin = await LoginInfo.getUser(this.cred);
-        if (checkLogin.data[0].userAccountId >= 1) {
+        if (checkLogin.data.userAccountId >= 1) {
           this.$router.push('/home');
           LoginInfo.setUserAccountId(checkLogin.data.userAccountId);
-          LoginInfo.setUserFirstName();
-          LoginInfo.setUserLastName();
+          LoginInfo.setUserFirstName(checkLogin.data.firstName);
+          LoginInfo.setUserLastName(checkLogin.data.lastName);
         } else {
           throw new Error();
         }
