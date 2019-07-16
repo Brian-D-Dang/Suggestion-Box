@@ -7,10 +7,10 @@
     style="min-width:600px"
     >
       <img src="../statics/icons/logo.png">
-      Suggestion Box
+      <p class="text">Suggestion Box</p>
       <q-input dark
         color="white"
-        class='col q-pt-md' style="min-width:500px"
+        class='col q-pt-sm' style="min-width:500px"
         square outlined v-model="cred.username" label="Username" autofocus
       />
       <form @submit.PREVENT.stop="checkCred">
@@ -74,6 +74,9 @@ export default {
 </script>
 
 <style scoped>
+  .text {
+    font-size:20px;
+  }
   .text-brand {
     color: #41709C;
   }
