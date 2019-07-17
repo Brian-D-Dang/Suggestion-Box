@@ -15,8 +15,8 @@
     <!--Top Nav bar with button to access tabs-->
     <q-drawer content-style="background-color:#212121;"
               v-model="left" side="left" overlay elevated >
-        <q-list dark>
-          <q-item clickable v-ripple>
+        <q-list dark separator>
+          <q-item>
             <q-item-section caption>
               <q-item-label caption>Signed In As</q-item-label>
               <q-item-label header class="q-pa-sm">{{ username }}</q-item-label>
@@ -29,6 +29,7 @@
             </q-item-section>
           </q-item>
 
+          <q-seperator class="bg-primary"></q-seperator>
           <q-item clickable v-ripple @click="logout">
             <q-item-section>
               <q-item-label>
