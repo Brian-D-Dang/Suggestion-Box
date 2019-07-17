@@ -1,20 +1,41 @@
 <template>
-  <div>
-    <p>Username:</p>
-    <q-input
-      square outlined v-model="cred.username" label="Username" autofocus
-    />
-    <p>Password:</p>
-    <form @submit.PREVENT.stop="checkCred">
-      <q-input
-      type="password" square outlined v-model="cred.password" label="Password"
+  <q-layout class="bg-grey-10 text-white">
+    <div class="
+    absolute-center
+    column
+    items-center"
+    style="min-width:600px"
+    >
+      <img src="../statics/icons/logo.png">
+      <p class="text">Suggestion Box</p>
+      <q-form
+        @submit="checkCred"
+      >
+        <q-input dark
+        color="white"
+        class="col q-py-lg" style="min-width:500px"
+        square outlined v-model="cred.username" label="Username" autofocus
+                 lazy-rules
+                 :rules="[ val => val && val.length > 0 || 'Missing Username']"
       />
-    </form>
-    <q-btn
-      color="primary"
-      :disable="!activateButton" @click="checkCred" label="LOGIN"
-    />
-  </div>
+        <q-input dark
+          color="white"
+          class="col q-pb-lg" style="min-width:500px"
+        type="password" square outlined v-model="cred.password" label="Password"
+                 lazy-rules
+                 :rules="[ val => val && val.length > 0 || 'Missing Password']"
+        />
+      <q-btn
+        unelevated
+        type="submit"
+        size="17px"
+        class ="col q-py-md" style="min-width:500px"
+        color="brand"
+        :disable="!activateButton" @click="checkCred" label="LOGIN"
+      />
+      </q-form>
+    </div>
+  </q-layout>
 </template>
 
 <script>
@@ -60,4 +81,13 @@ export default {
 </script>
 
 <style scoped>
+  .text {
+    font-size:20px;
+  }
+  .text-brand {
+    color: #41709C;
+  }
+  .bg-brand {
+    background: #41709C;
+  }
 </style>

@@ -48,6 +48,7 @@ module.exports = function (ctx) {
         'QTh',
         'QTr',
         'QTd',
+        'QForm',
       ],
 
       directives: [
