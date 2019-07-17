@@ -47,6 +47,9 @@ module.exports = function (ctx) {
         'QTh',
         'QTr',
         'QTd',
+        'QCard',
+        'QCardSection',
+        'QCardActions',
       ],
 
       directives: [
