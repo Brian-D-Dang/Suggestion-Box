@@ -19,7 +19,6 @@
           class="col q-py-md" style="min-width:500px"
         type="password" square outlined v-model="cred.password" label="Password"
         />
-      </form>
       <q-btn
         unelevated
         size="17px"
@@ -27,6 +26,7 @@
         color="brand"
         :disable="!activateButton" @click="checkCred" label="LOGIN"
       />
+      </form>
     </div>
   </q-layout>
 </template>
