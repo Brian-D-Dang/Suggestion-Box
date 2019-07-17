@@ -1,12 +1,20 @@
 <template>
-  <div>
+  <div class="column items-center">
     <q-table
+      class="q-ma-md col"
+      style="min-width:1550px"
+      dark
+      color="red"
       title="Suggestions"
       :data="sortedDate"
       :columns="columns"
       row-key="name"
     />
-    <q-btn to="/suggestion" color="primary" label="Suggestion Form"/>
+    <q-btn
+      class="q-ma-md col"
+      to="/suggestion"
+      color="brand"
+      label="Create Suggestion"/>
   </div>
 
 </template>
@@ -56,4 +64,10 @@ export default {
 </script>
 
 <style scoped>
+  .text-brand {
+    color: #41709C;
+  }
+  .bg-brand {
+    background: #41709C;
+  }
 </style>
