@@ -3,6 +3,8 @@ import { axiosInstance } from 'src/boot/axios.js';
 export default {
   savedForms: null,
   saveAccountId: 0,
+  userUsername: null,
+  userEmail: null,
   userFirstName: null,
   userLastName: null,
   async saveSurvey(saved) {
@@ -28,6 +30,12 @@ export default {
   },
   setUserAccountId(saved) {
     this.saveAccountId = saved;
+  },
+  setUsername(saved) {
+    this.userUsername = saved;
+  },
+  setEmail(saved) {
+    this.userEmail = saved;
   },
   setUserFirstName(saved) {
     this.userFirstName = saved;

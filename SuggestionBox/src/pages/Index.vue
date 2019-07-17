@@ -60,6 +60,8 @@ export default {
           LoginInfo.setUserAccountId(checkLogin.data.userAccountId);
           LoginInfo.setUserFirstName(checkLogin.data.firstName);
           LoginInfo.setUserLastName(checkLogin.data.lastName);
+          LoginInfo.setUsername(checkLogin.data.username);
+          LoginInfo.setEmail(checkLogin.data.email);
         } else {
           throw new Error();
         }

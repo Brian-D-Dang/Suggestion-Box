@@ -18,7 +18,7 @@ public class SuggestionController {
         return suggestionServiceImpl.returnSuggestions();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "addSuggestion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/addSuggestion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean addSuggestion(@RequestBody Suggestion suggestion) {
         return suggestionServiceImpl.saveSuggestion(suggestion);
     }
