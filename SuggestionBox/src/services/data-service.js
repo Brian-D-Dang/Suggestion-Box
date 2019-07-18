@@ -28,20 +28,12 @@ export default {
     // eslint-disable-next-line no-return-assign
       .then(response => response);
   },
-  setUserAccountId(saved) {
-    this.saveAccountId = saved;
-  },
-  setUsername(saved) {
-    this.userUsername = saved;
-  },
-  setEmail(saved) {
-    this.userEmail = saved;
-  },
-  setUserFirstName(saved) {
-    this.userFirstName = saved;
-  },
-  setUserLastName(saved) {
-    this.userLastName = saved;
+  setUserInfo(saved) {
+    this.saveAccountId = saved.userAccountId;
+    this.userFirstName = saved.firstName;
+    this.userLastName = saved.lastName;
+    this.userUsername = saved.username;
+    this.userEmail = saved.email;
   },
   // eslint-disable-next-line no-return-assign
   async getSuggestionForms() {

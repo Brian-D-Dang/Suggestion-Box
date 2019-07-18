@@ -9,21 +9,22 @@
       <img src="../statics/icons/logo.png">
       <p class="text">Suggestion Box</p>
       <q-form
+        style="min-width:500px"
         @submit="checkCred"
       >
         <q-input dark
         color="white"
-        class="col q-py-lg" style="min-width:500px"
+        class="col q-py-lg"
         square outlined v-model="cred.username" label="Username" autofocus
-                 lazy-rules
-                 :rules="[ val => val && val.length > 0 || 'Missing Username']"
+        lazy-rules
+        :rules="[ val => val && val.length > 0 || 'Missing Username']"
       />
         <q-input dark
           color="white"
-          class="col q-pb-lg" style="min-width:500px"
-        type="password" square outlined v-model="cred.password" label="Password"
-                 lazy-rules
-                 :rules="[ val => val && val.length > 0 || 'Missing Password']"
+          class="col q-pb-lg"
+          type="password" square outlined v-model="cred.password" label="Password"
+          lazy-rules
+          :rules="[ val => val && val.length > 0 || 'Missing Password']"
         />
       <q-btn
         unelevated
@@ -31,7 +32,7 @@
         size="17px"
         class ="col q-py-md" style="min-width:500px"
         color="brand"
-        :disable="!activateButton" @click="checkCred" label="LOGIN"
+        :disable="!activateButton" label="LOGIN"
       />
       </q-form>
     </div>
@@ -57,11 +58,7 @@ export default {
         const checkLogin = await LoginInfo.getUser(this.cred);
         if (checkLogin.data.userAccountId >= 1) {
           this.$router.push('/home');
-          LoginInfo.setUserAccountId(checkLogin.data.userAccountId);
-          LoginInfo.setUserFirstName(checkLogin.data.firstName);
-          LoginInfo.setUserLastName(checkLogin.data.lastName);
-          LoginInfo.setUsername(checkLogin.data.username);
-          LoginInfo.setEmail(checkLogin.data.email);
+          LoginInfo.setUserInfo(checkLogin.data);
         } else {
           throw new Error();
         }
@@ -85,11 +82,5 @@ export default {
 <style scoped>
   .text {
     font-size:20px;
-  }
-  .text-brand {
-    color: #41709C;
-  }
-  .bg-brand {
-    background: #41709C;
   }
 </style>

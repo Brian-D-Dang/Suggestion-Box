@@ -14,9 +14,9 @@
     </q-header>
     <!--Top Nav bar with button to access tabs-->
     <q-drawer content-style="background-color:#212121;"
-              v-model="left" side="left" overlay elevated >
-        <q-list dark separator>
-          <q-item>
+              v-model="left" side="left" elevated >
+        <q-list dark>
+          <q-item style="border-bottom: 1px solid gray">
             <q-item-section caption>
               <q-item-label caption>Signed In As</q-item-label>
               <q-item-label header class="q-pa-sm">{{ username }}</q-item-label>
@@ -28,8 +28,6 @@
               <q-item-label>Dashboard</q-item-label>
             </q-item-section>
           </q-item>
-
-          <q-seperator class="bg-primary"></q-seperator>
           <q-item clickable v-ripple @click="logout">
             <q-item-section>
               <q-item-label>
@@ -67,11 +65,6 @@ export default {
       this.$router.push('/dashboard');
     },
     logout() {
-      DataService.setUserAccountId(0);
-      DataService.setUserFirstName(null);
-      DataService.setUserLastName(null);
-      DataService.setEmail(null);
-      DataService.setUsername(null);
       this.$router.push('/');
     },
   },
