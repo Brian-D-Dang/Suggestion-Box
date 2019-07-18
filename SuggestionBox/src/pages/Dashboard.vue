@@ -64,9 +64,6 @@ export default {
 </script>
 
 <style scoped>
-  .text-brand {
-    color: #41709C;
-  }
   .bg-brand {
     background: #41709C;
   }

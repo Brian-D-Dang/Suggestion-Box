@@ -56,8 +56,6 @@ export default {
   data() {
     return {
       left: true,
-      username: DataService.userUsername,
-      email: DataService.userEmail,
     };
   },
   methods: {
@@ -66,6 +64,14 @@ export default {
     },
     logout() {
       this.$router.push('/');
+    },
+  },
+  computed: {
+    username() {
+      return DataService.userUsername;
+    },
+    email() {
+      return DataService.userEmail;
     },
   },
 };

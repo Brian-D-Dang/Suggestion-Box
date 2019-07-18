@@ -10,18 +10,17 @@
       <p class="text">Suggestion Box</p>
       <q-form
         style="min-width:500px"
-        @submit="checkCred"
       >
         <q-input dark
         color="white"
-        class="col q-py-lg"
+        class="col q-py-lg full-width"
         square outlined v-model="cred.username" label="Username" autofocus
         lazy-rules
         :rules="[ val => val && val.length > 0 || 'Missing Username']"
       />
         <q-input dark
           color="white"
-          class="col q-pb-lg"
+          class="col q-pb-lg full-width"
           type="password" square outlined v-model="cred.password" label="Password"
           lazy-rules
           :rules="[ val => val && val.length > 0 || 'Missing Password']"
@@ -32,7 +31,7 @@
         size="17px"
         class ="col q-py-md" style="min-width:500px"
         color="brand"
-        :disable="!activateButton" label="LOGIN"
+        :disable="!activateButton" @click="checkCred" label="LOGIN"
       />
       </q-form>
     </div>
@@ -82,5 +81,8 @@ export default {
 <style scoped>
   .text {
     font-size:20px;
+  }
+  .bg-brand {
+    background: #41709C;
   }
 </style>
