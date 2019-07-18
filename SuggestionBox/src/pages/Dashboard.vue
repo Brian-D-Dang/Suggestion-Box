@@ -1,8 +1,7 @@
 <template>
   <div>
     <q-table
-         style="max-width: 300px; display:block; min-width:300px; font-size:50px;"
-         title="Suggestions"
+         style="max-width: 1020px; display:block; min-width:1020px; font-size:50px;"
          :data="sortedDate"
          :columns="columns"
          row-key="name"
@@ -12,7 +11,8 @@
     <template #item="props">
         <q-card class="q-ma-sm">
           <div class="row float-right">
-            <q-btn round unelevated icon="more_vert"></q-btn></div>
+            <q-btn round unelevated icon="more_vert"></q-btn>
+          </div>
           <q-list style="min-width:1000px" class="col">
             <q-item>
               <q-item-section>
@@ -22,6 +22,7 @@
                   {{ props.row.category }}</q-item-label>
                 <q-item-label caption style="font-size:20px;">{{ props.row.subject }}</q-item-label>
                 <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
+                <q-item-label caption style="font-size:12px">{{ props.row.date }}</q-item-label>
 
               </q-item-section>
             </q-item>
@@ -50,7 +51,10 @@ export default {
           name: 'Subject', align: 'center', label: 'Subject', field: 'subject', sortable: true,
         },
         {
-          name: 'Suggestion', align: 'center', label: 'Suggestion', field: 'suggestion', sortable: true,
+          name: 'Suggestion', label: 'Suggestion', field: 'suggestion', sortable: true,
+        },
+        {
+          name: 'Date', align: 'center', label: 'Date', field: 'date', sortable: true,
         },
       ],
       suggestionForms: [],
