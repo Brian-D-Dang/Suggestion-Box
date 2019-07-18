@@ -11,11 +11,12 @@
         >
     <template #item="props">
         <q-card>
-          <q-separator />
-          <q-list dense  class="col">
+          <div class="row justify-end"><q-btn round unelevated icon="more_vert"></q-btn></div>
+          <q-list dense style="min-width:1000px" class="col">
             <q-item
 v-for="col in props.cols.filter(col => col.name !== 'desc')" :key="col.name">
               <q-item-section>
+                <q-item-label caption>{{ col.name}}</q-item-label>
                 <q-item-label>{{ col.value}}</q-item-label>
               </q-item-section>
             </q-item>
