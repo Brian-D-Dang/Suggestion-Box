@@ -29,7 +29,7 @@
         unelevated
         type="submit"
         size="17px"
-        class ="col q-py-md"
+        class ="col q-py-md full-width"
         color="brand"
         :disable="!activateButton" @click="checkCred" label="LOGIN"
       />
