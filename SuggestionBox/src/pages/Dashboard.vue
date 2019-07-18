@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-table
-         style="max-width: 300px; display:block; min-width:300px; font-size:30px;"
+         style="max-width: 300px; display:block; min-width:300px; font-size:50px;"
          title="Suggestions"
          :data="sortedDate"
          :columns="columns"
