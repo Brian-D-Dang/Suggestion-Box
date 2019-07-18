@@ -1,23 +1,28 @@
 <template>
   <div>
     <q-table
-         style="max-width: 300px; display:block; min-width:300px;"
+         style="max-width: 300px; display:block; min-width:300px; font-size:30px;"
          title="Suggestions"
          :data="sortedDate"
          :columns="columns"
          row-key="name"
          grid
-         class="column items-center"
+         class="column"
         >
     <template #item="props">
-        <q-card>
-          <div class="row justify-end"><q-btn round unelevated icon="more_vert"></q-btn></div>
-          <q-list dense style="min-width:1000px" class="col">
-            <q-item
-v-for="col in props.cols.filter(col => col.name !== 'desc')" :key="col.name">
+        <q-card class="q-ma-sm">
+          <div class="row float-right">
+            <q-btn round unelevated icon="more_vert"></q-btn></div>
+          <q-list style="min-width:1000px" class="col">
+            <q-item>
               <q-item-section>
-                <q-item-label caption>{{ col.name}}</q-item-label>
-                <q-item-label>{{ col.value}}</q-item-label>
+                <q-item-label style="font-size:25px;" class="float-left">
+                  {{ props.row.name }}</q-item-label>
+                <q-item-label style="font-size:25px;">
+                  {{ props.row.category }}</q-item-label>
+                <q-item-label caption style="font-size:20px;">{{ props.row.subject }}</q-item-label>
+                <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
+
               </q-item-section>
             </q-item>
           </q-list>
@@ -49,12 +54,6 @@ export default {
         },
       ],
       suggestionForms: [],
-      options: [
-        'Date Ascending', 'Date Descending',
-      ],
-      Category: [
-        'All', 'Company Improvement', 'Employee Happiness', 'Other',
-      ],
     };
   },
   methods: {
