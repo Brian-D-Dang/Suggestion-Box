@@ -1,40 +1,29 @@
 <template>
   <div>
-       <q-table
-         style="width: 1000px; display:block;"
-          class="col"
-          grid
-          title="Suggestions"
-          :data="sortedDate"
-          :columns="columns"
-          row-key="name"
-        />
-<!--    <template v-slot:item="props">-->
-<!--      <div-->
-<!--        class="q-pa-xs col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-style-transition"-->
-<!--        :style="props.selected ? 'transform: scale(0.95);' : ''"-->
-<!--      >-->
-<!--        <q-card :class="props.selected ? 'bg-grey-2' : ''">-->
-<!--          <q-card-section>-->
-<!--            <q-checkbox dense v-model="props.selected" :label="props.row.name" />-->
-<!--          </q-card-section>-->
-<!--          <q-separator />-->
-<!--          <q-list dense>-->
-<!--            <q-item
-v-for="col in props.cols.filter(col => col.name !== 'desc')" :key="col.name">-->
-<!--              <q-item-section>-->
-<!--                <q-item-label>{{ col.label }}</q-item-label>-->
-<!--              </q-item-section>-->
-<!--              <q-item-section side>-->
-<!--                <q-item-label caption>{{ col.value }}</q-item-label>-->
-<!--              </q-item-section>-->
-<!--            </q-item>-->
-<!--          </q-list>-->
-<!--        </q-card>-->
-<!--      </div>-->
-<!--    </template>-->
+    <q-table
+         style="max-width: 300px; display:block; min-width:300px;"
+         title="Suggestions"
+         :data="sortedDate"
+         :columns="columns"
+         row-key="name"
+         grid
+         class="column items-center"
+        >
+    <template #item="props">
+        <q-card>
+          <q-separator />
+          <q-list dense  class="col">
+            <q-item
+v-for="col in props.cols.filter(col => col.name !== 'desc')" :key="col.name">
+              <q-item-section>
+                <q-item-label>{{ col.value}}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-card>
+    </template>
+       </q-table>
     <q-btn to="/suggestion" color="primary" label="Suggestion Form"/>
-
   </div>
 
 </template>
@@ -48,14 +37,6 @@ export default {
     return {
       data: [],
       columns: [
-        {
-          name: 'Category',
-          required: true,
-          label: 'Testing',
-          align: 'left',
-          field: 'subject',
-          sortable: true,
-        },
         {
           name: 'Category', align: 'center', label: 'Category', field: 'category', sortable: true,
         },
