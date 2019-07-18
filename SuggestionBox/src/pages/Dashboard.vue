@@ -1,12 +1,10 @@
 <template>
-  <div>
+  <div class="absolute-center">
     <q-table
-         style="max-width: 1020px; display:block; min-width:1020px; font-size:50px;"
-         :data="sortedDate"
-         :columns="columns"
-         row-key="name"
-         grid
-         class="column"
+      :data="sortedDate"
+      :columns="columns"
+      row-key="name"
+      grid
         >
     <template #item="props">
         <q-card class="q-ma-sm">
