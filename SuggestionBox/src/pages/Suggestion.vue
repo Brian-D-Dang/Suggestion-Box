@@ -1,20 +1,21 @@
 <template>
-  <div class="absolute-center">
-    <q-card style="min-width:500px" class="column justify-start" >
-      <q-card-section>Create Suggestion</q-card-section>
-      <q-separator color="black" style="min-height: 1px"></q-separator>
+  <div class="absolute-center" >
+    <q-card bordered style="min-width:500px" class="column items-center bg-grey-10" dark>
+      <q-card-section class="col">Create Suggestion</q-card-section>
+      <q-separator color="white" style="min-height: 1px"></q-separator>
       <q-card-section>
-        <div class="q-pa-md" style="max-width: 500px">
-          <q-select square outlined v-model="survey.category" :options="category" label="Category"/>
+        <div class="q-pa-md col" style="min-width: 500px">
+          <q-select
+            square
+            outlined v-model="survey.category" :options="category" label="Category" dark/>
         </div>
-        <br>
-       <div class="q-pa-md" style="max-width: 500px">
-        <q-input square outlined v-model="survey.subject" label="Subject" />
+       <div class="q-pa-md col" style="min-width: 500px">
+        <q-input square outlined v-model="survey.subject" label="Subject" dark/>
        </div>
-        <br>
-        <div class="q-pa-md" style="max-width: 500px">
+        <div class="q-pa-md col" style="min-width: 500px">
           <form @submit.prevent.stop="save">
           <q-input
+            dark
             square
             outlined
             v-model="survey.suggestion"
@@ -22,7 +23,7 @@
          </form>
         </div>
         <br>
-          <q-btn class="block"
+          <q-btn class="block" style="min-width:500px"
             @click="save" color="primary" label="Submit" :disable="!activateButton"
           />
       </q-card-section>
