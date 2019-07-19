@@ -15,7 +15,7 @@
         <q-input square outlined v-model="survey.subject" label="Subject" dark/>
        </div>
         <div class="q-pa-md col" style="min-width: 500px">
-          <q-checkbox
+          <q-checkbox class="q-pb-lg"
             color="brand" v-model="postAnonymously" label="Post Anonymously" dark>
           </q-checkbox>
           <form @submit.prevent.stop="save">
