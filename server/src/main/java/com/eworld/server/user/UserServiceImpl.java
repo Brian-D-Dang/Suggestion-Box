@@ -38,6 +38,8 @@ public class UserServiceImpl implements UserService {
                             // if the userAccountId from the passwordEntity matches with the iterated nextFirstLastname account id
                             // then the data from that iteration will be saved into the object and returned.
                             userData.setUserAccountId(nextFirstLastName.getUserAccountId());
+                            userData.setUsername(nextFirstLastName.getUsername());
+                            userData.setEmail(nextFirstLastName.getEmail());
                             userData.setFirstName(nextFirstLastName.getFirstName());
                             userData.setLastName(nextFirstLastName.getLastName());
                         }

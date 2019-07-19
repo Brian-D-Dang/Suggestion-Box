@@ -3,6 +3,8 @@ import { axiosInstance } from 'src/boot/axios.js';
 export default {
   savedForms: null,
   saveAccountId: 0,
+  userUsername: null,
+  userEmail: null,
   userFirstName: null,
   userLastName: null,
   async saveSurvey(saved) {
@@ -26,14 +28,19 @@ export default {
     // eslint-disable-next-line no-return-assign
       .then(response => response);
   },
-  setUserAccountId(saved) {
-    this.saveAccountId = saved;
+  setUserInfo(saved) {
+    this.saveAccountId = saved.userAccountId;
+    this.userFirstName = saved.firstName;
+    this.userLastName = saved.lastName;
+    this.userUsername = saved.username;
+    this.userEmail = saved.email;
   },
-  setUserFirstName(saved) {
-    this.userFirstName = saved;
-  },
-  setUserLastName(saved) {
-    this.userLastName = saved;
+  resetUserInfo() {
+    this.saveAccountId = 0;
+    this.userFirstName = null;
+    this.userLastName = null;
+    this.userUsername = null;
+    this.userEmail = null;
   },
   // eslint-disable-next-line no-return-assign
   async getSuggestionForms() {
