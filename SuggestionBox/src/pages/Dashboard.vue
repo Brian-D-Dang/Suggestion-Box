@@ -5,12 +5,13 @@
        :data="sortedDate"
        :columns="columns"
        class="text-white"
-       style="max-width:1000px"
+       dark
+       style="max-width:1000px;"
        row-key="name"
        grid
          >
      <template #item="props">
-           <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:1000px">
+           <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:900px">
             <div class="float-right">
              <q-btn round unelevated icon="more_vert"></q-btn>
            </div>
@@ -21,10 +22,13 @@
                     {{ props.row.name }}
                   </q-item-label>
                   <q-item-label style="font-size:25px;">{{ props.row.category }}</q-item-label>
-                 <q-item-label caption class="text-white" style="font-size:20px;">
+                  <q-item-label caption class="text-white" style="font-size:20px;">
                     {{ props.row.subject }}</q-item-label>
-                   <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
-                 <q-item-label caption style="font-size:12px">{{ props.row.date }}</q-item-label>
+                  <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
+
+                  <q-item-label caption class="text-white" style="font-size:12px">
+                    Date: {{ props.row.date }}
+                  </q-item-label>
 
                 </q-item-section>
              </q-item>
@@ -53,7 +57,7 @@ export default {
           name: 'Subject', align: 'center', label: 'Subject', field: 'subject',
         },
         {
-          name: 'Suggestion', label: 'Suggestion', field: 'suggestion',
+          name: 'Suggestion', align: 'center', label: 'Suggestion', field: 'suggestion',
         },
         {
           name: 'Date', align: 'center', label: 'Date', field: 'date',
