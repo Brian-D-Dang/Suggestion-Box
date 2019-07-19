@@ -1,6 +1,16 @@
 <template>
   <div>
    <div class="column row items-center justify-center">
+     <div class="q-pa-md row justify-center" style="max-width: 500px">
+       <q-select
+         outlined
+         style="min-width:230px"
+         v-model='sortingList' :options="options" label="Sort" dark class="q-pr-md"/>
+       <q-select
+         outlined
+         style="min-width:230px"
+         v-model='sortingCategory' :options="Category" label="Category" dark class="q-pl-md"/>
+     </div>
      <q-table
        :data="sortedDate"
        :columns="columns"
@@ -49,6 +59,8 @@ export default {
   data() {
     return {
       data: [],
+      sortingList: 'Date Descending',
+      sortingCategory: 'All',
       columns: [
         {
           name: 'Category', align: 'center', label: 'Category', field: 'category',
@@ -64,13 +76,32 @@ export default {
         },
       ],
       suggestionForms: [],
+      options: [
+        'Date Descending', 'Date Ascending',
+      ],
+      Category: [
+        'All', 'Company Improvement', 'Employee Happiness', 'Other',
+      ],
     };
   },
   methods: {
   },
   computed: {
     sortedDate() {
-      return this.suggestionForms;
+      if (!this.suggestionForms) {
+        return this.suggestionForms;
+      }
+      if (this.sortingList === 'Date Ascending') {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.suggestionForms.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+      } else if (this.sortingList === 'Date Descending') {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties,radix
+        this.suggestionForms.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+      }
+      if (this.sortingCategory === 'All') {
+        return this.suggestionForms;
+      }
+      return this.suggestionForms.filter(topic => topic.category === this.sortingCategory);
     },
   },
   created() {
