@@ -8,9 +8,7 @@
     >
       <img src="../statics/icons/logo.png">
       <p class="text">Suggestion Box</p>
-      <q-form
-        style="min-width:500px"
-      >
+      <q-form style="min-width:500px">
         <q-input dark
         color="white"
         class="col q-py-lg full-width"

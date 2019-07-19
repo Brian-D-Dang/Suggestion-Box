@@ -36,11 +36,6 @@
             </q-item-section>
           </q-item>
         </q-list>
-<!--      <q-tabs align="left" class="text-white">-->
-<!--        <q-route-tab to="/dashboard" label="Dashboard" />-->
-<!--        <q-route-tab to="/" label="LOGOUT" />-->
-<!--      </q-tabs>-->
-<!--      &lt;!&ndash;drawer content and tabs &ndash;&gt;-->
     </q-drawer>
     <q-page-container>
       <router-view/>
@@ -64,6 +59,7 @@ export default {
     },
     logout() {
       this.$router.push('/');
+      DataService.resetUserInfo();
     },
   },
   computed: {

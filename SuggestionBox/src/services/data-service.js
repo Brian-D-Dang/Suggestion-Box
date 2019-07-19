@@ -35,6 +35,13 @@ export default {
     this.userUsername = saved.username;
     this.userEmail = saved.email;
   },
+  resetUserInfo() {
+    this.saveAccountId = 0;
+    this.userFirstName = null;
+    this.userLastName = null;
+    this.userUsername = null;
+    this.userEmail = null;
+  },
   // eslint-disable-next-line no-return-assign
   async getSuggestionForms() {
     return axiosInstance.get('/SuggestionForm/getSuggestions')
