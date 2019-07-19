@@ -77,10 +77,4 @@ export default {
   .text {
     font-size:20px;
   }
-  .text-brand {
-    color: #41709C;
-  }
-  .bg-brand {
-    background: #41709C;
-  }
 </style>

@@ -1,11 +1,12 @@
 <template>
   <div class="row column justify-center items-center" >
-    <q-card class="column items-center bg-grey-9" dark>
+    <q-card class="column items-center bg-grey-9 q-ma-md" dark>
       <q-card-section class="col">
         Create Suggestion
       </q-card-section>
       <q-separator color="white" style="min-height:1px"></q-separator>
       <q-card-section>
+        <q-form>
         <div class="q-pa-md col" style="min-width: 500px">
           <q-select
             square
@@ -18,19 +19,18 @@
           <q-checkbox class="q-pb-lg"
             color="brand" v-model="postAnonymously" label="Post Anonymously" dark>
           </q-checkbox>
-          <form @submit.prevent.stop="save">
           <q-input
             dark
             square
             outlined
             v-model="survey.suggestion"
             label="Description" filled type="textarea" counter maxlength="64"/>
-         </form>
         </div>
         <br>
           <q-btn color="brand" class="block q-mx-md q-mb-md" size="20px" style="min-width:500px"
-            @click="save"  label="Submit" :disable="!activateButton"
+           type="submit" @click="save"  label="Submit" :disable="!activateButton"
           />
+        </q-form>
       </q-card-section>
     </q-card>
   </div>
@@ -48,6 +48,7 @@ export default {
         category: '',
         subject: '',
         suggestion: '',
+        // postAnonymously: this.postAnonymously,
       },
       category: [
         'Company Improvement', 'Employee Happiness', 'Other',
@@ -82,7 +83,4 @@ export default {
 };
 </script>
 <style scoped>
-  .bg-brand {
-    background: #41709C;
-  }
 </style>

@@ -52,7 +52,7 @@ module.exports = function (ctx) {
         'QCardActions',
         'QSeparator',
         'QCheckbox',
-        'QPopupEdit',
+        'QForm',
       ],
 
       directives: [
