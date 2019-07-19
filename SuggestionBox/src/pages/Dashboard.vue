@@ -46,7 +46,11 @@
          </q-card>
      </template>
         </q-table>
-     <q-btn to="/suggestion" color="primary" label="Suggestion Form"/>
+    <q-btn
+      class="q-ma-md col"
+      to="/suggestion"
+      color="brand"
+      label="Create Suggestion"/>
     </div>
   </div>
 </template>
@@ -114,4 +118,7 @@ export default {
 </script>
 
 <style scoped>
+  .bg-brand {
+    background: #41709C;
+  }
 </style>
