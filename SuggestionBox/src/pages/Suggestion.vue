@@ -1,8 +1,10 @@
 <template>
-  <div class="absolute-center" >
-    <q-card bordered style="min-width:500px" class="column items-center bg-grey-10" dark>
-      <q-card-section class="col">Create Suggestion</q-card-section>
-      <q-separator color="white" style="min-height: 1px"></q-separator>
+  <div class="row column justify-center items-center" >
+    <q-card class="column items-center bg-grey-9" dark>
+      <q-card-section class="col">
+        Create Suggestion
+      </q-card-section>
+      <q-separator color="white" style="min-height:1px"></q-separator>
       <q-card-section>
         <div class="q-pa-md col" style="min-width: 500px">
           <q-select
@@ -13,18 +15,21 @@
         <q-input square outlined v-model="survey.subject" label="Subject" dark/>
        </div>
         <div class="q-pa-md col" style="min-width: 500px">
+          <q-checkbox
+            color="brand" v-model="postAnonymously" label="Post Anonymously" dark>
+          </q-checkbox>
           <form @submit.prevent.stop="save">
           <q-input
             dark
             square
             outlined
             v-model="survey.suggestion"
-            label="Description" filled type="textarea" counter />
+            label="Description" filled type="textarea" counter maxlength="64"/>
          </form>
         </div>
         <br>
-          <q-btn class="block" style="min-width:500px"
-            @click="save" color="primary" label="Submit" :disable="!activateButton"
+          <q-btn color="brand" class="block q-mx-md q-mb-md" size="20px" style="min-width:500px"
+            @click="save"  label="Submit" :disable="!activateButton"
           />
       </q-card-section>
     </q-card>
@@ -38,6 +43,7 @@ export default {
   name: 'Suggestion',
   data() {
     return {
+      postAnonymously: false,
       survey: {
         category: '',
         subject: '',
@@ -76,4 +82,7 @@ export default {
 };
 </script>
 <style scoped>
+  .bg-brand {
+    background: #41709C;
+  }
 </style>

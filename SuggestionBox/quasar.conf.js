@@ -51,6 +51,7 @@ module.exports = function (ctx) {
         'QCardSection',
         'QCardActions',
         'QSeparator',
+        'QCheckbox',
         'QPopupEdit',
       ],
 
