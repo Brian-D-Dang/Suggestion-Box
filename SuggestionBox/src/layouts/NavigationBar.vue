@@ -1,7 +1,7 @@
 <template>
-  <q-layout view="hHh LpR fFf">
+  <q-layout view="hHh LpR fFf" class="bg-grey-10">
 
-    <q-header reveal elevated class="bg-primary text-white">
+    <q-header reveal elevated class="bg-grey-10 text-white">
       <q-toolbar>
 
         <q-toolbar-title>
