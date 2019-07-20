@@ -80,7 +80,4 @@ export default {
   .text {
     font-size:20px;
   }
-  .bg-brand {
-    background: #41709C;
-  }
 </style>
