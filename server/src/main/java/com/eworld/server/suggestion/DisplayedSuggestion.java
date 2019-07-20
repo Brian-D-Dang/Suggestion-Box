@@ -1,11 +1,19 @@
 package com.eworld.server.suggestion;
+import java.util.Date;
 
 public class DisplayedSuggestion {
     private String category;
     private String subject;
     private String suggestion;
+    private String date;
 
     public DisplayedSuggestion() {
+    }
+    public DisplayedSuggestion(String category, String subject, String suggestion, String date) {
+        this.category = category;
+        this.subject = subject;
+        this.suggestion = suggestion;
+        this.date = date;
     }
 
     public String getCategory() {
@@ -29,4 +37,10 @@ public class DisplayedSuggestion {
         this.suggestion = suggestion;
     }
 
+    public String getDate() {
+        return date;
+    }
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
