@@ -16,7 +16,4 @@ export default {
 };
 </script>
 <style>
-  .bg-brand {
-    background:#000000;
-  }
 </style>

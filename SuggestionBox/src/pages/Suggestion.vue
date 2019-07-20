@@ -1,5 +1,6 @@
 <template>
-  <div class="row column justify-center items-center" >
+  <div  >
+<!--  class="row column justify-center items-center"  -->
     <q-card class="column items-center bg-grey-9 q-ma-md" dark>
       <q-card-section class="col">
         Create Suggestion

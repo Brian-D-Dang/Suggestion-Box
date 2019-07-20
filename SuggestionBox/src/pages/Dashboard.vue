@@ -1,65 +1,71 @@
 <template>
-  <div>
-   <div class="column row items-center justify-center">
-     <div class="q-pa-md row justify-center" style="max-width: 500px">
-       <q-select
-         outlined
-         style="min-width:230px"
-         v-model='sortingList' :options="options" label="Sort" dark class="q-pr-md"/>
-       <q-select
-         outlined
-         style="min-width:230px"
-         v-model='sortingCategory' :options="Category" label="Category" dark class="q-pl-md"/>
-     </div>
-     <q-table
-       :data="sortedDate"
-       :columns="columns"
-       class="text-white"
-       dark
-       style="max-width:1000px;"
-       row-key="name"
-       grid
-         >
-     <template #item="props">
+   <div class="row items-center">
+<!--     class="column row items-center justify-center"-->
+     <suggestion></suggestion>
+
+     <div class="column items-center">
+       <div class="q-pa-md row justify-center" style="max-width: 500px">
+         <q-select
+           outlined
+           style="min-width:230px"
+           v-model='sortingList' :options="options" label="Sort" dark class="q-pr-md"/>
+         <q-select
+           outlined
+           style="min-width:230px"
+           v-model='sortingCategory' :options="Category" label="Category" dark class="q-pl-md"/>
+       </div>
+       <q-table
+         :data="sortedDate"
+         :columns="columns"
+         class="text-white"
+         dark
+         style="max-width:1000px;"
+         row-key="name"
+         grid
+       >
+         <template #item="props">
            <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:900px">
-            <div class="float-right">
-             <q-btn round unelevated icon="more_vert"></q-btn>
-           </div>
-            <q-list class="col">
-              <q-item>
-                <q-item-section>
-                  <q-item-label style="font-size:25px;" class="float-left">
-                    {{ props.row.name }}
-                  </q-item-label>
-                  <q-item-label style="font-size:25px;">{{ props.row.category }}</q-item-label>
-                  <q-item-label caption class="text-white" style="font-size:20px;">
-                    {{ props.row.subject }}</q-item-label>
-                  <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
+             <div class="float-right">
+               <q-btn round unelevated icon="more_vert"></q-btn>
+             </div>
+             <q-list class="col">
+               <q-item>
+                 <q-item-section>
+                   <q-item-label style="font-size:25px;" class="float-left">
+                     {{ props.row.name }}
+                   </q-item-label>
+                   <q-item-label style="font-size:25px;">{{ props.row.category }}</q-item-label>
+                   <q-item-label caption class="text-white" style="font-size:20px;">
+                     {{ props.row.subject }}</q-item-label>
+                   <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
 
-                  <q-item-label caption class="text-white" style="font-size:12px">
-                    Date: {{ props.row.date }}
-                  </q-item-label>
+                   <q-item-label caption class="text-white" style="font-size:12px">
+                     Date: {{ props.row.date }}
+                   </q-item-label>
 
-                </q-item-section>
-             </q-item>
-            </q-list>
-         </q-card>
-     </template>
-        </q-table>
-    <q-btn
-      class="q-ma-md col"
-      to="/suggestion"
-      color="brand"
-      label="Create Suggestion"/>
+                 </q-item-section>
+               </q-item>
+             </q-list>
+           </q-card>
+         </template>
+       </q-table>
+     </div>
+
+<!--    <q-btn-->
+<!--      class="q-ma-md col"-->
+<!--      to="/suggestion"-->
+<!--      color="brand"-->
+<!--      label="Create Suggestion"/>-->
     </div>
-  </div>
 </template>
 
 <script>
 import DataService from 'src/services/data-service.js';
+import Suggestion from './Suggestion';
 
 export default {
   name: 'Dashboard',
+  components: { Suggestion },
   data() {
     return {
       data: [],
