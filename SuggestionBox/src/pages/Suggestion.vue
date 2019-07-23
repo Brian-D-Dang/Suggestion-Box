@@ -29,7 +29,7 @@
         </div>
         <br>
           <q-btn color="brand" class="block q-mx-md q-mb-md" size="20px" style="min-width:500px"
-           type="submit" @click="save"  label="Submit" :disable="!activateButton"
+           type="submit" @click="save" label="Submit" :disable="!activateButton"
           />
         </q-form>
       </q-card-section>
@@ -67,6 +67,7 @@ export default {
           });
           this.$router.push('/dashboard');
         }
+        this.$root.$emit('added-suggestion');
       } catch (error) {
         this.$q.notify({
           message: 'Form did not send successfully',

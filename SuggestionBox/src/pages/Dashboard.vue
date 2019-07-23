@@ -1,5 +1,5 @@
 <template>
-   <div class="row items-center">
+   <div class="row justify-center items-center">
 <!--     class="column row items-center justify-center"-->
      <suggestion></suggestion>
 
@@ -17,6 +17,7 @@
        <q-table
          :data="sortedDate"
          :columns="columns"
+         :rows-per-page-options="[0]"
          class="text-white"
          dark
          style="max-width:1000px;"
@@ -39,24 +40,24 @@
                      {{ props.row.subject }}</q-item-label>
                    <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
 
-                   <q-item-label caption class="text-white" style="font-size:12px">
-                     Date: {{ props.row.date }}
-                   </q-item-label>
+                       <q-item-label caption class="text-white" style="font-size:12px">
+                         Date: {{ props.row.date }}
+                       </q-item-label>
 
-                 </q-item-section>
-               </q-item>
-             </q-list>
-           </q-card>
-         </template>
-       </q-table>
-     </div>
+                     </q-item-section>
+                   </q-item>
+                 </q-list>
+               </q-card>
+             </template>
+           </q-table>
+         </div>
+       </div>
 
 <!--    <q-btn-->
 <!--      class="q-ma-md col"-->
 <!--      to="/suggestion"-->
 <!--      color="brand"-->
 <!--      label="Create Suggestion"/>-->
-    </div>
 </template>
 
 <script>
@@ -95,6 +96,10 @@ export default {
     };
   },
   methods: {
+    async refreshSuggestions() {
+      const displaySuggestion = await DataService.getSuggestionForms();
+      this.suggestionForms = displaySuggestion.data;
+    },
   },
   computed: {
     sortedDate() {
@@ -113,14 +118,19 @@ export default {
       }
       return this.suggestionForms.filter(topic => topic.category === this.sortingCategory);
     },
+    // refreshSuggestions() {
+    //   return this.$on('added-suggestion', () => console.log('suggestion added'));
+    // },
   },
   created() {
-    (async () => {
-      const displaySuggestion = await DataService.getSuggestionForms();
-      this.suggestionForms = displaySuggestion.data;
-    })();
+    this.refreshSuggestions();
+    this.$root.$on('added-suggestion', this.refreshSuggestions);
+  },
+  beforeDestroy() {
+    this.$root.$off('added-suggestion');
   },
 };
+
 </script>
 
 <style scoped>
