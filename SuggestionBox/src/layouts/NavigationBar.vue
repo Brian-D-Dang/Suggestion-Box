@@ -27,13 +27,21 @@
               <q-item-label>Dashboard</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable v-ripple @click="logout">
+          <q-item clickable v-ripple @click="createUserAccount" v-if="checkManagerId === 1">
+          <q-item-section>
+            <q-item-label>
+              <q-item-label>Create Account</q-item-label>
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+          <q-item clickable v-ripple @click="logout" >
             <q-item-section>
               <q-item-label>
                 <q-item-label>Logout</q-item-label>
               </q-item-label>
             </q-item-section>
           </q-item>
+
         </q-list>
     </q-drawer>
     <q-page-container>
@@ -50,6 +58,7 @@ export default {
   data() {
     return {
       left: true,
+      checkManagerId: DataService.userManagerId,
     };
   },
   methods: {
@@ -59,6 +68,9 @@ export default {
     logout() {
       this.$router.push('/');
       DataService.resetUserInfo();
+    },
+    createUserAccount() {
+      this.$router.push('/createuseraccount');
     },
   },
   computed: {

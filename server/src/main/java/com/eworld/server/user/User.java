@@ -6,15 +6,17 @@ public class User {
     private String email;
     private String username;
     private int userAccountId;
+    private int managerId;
 
     public User() {
     }
-    public User(String firstName, String lastName, String email, String username, int userAccountId) {
+    public User(String firstName, String lastName, String email, String username, int userAccountId, int managerId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.userAccountId = userAccountId;
+        this.managerId = managerId;
     }
 
     public String getFirstName() {
@@ -52,4 +54,10 @@ public class User {
         this.userAccountId = userAccountId;
     }
 
+    public int getManagerId() {
+        return managerId;
+    }
+    public void setManagerId(int managerId) {
+        this.managerId = managerId;
+    }
 }

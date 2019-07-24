@@ -21,18 +21,18 @@ public class SuggestionEntity {
     private String category;
 
     @Column(name = "CREATED_DATE")
-    private Date date;
+    private Date createdDate;
 
     @Column(name = "SUBJECT")
     private String subject;
 
     public SuggestionEntity() {}
 
-    public SuggestionEntity(String category, String subject, String suggestion, Date date, int userAccountId) {
+    public SuggestionEntity(String category, String subject, String suggestion, Date createdDate, int userAccountId) {
         this.category = category;
         this.subject = subject;
         this.suggestion = suggestion;
-        this.date = date;
+        this.createdDate = createdDate;
         this.userAccountId = userAccountId;
     }
     public int getSuggestionId() {
@@ -64,10 +64,10 @@ public class SuggestionEntity {
     }
 
     public Date getDate() {
-        return date;
+        return createdDate;
     }
     public void setDate(Date date) {
-        this.date = date;
+        this.createdDate = date;
     }
 
     public String getSubject() {
