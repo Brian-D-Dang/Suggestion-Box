@@ -1,6 +1,5 @@
 <template>
    <div class="row justify-center items-center">
-<!--     class="column row items-center justify-center"-->
      <suggestion class="col-lg-6 col-xl-5"></suggestion>
 
      <div class="column items-center col-lg-5 col-xl-6  ">
@@ -52,11 +51,6 @@
          </div>
        </div>
 
-<!--    <q-btn-->
-<!--      class="q-ma-md col"-->
-<!--      to="/suggestion"-->
-<!--      color="brand"-->
-<!--      label="Create Suggestion"/>-->
 </template>
 
 <script>
@@ -117,9 +111,6 @@ export default {
       }
       return this.suggestionForms.filter(topic => topic.category === this.sortingCategory);
     },
-    // refreshSuggestions() {
-    //   return this.$on('added-suggestion', () => console.log('suggestion added'));
-    // },
   },
   created() {
     this.refreshSuggestions();

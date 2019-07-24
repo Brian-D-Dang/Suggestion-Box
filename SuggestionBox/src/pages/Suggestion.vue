@@ -1,13 +1,12 @@
 <template>
   <div  >
-<!--  class="row column justify-center items-center"  -->
     <q-card class="column items-center bg-grey-9 q-ma-md" dark>
       <q-card-section class="col">
         Create Suggestion
       </q-card-section>
       <q-separator color="white" style="min-height:1px"></q-separator>
       <q-form>
-        <q-card-section class="row">
+        <q-card-section class="row" style="min-width:500px">
         <div class="q-pa-md col-12">
           <q-select
             square
@@ -26,14 +25,13 @@
             outlined
             v-model="survey.suggestion"
             label="Description" filled type="textarea" counter maxlength="64"/>
-        </div>
-            <q-btn
-              color="brand"
-              class="block col-12"
-              size="20px "
-              type="submit" @click="save" label="Submit" :disable="!activateButton"
+          <q-btn
+            color="brand"
+            class="block full-width q-ma-md"
+            size="20px"
+            type="submit" @click="save" label="Submit" :disable="!activateButton"
           />
-
+        </div>
         </q-card-section>
       </q-form>
     </q-card>
@@ -52,7 +50,6 @@ export default {
         category: '',
         subject: '',
         suggestion: '',
-        // postAnonymously: this.postAnonymously,
       },
       category: [
         'Company Improvement', 'Employee Happiness', 'Other',
