@@ -33,7 +33,11 @@
         :disable="!activateButton" @click="checkCred" label="LOGIN"
       />
       </q-form>
-      <q-btn to="/createuseraccount" label="Sign Up" outline color="purple" />
+      <q-btn
+        flat
+        to="/createuseraccount"
+        size="10px"
+        class="q-pa-xs q-mt-xs" label="Sign Up?" color="primary" />
     </div>
   </q-layout>
 </template>
