@@ -6,17 +6,17 @@
         Create Suggestion
       </q-card-section>
       <q-separator color="white" style="min-height:1px"></q-separator>
-      <q-card-section>
-        <q-form>
-        <div class="q-pa-md col" style="min-width: 500px">
+      <q-form>
+        <q-card-section class="row">
+        <div class="q-pa-md col-12">
           <q-select
             square
             outlined v-model="survey.category" :options="category" label="Category" dark/>
         </div>
-       <div class="q-pa-md col" style="min-width: 500px">
-        <q-input square outlined v-model="survey.subject" label="Subject" dark/>
-       </div>
-        <div class="q-pa-md col" style="min-width: 500px">
+        <div class="q-pa-md col-12">
+         <q-input square outlined v-model="survey.subject" label="Subject" dark/>
+        </div>
+        <div class="q-pa-md col-12">
           <q-checkbox class="q-pb-lg"
             color="brand" v-model="postAnonymously" label="Post Anonymously" dark>
           </q-checkbox>
@@ -27,12 +27,15 @@
             v-model="survey.suggestion"
             label="Description" filled type="textarea" counter maxlength="64"/>
         </div>
-        <br>
-          <q-btn color="brand" class="block q-mx-md q-mb-md" size="20px" style="min-width:500px"
-           type="submit" @click="save" label="Submit" :disable="!activateButton"
+            <q-btn
+              color="brand"
+              class="block col-12"
+              size="20px "
+              type="submit" @click="save" label="Submit" :disable="!activateButton"
           />
-        </q-form>
-      </q-card-section>
+
+        </q-card-section>
+      </q-form>
     </q-card>
   </div>
 </template>

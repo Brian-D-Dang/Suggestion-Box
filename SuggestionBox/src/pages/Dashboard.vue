@@ -1,9 +1,9 @@
 <template>
    <div class="row justify-center items-center">
 <!--     class="column row items-center justify-center"-->
-     <suggestion></suggestion>
+     <suggestion class="col-lg-6 col-xl-5"></suggestion>
 
-     <div class="column items-center">
+     <div class="column items-center col-lg-5 col-xl-6  ">
        <div class="q-pa-md row justify-center" style="max-width: 500px">
          <q-select
            outlined
@@ -20,12 +20,11 @@
          :rows-per-page-options="[0]"
          class="text-white"
          dark
-         style="max-width:1000px;"
          row-key="name"
          grid
        >
          <template #item="props">
-           <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:900px">
+           <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:500px">
              <div class="float-right">
                <q-btn round unelevated icon="more_vert"></q-btn>
              </div>
