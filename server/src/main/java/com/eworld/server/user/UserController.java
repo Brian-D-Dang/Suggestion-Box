@@ -1,10 +1,8 @@
 package com.eworld.server.user;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/User")
@@ -13,6 +11,10 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
+    @RequestMapping(method = RequestMethod.POST, value = "/createUserAccount", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean createUser(@RequestBody CreateUserAccount createUserAccount) {
+        return userServiceImpl.createUserLogin(createUserAccount);
+    }
 
     @RequestMapping(value = "/returnUserAccountId", produces = MediaType.APPLICATION_JSON_VALUE)
     public User getUser(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {

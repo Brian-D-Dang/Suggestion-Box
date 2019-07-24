@@ -7,6 +7,10 @@ export default {
   userEmail: null,
   userFirstName: null,
   userLastName: null,
+  async createUser(createUserCred) {
+    return axiosInstance.post('/User/createUserAccount', createUserCred)
+      .then(response => response);
+  },
   async saveSurvey(saved) {
     const { category: cat, subject: sub, suggestion: sug } = saved;
     const suggestion = {

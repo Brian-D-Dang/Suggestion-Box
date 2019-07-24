@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "USER_ACCOUNT")
 public class UserAccountEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "USER_ACCOUNT_ID")
     private int userAccountId;
 
@@ -29,6 +29,12 @@ public class UserAccountEntity {
     private String username;
 
     public UserAccountEntity() {}
+    public UserAccountEntity(String firstName, String lastName, String email, String username) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+    }
 
     public int getUserAccountId() {
         return userAccountId;

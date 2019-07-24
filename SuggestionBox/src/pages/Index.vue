@@ -23,6 +23,7 @@
           lazy-rules
           :rules="[ val => val && val.length > 0 || 'Missing Password']"
         />
+
       <q-btn
         unelevated
         type="submit"
@@ -32,6 +33,7 @@
         :disable="!activateButton" @click="checkCred" label="LOGIN"
       />
       </q-form>
+      <q-btn to="/createuseraccount" label="Sign Up" outline color="purple" />
     </div>
   </q-layout>
 </template>

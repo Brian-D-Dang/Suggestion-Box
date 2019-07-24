@@ -5,6 +5,7 @@ import com.eworld.server.password.PasswordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Iterator;
 
 @Service
@@ -17,6 +18,16 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl() {
 
+    }
+
+    @Override
+    public boolean createUserLogin(CreateUserAccount createUserAccount) {
+        Date todayDate = new Date();
+        UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername());
+        userAccountEntity = userRepository.save(userAccountEntity);
+        PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), createUserAccount.getPassword(), todayDate);
+        passwordEntity = passwordRepository.save(passwordEntity);
+        return (userAccountEntity != null) && (passwordEntity != null);
     }
 
     @Override

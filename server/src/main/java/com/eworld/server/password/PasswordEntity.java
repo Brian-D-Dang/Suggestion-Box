@@ -4,12 +4,13 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "PASSWORD")
 public class PasswordEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "PASSWORD_ID")
     private int passwordId;
 
@@ -19,9 +20,16 @@ public class PasswordEntity {
     @Column(name = "PASSWORD")
     private String password;
 
+    @Column(name = "EFFECTIVE_DATE")
+    private Date date;
+
     public PasswordEntity() {
     }
-
+    public PasswordEntity(int userAccountId, String password, Date date) {
+        this.userAccountId = userAccountId;
+        this.password = password;
+        this.date = date;
+    }
 
     public int getPasswordId() {
         return passwordId;
