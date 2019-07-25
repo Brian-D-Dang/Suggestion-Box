@@ -23,7 +23,28 @@
      <template #item="props">
            <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:900px">
             <div class="float-right">
-             <q-btn round unelevated icon="more_vert"></q-btn>
+             <q-btn round unelevated icon="more_vert">
+               <q-menu>
+                 <q-list style="min-width: 75px">
+                   <q-item clickable v-close-popup>
+                     <q-item-section class="column items-center">
+                       edit
+                       <q-popup-proxy>
+                         <q-date v-model="input" filled />
+                       </q-popup-proxy>
+<!--                         <q-card class="bg-amber-1">-->
+<!--                           <q-card-section></q-card-section>-->
+<!--                         </q-card>-->
+                     </q-item-section>
+                   </q-item>
+                   <q-separator />
+                   <q-item clickable v-close-popup>
+                     <q-item-section class="column items-center">Delete</q-item-section>
+                   </q-item>
+                 </q-list>
+               </q-menu>
+             </q-btn>
+
            </div>
             <q-list class="col">
               <q-item>
