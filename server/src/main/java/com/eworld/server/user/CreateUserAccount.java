@@ -8,14 +8,16 @@ public class CreateUserAccount {
     private String email;
     private String username;
     private String password;
+    private boolean manager;
 
     public CreateUserAccount() {}
-    public CreateUserAccount(String firstName, String lastName, String email, String username, String password, Date date) {
+    public CreateUserAccount(String firstName, String lastName, String email, String username, String password, boolean manager) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.manager = manager;
     }
 
     public String getFirstName() {
@@ -51,5 +53,12 @@ public class CreateUserAccount {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean getManager() {
+        return manager;
+    }
+    public void setManager(boolean manager) {
+        this.manager = manager;
     }
 }

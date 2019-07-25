@@ -29,11 +29,12 @@ public class UserAccountEntity {
     private String username;
 
     public UserAccountEntity() {}
-    public UserAccountEntity(String firstName, String lastName, String email, String username) {
+    public UserAccountEntity(String firstName, String lastName, String email, String username, boolean manager) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
+        this.manager = manager;
     }
 
     public int getUserAccountId() {
@@ -77,4 +78,6 @@ public class UserAccountEntity {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }
+

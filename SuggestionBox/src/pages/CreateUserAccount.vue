@@ -6,7 +6,7 @@
           <q-card-section
             style="font-size:20px " class="q-mb-sm">Create User Account</q-card-section>
         <q-separator color="white" style="min-height: 1px"></q-separator>
-          <q-section class="column justify-center">
+          <q-card-section class="column justify-center">
             <q-form style="max-width: 500px;" class="row justify-center" >
             <q-input
               square
@@ -54,7 +54,10 @@
                 class="col-6 q-pa-md"
                 label="Confirm Password" dark />
               <div class="col-12 q-pa-md">
-              <!--        <q-checkbox></q-checkbox>-->
+                <q-checkbox
+                  class="q-pb-lg"
+                  color="brand" v-model="userAccount.manager" label="Manager" dark>
+                </q-checkbox>
               <q-btn
                 color="brand"
                 @click="createUserAccount"
@@ -71,7 +74,7 @@
                 class="q-pa-xs q-mt-xs" label="cancel" color="red" />
           </q-form>
 
-         </q-section>
+         </q-card-section>
         </q-card>
       </div>
   </q-layout>
@@ -93,6 +96,7 @@ export default {
         firstName: '',
         lastName: '',
         email: '',
+        manager: false,
       },
     };
   },
@@ -101,6 +105,7 @@ export default {
       try {
         if ((this.userAccount.password === this.userAccount.confirmPassword)
           && (this.userAccount.email.match(this.mailformat))) {
+          console.log(this.userAccount.manager);
           await DataService.createUser(this.userAccount);
           this.$router.push('/home');
           this.$q.notify({

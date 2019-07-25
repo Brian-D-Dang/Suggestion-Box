@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean createUserLogin(CreateUserAccount createUserAccount) {
         Date todayDate = new Date();
-        UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername());
+        UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername(), createUserAccount.getManager());
         userAccountEntity = userRepository.save(userAccountEntity);
         PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), createUserAccount.getPassword(), todayDate);
         passwordEntity = passwordRepository.save(passwordEntity);
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
                             // if the userAccountId from the passwordEntity matches with the iterated nextFirstLastname account id
                             // then the data from that iteration will be saved into the object and returned.
                             userData.setUserAccountId(nextFirstLastName.getUserAccountId());
-                            userData.setManagerId(nextFirstLastName.getManager());
+                            userData.setManager(nextFirstLastName.getManager());
                             userData.setUsername(nextFirstLastName.getUsername());
                             userData.setEmail(nextFirstLastName.getEmail());
                             userData.setFirstName(nextFirstLastName.getFirstName());

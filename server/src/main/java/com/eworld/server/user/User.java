@@ -6,17 +6,17 @@ public class User {
     private String email;
     private String username;
     private int userAccountId;
-    private boolean managerId;
+    private boolean manager;
 
     public User() {
     }
-    public User(String firstName, String lastName, String email, String username, int userAccountId, boolean managerId) {
+    public User(String firstName, String lastName, String email, String username, int userAccountId, boolean manager) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.userAccountId = userAccountId;
-        this.managerId = managerId;
+        this.manager = manager;
     }
 
     public String getFirstName() {
@@ -54,10 +54,10 @@ public class User {
         this.userAccountId = userAccountId;
     }
 
-    public boolean getManagerId() {
-        return managerId;
+    public boolean getManager() {
+        return manager;
     }
-    public void setManagerId(boolean managerId) {
-        this.managerId = managerId;
+    public void setManager(boolean manager) {
+        this.manager = manager;
     }
 }
