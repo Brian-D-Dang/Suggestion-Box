@@ -39,7 +39,7 @@ export default {
     this.userLastName = saved.lastName;
     this.userUsername = saved.username;
     this.userEmail = saved.email;
-    this.userManagerId = saved.managerId;
+    this.userManagerId = saved.manager;
   },
   resetUserInfo() {
     this.saveAccountId = 0;
