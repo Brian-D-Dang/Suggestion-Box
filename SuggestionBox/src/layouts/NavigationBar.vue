@@ -27,7 +27,7 @@
               <q-item-label>Dashboard</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable v-ripple @click="createUserAccount" v-if="checkManagerId === 1">
+          <q-item clickable v-ripple @click="createUserAccount" v-if="checkManagerId === true">
           <q-item-section>
             <q-item-label>
               <q-item-label>Create Account</q-item-label>
@@ -70,7 +70,7 @@ export default {
       DataService.resetUserInfo();
     },
     createUserAccount() {
-      this.$router.push('/createuseraccount');
+      this.$router.push('/create-user-account');
     },
   },
   computed: {

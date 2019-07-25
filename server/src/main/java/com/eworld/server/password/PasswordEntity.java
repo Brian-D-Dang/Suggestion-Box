@@ -25,10 +25,10 @@ public class PasswordEntity {
 
     public PasswordEntity() {
     }
-    public PasswordEntity(int userAccountId, String password, Date date) {
+    public PasswordEntity(int userAccountId, String password, Date effectiveDate) {
         this.userAccountId = userAccountId;
         this.password = password;
-        this.effectiveDate = date;
+        this.effectiveDate = effectiveDate;
     }
 
     public int getPasswordId() {

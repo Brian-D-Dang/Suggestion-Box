@@ -14,7 +14,7 @@ const routes = [
       { path: '/dashboard', component: () => import('pages/Dashboard.vue') },
       { path: '/suggestion', component: () => import('pages/Suggestion.vue') },
       { path: '', component: () => import('pages/Dashboard.vue') },
-      { path: '/createuseraccount', component: () => import('pages/CreateUserAccount') },
+      { path: '/create-user-account', component: () => import('pages/CreateUserAccount') },
     ],
   },
 ];

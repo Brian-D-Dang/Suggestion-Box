@@ -23,7 +23,7 @@ public class UserAccountEntity {
     private String lastName;
 
     @Column(name = "MANAGER")
-    private int manager;
+    private boolean manager;
 
     @Column(name = "USERNAME")
     private String username;
@@ -64,10 +64,10 @@ public class UserAccountEntity {
         this.lastName = lastName;
     }
 
-    public int getManager() {
+    public boolean getManager() {
         return manager;
     }
-    public void setManager(int manager) {
+    public void setManager(boolean manager) {
         this.manager = manager;
     }
 

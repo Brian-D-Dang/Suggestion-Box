@@ -7,7 +7,7 @@ export default {
   userEmail: null,
   userFirstName: null,
   userLastName: null,
-  userManagerId: 0,
+  userManagerId: false,
   async createUser(createUserCred) {
     return axiosInstance.post('/User/createUserAccount', createUserCred)
       .then(response => response);
@@ -34,7 +34,6 @@ export default {
       .then(response => response);
   },
   setUserInfo(saved) {
-    console.log(saved);
     this.saveAccountId = saved.userAccountId;
     this.userFirstName = saved.firstName;
     this.userLastName = saved.lastName;
@@ -48,7 +47,7 @@ export default {
     this.userLastName = null;
     this.userUsername = null;
     this.userEmail = null;
-    this.userManagerId = 0;
+    this.userManagerId = false;
   },
   // eslint-disable-next-line no-return-assign
   async getSuggestionForms() {

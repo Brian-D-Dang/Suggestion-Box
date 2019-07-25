@@ -6,11 +6,11 @@ public class User {
     private String email;
     private String username;
     private int userAccountId;
-    private int managerId;
+    private boolean managerId;
 
     public User() {
     }
-    public User(String firstName, String lastName, String email, String username, int userAccountId, int managerId) {
+    public User(String firstName, String lastName, String email, String username, int userAccountId, boolean managerId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -54,10 +54,10 @@ public class User {
         this.userAccountId = userAccountId;
     }
 
-    public int getManagerId() {
+    public boolean getManagerId() {
         return managerId;
     }
-    public void setManagerId(int managerId) {
+    public void setManagerId(boolean managerId) {
         this.managerId = managerId;
     }
 }

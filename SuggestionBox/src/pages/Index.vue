@@ -7,7 +7,7 @@
     style="min-width:600px"
     >
       <img src="../statics/icons/logo.png">
-      <p class="text">Suggestion Box</p>
+      <p class="text">SUGGESTION BOX</p>
       <q-form style="min-width:500px">
         <q-input dark
         color="white"
@@ -33,11 +33,6 @@
         :disable="!activateButton" @click="checkCred" label="LOGIN"
       />
       </q-form>
-<!--      <q-btn-->
-<!--        flat-->
-<!--        to="/createuseraccount"-->
-<!--        size="10px"-->
-<!--        class="q-pa-xs q-mt-xs" label="Sign Up?" color="primary" />-->
     </div>
   </q-layout>
 </template>
