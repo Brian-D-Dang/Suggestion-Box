@@ -22,8 +22,14 @@
          >
      <template #item="props">
        <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:900px">
-        <div class="float-right">
-           <q-icon class="q-ma-sm" size="25px" name="more_vert">
+        <div
+          class="float-right"
+             v-if="props.row.userAccountId === editSurvey.userAccountId"
+          >
+           <q-icon
+             class="q-ma-sm"
+             size="25px"
+             name="more_vert">
              <q-menu>
                <q-list>
                  <q-item>
@@ -63,9 +69,6 @@
                                    v-model="editSurvey.suggestion"
                                    label="Description"
                                    filled type="textarea" counter maxlength="64"/>
-                                 <q-input
-                                   v-model="props.row.suggestionId"
-                                   type="number">{{ props.row.suggestionId }}</q-input>
                                </div>
                                <br>
                                <q-btn
@@ -73,7 +76,7 @@
                                  class="block q-mx-md q-mb-md"
                                  size="20px" style="min-width:500px"
                                  type="submit"
-                                 @click="updateSuggestion"
+                                 @click="updateSuggestion(props.row)"
                                  label="Submit" :disable="!activateButton"
                                />
                              </q-form>
@@ -134,10 +137,12 @@ export default {
     return {
       data: [],
       postAnonymously: false,
+      showthis: '{{ props.row.suggestionId }}',
       editSurvey: {
         category: '',
         subject: '',
         suggestion: '',
+        userAccountId: DataService.saveAccountId,
         suggestionId: 0,
         // postAnonymously: this.postAnonymously,
       },
@@ -173,7 +178,9 @@ export default {
     };
   },
   methods: {
-    async updateSuggestion() {
+    async updateSuggestion(suggestion) {
+      console.log(suggestion);
+      this.editSurvey.suggestionId = suggestion.suggestionId;
       try {
         const updateCheck = await DataService.updateSuggestion(this.editSurvey);
         if (updateCheck) {

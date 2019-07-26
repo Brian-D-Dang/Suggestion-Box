@@ -2,20 +2,21 @@ import { axiosInstance } from 'src/boot/axios.js';
 
 export default {
   savedForms: null,
-  saveAccountId: 0,
+  saveAccountId: null,
   userUsername: null,
   userEmail: null,
   userFirstName: null,
   userLastName: null,
   async updateSuggestion(updatedSuggestion) {
     const {
-      category: cat, subject: sub, suggestion: sug, suggestionId: sugId,
+      category: cat, subject: sub, suggestion: sug, userAccountId: userAccId, suggestionId: sugId,
     } = updatedSuggestion;
+    console.log(updatedSuggestion);
     const suggestion = {
       category: cat,
       subject: sub,
       suggestion: sug,
-      userAccountId: this.saveAccountId,
+      userAccountId: userAccId,
       suggestionId: sugId,
     };
     return axiosInstance.put('/SuggestionForm/updateSuggestion', suggestion)

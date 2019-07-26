@@ -7,15 +7,17 @@ public class DisplayedSuggestion {
     private String suggestion;
     private String date;
     private int suggestionId;
+    private int userAccountId;
 
     public DisplayedSuggestion() {
     }
-    public DisplayedSuggestion(String category, String subject, String suggestion, String date, int suggestionId) {
+    public DisplayedSuggestion(String category, String subject, String suggestion, String date, int suggestionId, int userAccountId) {
         this.category = category;
         this.subject = subject;
         this.suggestion = suggestion;
         this.date = date;
         this.suggestionId = suggestionId;
+        this.userAccountId = userAccountId;
     }
 
     public String getCategory() {
@@ -51,5 +53,12 @@ public class DisplayedSuggestion {
     }
     public void setSuggestionId(int suggestionId) {
         this.suggestionId = suggestionId;
+    }
+
+    public int getUserAccountId() {
+        return userAccountId;
+    }
+    public void setUserAccountId(int userAccountId) {
+        this.userAccountId = userAccountId;
     }
 }

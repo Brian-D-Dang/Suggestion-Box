@@ -26,18 +26,22 @@ public class SuggestionServiceImpl implements SuggestionService {
         SuggestionEntity suggestionEntity = suggestionRepository.getSuggestionEntityBySuggestionId(updateSuggestion.getSuggestionId());
         while (iterator.hasNext()) {
             SuggestionEntity updatingSuggestion = iterator.next();
-            System.out.println(suggestionEntity.getSuggestionId());
-            if (suggestionEntity.getSuggestionId() == updatingSuggestion.getSuggestionId()) {
-                System.out.println(suggestionEntity.getUserAccountId());
-                Date todayDate = new Date();
-                updatingSuggestion.setCategory(updateSuggestion.getCategory());
-                updatingSuggestion.setSubject(updateSuggestion.getSubject());
-                updatingSuggestion.setSuggestion(updateSuggestion.getSuggestion());
-                updatingSuggestion.setDate(todayDate);
-                suggestionEntity = suggestionRepository.save(updatingSuggestion);
+            if (updateSuggestion.getUserAccountId() == updatingSuggestion.getUserAccountId()) {
+                if ((updateSuggestion.getSuggestionId() == updatingSuggestion.getSuggestionId())) {
+                    Date todayDate = new Date();
+                    updatingSuggestion.setCategory(updateSuggestion.getCategory());
+                    updatingSuggestion.setSubject(updateSuggestion.getSubject());
+                    updatingSuggestion.setSuggestion(updateSuggestion.getSuggestion());
+                    updatingSuggestion.setDate(todayDate);
+                    suggestionEntity = suggestionRepository.save(updatingSuggestion);
+                    return suggestionEntity != null;
+                }
+                else {
+                    return suggestionEntity != null;
+                }
             }
         }
-        return suggestionEntity != null;
+        return false;
     }
 
 
@@ -57,6 +61,7 @@ public class SuggestionServiceImpl implements SuggestionService {
             suggestionData.setSuggestion(nextElement.getSuggestion());
             suggestionData.setDate(simpleDateFormat.format(nextElement.getDate()));
             suggestionData.setSuggestionId(nextElement.getSuggestionId());
+            suggestionData.setUserAccountId(nextElement.getUserAccountId());
             showSuggestionData.add(suggestionData);
         }
         return showSuggestionData;
