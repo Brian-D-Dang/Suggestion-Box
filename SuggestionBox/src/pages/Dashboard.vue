@@ -3,15 +3,15 @@
      <suggestion class="col-lg-6 col-xl-5"></suggestion>
 
      <div class="column items-center col-lg-5 col-xl-6  ">
-       <div class="q-pa-md row justify-center" style="max-width: 500px">
+       <div class="q-pa-md row justify-center">
          <q-select
            outlined
            style="min-width:230px"
-           v-model='sortingList' :options="options" label="Sort" dark class="q-pr-md"/>
+           v-model="sortingList" :options="options" label="Sort" dark class="q-pr-md"/>
          <q-select
            outlined
            style="min-width:230px"
-           v-model='sortingCategory' :options="Category" label="Category" dark class="q-pl-md"/>
+           v-model="sortingCategory" :options="Category" label="Category" dark class="q-pl-md"/>
        </div>
        <q-table
          :data="sortedDate"
@@ -33,9 +33,9 @@
                    <q-item-label style="font-size:25px;" class="float-left">
                      {{ props.row.name }}
                    </q-item-label>
-                   <q-item-label style="font-size:25px;">{{ props.row.category }}</q-item-label>
+                   <q-item-label style="font-size:25px;">{{ props.row.subject }}</q-item-label>
                    <q-item-label caption class="text-white" style="font-size:20px;">
-                     {{ props.row.subject }}</q-item-label>
+                     {{ props.row.category }}</q-item-label>
                    <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
 
                        <q-item-label caption class="text-white" style="font-size:12px">
