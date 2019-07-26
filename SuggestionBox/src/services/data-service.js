@@ -7,6 +7,20 @@ export default {
   userEmail: null,
   userFirstName: null,
   userLastName: null,
+  async updateSuggestion(updatedSuggestion) {
+    const {
+      category: cat, subject: sub, suggestion: sug, suggestionId: sugId,
+    } = updatedSuggestion;
+    const suggestion = {
+      category: cat,
+      subject: sub,
+      suggestion: sug,
+      userAccountId: this.saveAccountId,
+      suggestionId: sugId,
+    };
+    return axiosInstance.put('/SuggestionForm/updateSuggestion', suggestion)
+      .then(response => response);
+  },
   async saveSurvey(saved) {
     const { category: cat, subject: sub, suggestion: sug } = saved;
     const suggestion = {
@@ -14,6 +28,7 @@ export default {
       subject: sub,
       suggestion: sug,
       userAccountId: this.saveAccountId,
+
     };
     return axiosInstance.post('/SuggestionForm/addSuggestion', suggestion)
       .then(response => response);
@@ -48,4 +63,5 @@ export default {
     // eslint-disable-next-line no-return-assign
       .then(response => response);
   },
+
 };

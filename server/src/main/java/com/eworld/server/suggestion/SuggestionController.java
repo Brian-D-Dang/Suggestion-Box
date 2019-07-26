@@ -13,6 +13,11 @@ public class SuggestionController {
     @Autowired
     private SuggestionServiceImpl suggestionServiceImpl;
 
+    @RequestMapping(method = RequestMethod.PUT, value = "/updateSuggestion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean updateSuggestion(@RequestBody UpdateSuggestion updateSuggestion) {
+        return suggestionServiceImpl.updateSug(updateSuggestion);
+    }
+
     @RequestMapping(value = "/getSuggestions", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DisplayedSuggestion> getSuggestions() {
         return suggestionServiceImpl.returnSuggestions();

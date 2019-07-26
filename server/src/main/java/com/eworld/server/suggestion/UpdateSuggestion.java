@@ -1,20 +1,19 @@
 package com.eworld.server.suggestion;
-import java.util.Date;
 
-public class DisplayedSuggestion {
+public class UpdateSuggestion {
     private String category;
     private String subject;
     private String suggestion;
-    private String date;
+    private int userAccountId;
     private int suggestionId;
 
-    public DisplayedSuggestion() {
+    public UpdateSuggestion() {
     }
-    public DisplayedSuggestion(String category, String subject, String suggestion, String date, int suggestionId) {
+    public UpdateSuggestion(String category, String subject, String suggestion, int userAccountId, int suggestionId) {
         this.category = category;
         this.subject = subject;
         this.suggestion = suggestion;
-        this.date = date;
+        this.userAccountId = userAccountId;
         this.suggestionId = suggestionId;
     }
 
@@ -39,11 +38,11 @@ public class DisplayedSuggestion {
         this.suggestion = suggestion;
     }
 
-    public String getDate() {
-        return date;
+    public int getUserAccountId() {
+        return userAccountId;
     }
-    public void setDate(String date) {
-        this.date = date;
+    public void setUserAccountId(int userAccountId) {
+        this.userAccountId = userAccountId;
     }
 
     public int getSuggestionId() {
@@ -53,3 +52,4 @@ public class DisplayedSuggestion {
         this.suggestionId = suggestionId;
     }
 }
+

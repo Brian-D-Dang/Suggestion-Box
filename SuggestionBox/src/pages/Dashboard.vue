@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div>
    <div class="column row items-center justify-center">
      <div class="q-pa-md row justify-center" style="max-width: 500px">
@@ -21,30 +21,76 @@
        grid
          >
      <template #item="props">
-           <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:900px">
-            <div class="float-right">
-             <q-btn round unelevated icon="more_vert">
-               <q-menu>
-                 <q-list style="min-width: 75px">
-                   <q-item clickable v-close-popup>
-                     <q-item-section class="column items-center">
-                       edit
-                       <q-popup-proxy>
-                         <q-date v-model="input" filled />
+       <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:900px">
+        <div class="float-right">
+           <q-icon class="q-ma-sm" size="25px" name="more_vert">
+             <q-menu>
+               <q-list>
+                 <q-item>
+                   <q-item-section class="column items-center">
+                     <q-btn label="EDIT" flat>
+                       <q-popup-proxy breakpoint="600">
+                         <q-card class="column fixed-center bg-grey-9 items-center" dark>
+                           <q-card-section class="col">
+                             EDIT SUGGESTION
+                           </q-card-section>
+                           <q-separator color="white" style="min-height:1px"></q-separator>
+                           <q-card-section>
+                             <q-form>
+                               <div class="q-pa-md col" style="min-width: 500px">
+                                 <q-select
+                                   square
+                                   outlined
+                                   v-model="editSurvey.category"
+                                   :options="editCategory" label="Category" dark/>
+                               </div>
+                               <div class="q-pa-md col" style="min-width: 500px">
+                                 <q-input
+                                   square
+                                   outlined
+                                   v-model="editSurvey.subject" label="Subject" dark/>
+                               </div>
+                               <div class="q-pa-md col" style="min-width: 500px">
+                                 <q-checkbox
+                                   class="q-pb-lg"
+                                   color="brand"
+                                   v-model="postAnonymously" label="Post Anonymously" dark>
+                                 </q-checkbox>
+                                 <q-input
+                                   dark
+                                   square
+                                   outlined
+                                   v-model="editSurvey.suggestion"
+                                   label="Description"
+                                   filled type="textarea" counter maxlength="64"/>
+                                 <q-input
+                                   v-model="props.row.suggestionId"
+                                   type="number">{{ props.row.suggestionId }}</q-input>
+                               </div>
+                               <br>
+                               <q-btn
+                                 color="brand"
+                                 class="block q-mx-md q-mb-md"
+                                 size="20px" style="min-width:500px"
+                                 type="submit"
+                                 @click="updateSuggestion"
+                                 label="Submit" :disable="!activateButton"
+                               />
+                             </q-form>
+                           </q-card-section>
+                         </q-card>
                        </q-popup-proxy>
-<!--                         <q-card class="bg-amber-1">-->
-<!--                           <q-card-section></q-card-section>-->
-<!--                         </q-card>-->
-                     </q-item-section>
-                   </q-item>
-                   <q-separator />
-                   <q-item clickable v-close-popup>
-                     <q-item-section class="column items-center">Delete</q-item-section>
-                   </q-item>
-                 </q-list>
-               </q-menu>
-             </q-btn>
-
+                     </q-btn>
+                   </q-item-section>
+                 </q-item>
+                 <q-item>
+                   <q-item-section>
+                     <q-btn>DELETE</q-btn>
+                   </q-item-section>
+                 </q-item>
+               </q-list>
+             </q-menu>
+           </q-icon>
            </div>
             <q-list class="col">
               <q-item>
@@ -61,6 +107,9 @@
                     Date: {{ props.row.date }}
                   </q-item-label>
 
+                  <q-item-label caption class="text-white" style="font-size:12px" v-show="false">
+                    Suggestion ID: {{ props.row.suggestionId }}
+                  </q-item-label>
                 </q-item-section>
              </q-item>
             </q-list>
@@ -84,6 +133,17 @@ export default {
   data() {
     return {
       data: [],
+      postAnonymously: false,
+      editSurvey: {
+        category: '',
+        subject: '',
+        suggestion: '',
+        suggestionId: 0,
+        // postAnonymously: this.postAnonymously,
+      },
+      editCategory: [
+        'Company Improvement', 'Employee Happiness', 'Other',
+      ],
       sortingList: 'Date Descending',
       sortingCategory: 'All',
       columns: [
@@ -99,6 +159,9 @@ export default {
         {
           name: 'Date', align: 'center', label: 'Date', field: 'date',
         },
+        {
+          name: 'Suggestion Id', align: 'center', label: 'Suggestion Id', field: 'suggestionId',
+        },
       ],
       suggestionForms: [],
       options: [
@@ -110,6 +173,23 @@ export default {
     };
   },
   methods: {
+    async updateSuggestion() {
+      try {
+        const updateCheck = await DataService.updateSuggestion(this.editSurvey);
+        if (updateCheck) {
+          this.$q.notify({
+            message: 'Form sent successfully',
+            color: 'primary',
+          });
+          this.$router.push('/dashboard');
+        }
+      } catch (error) {
+        this.$q.notify({
+          message: 'Form did not send successfully',
+          color: 'red',
+        });
+      }
+    },
   },
   computed: {
     sortedDate() {
@@ -127,6 +207,10 @@ export default {
         return this.suggestionForms;
       }
       return this.suggestionForms.filter(topic => topic.category === this.sortingCategory);
+    },
+    activateButton() {
+      const { category, subject, suggestion } = this.editSurvey;
+      return category && subject && suggestion;
     },
   },
   created() {
