@@ -19,13 +19,15 @@ public class SuggestionServiceImpl implements SuggestionService {
         Iterable<SuggestionEntity> suggestions = suggestionRepository.findAll();
         Iterator<SuggestionEntity> iterator = suggestions.iterator();
         List<DisplayedSuggestion> showSuggestionData = new ArrayList<>();
+        String pattern = "MM-dd-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         while (iterator.hasNext()) {
             SuggestionEntity nextElement = iterator.next();
             DisplayedSuggestion suggestionData = new DisplayedSuggestion();
             suggestionData.setCategory(nextElement.getCategory());
             suggestionData.setSubject(nextElement.getSubject());
             suggestionData.setSuggestion(nextElement.getSuggestion());
-            suggestionData.setDate(nextElement.getDate());
+            suggestionData.setDate(simpleDateFormat.format(nextElement.getDate()));
             showSuggestionData.add(suggestionData);
         }
         return showSuggestionData;
@@ -33,9 +35,7 @@ public class SuggestionServiceImpl implements SuggestionService {
 
     @Override
     public boolean saveSuggestion(Suggestion suggestion) {
-        String pattern = "MM-dd-yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String todayDate = simpleDateFormat.format(new Date());
+        Date todayDate = new Date();
         SuggestionEntity suggestionEntity = new SuggestionEntity(suggestion.getCategory(), suggestion.getSubject(), suggestion.getSuggestion(), todayDate, suggestion.getUserAccountId());
         suggestionEntity = suggestionRepository.save(suggestionEntity);
         return suggestionEntity != null;
