@@ -33,20 +33,20 @@ public class UserServiceImpl implements UserService {
             PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), createUserAccount.getPassword(), todayDate);
             passwordEntity = passwordRepository.save(passwordEntity);
             return (userAccountEntity != null) && (passwordEntity != null);
-        }
-        else if(usernameCheckExist.size() == 2) {
+        } else if (usernameCheckExist.size() == 2) {
             throw new UsernameException("Email and Username already exists");
-        }
-        else {
+        } else {
             UserAccountEntity userAccountEntity = usernameCheckExist.get(0);
-            if( userAccountEntity.getUsername().equals(createUserAccount.getUsername())) {
+            if (userAccountEntity.getUsername().equals(createUserAccount.getUsername())) {
                 throw new UsernameException("Username already exists");
             }
-            if(userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
+            if (userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
                 throw new UsernameException("Username already exists");
             }
 
         }
+        return false;
+    }
 
 
 
@@ -71,7 +71,6 @@ public class UserServiceImpl implements UserService {
 //
 //        }
 
-    }
 
 
     @Override
