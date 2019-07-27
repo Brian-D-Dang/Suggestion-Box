@@ -1,50 +1,55 @@
 <template>
   <q-layout class="bg-grey-10 text-white">
     <div class="column justify-center items-center">
-      <img src="../statics/icons/logo.png" class="q-pa-md">
-        <q-card class="bg-grey-9 q-pa-lg column items-center">
+        <q-card class="bg-grey-9 q-pa-lg q-ma-lg column items-center">
           <q-card-section
             style="font-size:20px " class="q-mb-sm">Create User Account</q-card-section>
         <q-separator color="white" style="min-height: 1px"></q-separator>
           <q-card-section class="column justify-center">
             <q-form style="max-width: 500px;" class="row justify-center" >
             <q-input
+              dark
               square
               outlined
               v-model="userAccount.username"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Missing Username']"
-              class="col-12 q-pa-md" label="Username" autofocus dark />
+              class="col-12 q-pa-md" label="Username" autofocus />
             <q-input
+              dark
               square
               outlined
               v-model="userAccount.firstName"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Missing First Name']"
-              class="col-6 q-pa-md" label="First Name" dark />
+              class="col-6 q-pa-md" label="First Name" />
             <q-input
+              dark
               square
               outlined
               v-model="userAccount.lastName"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Missing Last Name']"
-              class="col-6 q-pa-md" label="Last Name" dark />
+              class="col-6 q-pa-md" label="Last Name" />
             <q-input
+              dark
               square
               outlined
               v-model="userAccount.email"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Missing Email']"
-              class="col-12 q-pa-md" label="Email" dark />
+              class="col-12 q-pa-md" label="Email" />
               <q-input
+                dark
                 square
                 outlined
                 v-model="userAccount.password"
                 type="password"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Missing Password']"
-                class="col-6 q-pa-md" label="Password" dark />
+                class="col-6 q-pa-md" label="Password" />
               <q-input
+                dark
                 square
                 outlined
                 v-model="userAccount.confirmPassword"
@@ -52,7 +57,7 @@
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Missing Confirm Password']"
                 class="col-6 q-pa-md"
-                label="Confirm Password" dark />
+                label="Confirm Password"  />
               <div class="col-12 q-pa-md">
                 <q-checkbox
                   class="q-pb-lg"
@@ -71,7 +76,7 @@
                 to="/home"
                 size="10px"
                 style="min-width:100px"
-                class="q-pa-xs q-mt-xs" label="cancel" color="red" />
+                class="q-pa-xs q-mt-xs" label="cancel" color="white" />
           </q-form>
 
          </q-card-section>
@@ -103,17 +108,22 @@ export default {
   methods: {
     async createUserAccount() {
       try {
+        const check = await DataService.createUser(this.userAccount);
         if ((this.userAccount.password === this.userAccount.confirmPassword)
           && (this.userAccount.email.match(this.mailformat))) {
-          console.log(this.userAccount.manager);
-          await DataService.createUser(this.userAccount);
-          this.$router.push('/home');
-          this.$q.notify({
-            message: 'Account was created successfully',
-            color: 'green',
-          });
-        } else {
-          throw new Error();
+          if (!check) {
+            this.$router.push('/home');
+            this.$q.notify({
+              message: 'Account was created successfully',
+              color: 'green',
+              textColor: 'black',
+            });
+          } else {
+            this.$q.notify({
+              message: 'Username already exists',
+              color: 'red',
+            });
+          }
         }
       } catch (error) {
         this.$q.notify({

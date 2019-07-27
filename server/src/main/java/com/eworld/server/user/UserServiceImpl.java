@@ -1,12 +1,15 @@
 package com.eworld.server.user;
 
+import com.eworld.server.exception.UsernameException;
 import com.eworld.server.password.PasswordEntity;
 import com.eworld.server.password.PasswordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -21,14 +24,55 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean createUserLogin(CreateUserAccount createUserAccount) {
+    public boolean createUserLogin(CreateUserAccount createUserAccount) throws UsernameException {
         Date todayDate = new Date();
-        UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername(), createUserAccount.getManager());
-        userAccountEntity = userRepository.save(userAccountEntity);
-        PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), createUserAccount.getPassword(), todayDate);
-        passwordEntity = passwordRepository.save(passwordEntity);
-        return (userAccountEntity != null) && (passwordEntity != null);
+        List<UserAccountEntity> usernameCheckExist = userRepository.findUserAccountEntityByUsernameOrEmail(createUserAccount.getUsername(), createUserAccount.getEmail());
+        if (usernameCheckExist.isEmpty()) {
+            UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername(), createUserAccount.getManager());
+            userAccountEntity = userRepository.save(userAccountEntity);
+            PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), createUserAccount.getPassword(), todayDate);
+            passwordEntity = passwordRepository.save(passwordEntity);
+            return (userAccountEntity != null) && (passwordEntity != null);
+        }
+        else if(usernameCheckExist.size() == 2) {
+            throw new UsernameException("Email and Username already exists");
+        }
+        else {
+            UserAccountEntity userAccountEntity = usernameCheckExist.get(0);
+            if( userAccountEntity.getUsername().equals(createUserAccount.getUsername())) {
+                throw new UsernameException("Username already exists");
+            }
+            if(userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
+                throw new UsernameException("Username already exists");
+            }
+
+        }
+
+
+
+
+
+//        Iterable<UserAccountEntity> userAccountEntityIterable = userRepository.findAll();
+//        Iterator<UserAccountEntity> iterator = userAccountEntityIterable.iterator();
+//        while (iterator.hasNext()) {
+//            UserAccountEntity newUser = iterator.next();
+//            if (newUser.getUsername().equals(createUserAccount.getUsername())) {
+//                if (newUser.getEmail().equals(createUserAccount.getEmail())) {
+//                    throw new UsernameException("Email already exists");
+//                }
+//                throw new UsernameException("Username already exists");
+//            }
+//            else if (newUser.getEmail().equals(createUserAccount.getEmail())) {
+//                if (newUser.getUsername().equals(createUserAccount.getUsername())) {
+//                    throw new UsernameException("Username already exists");
+//                }
+//                throw new UsernameException("Email already exists");
+//            }
+//
+//        }
+
     }
+
 
     @Override
     public User getUserAccountId(String username, String password) {
