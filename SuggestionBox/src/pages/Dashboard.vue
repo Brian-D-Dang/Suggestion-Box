@@ -1,24 +1,26 @@
 <template>
-  <div>
-   <div class="column row items-center justify-center">
-     <div class="q-pa-md row justify-center" style="max-width: 500px">
-       <q-select
-         outlined
-         style="min-width:230px"
-         v-model='sortingList' :options="options" label="Sort" dark class="q-pr-md"/>
-       <q-select
-         outlined
-         style="min-width:230px"
-         v-model='sortingCategory' :options="Category" label="Category" dark class="q-pl-md"/>
-     </div>
+   <div class="row justify-center items-center">
+     <suggestion class="col-lg-6 col-xl-5"></suggestion>
+
+     <div class="column items-center col-lg-5 col-xl-6  ">
+       <div class="q-pa-md row justify-center">
+         <q-select
+           outlined
+           style="min-width:230px"
+           v-model="sortingList" :options="options" label="Sort" dark class="q-pr-md"/>
+         <q-select
+           outlined
+           style="min-width:230px"
+           v-model="sortingCategory" :options="Category" label="Category" dark class="q-pl-md"/>
+       </div>
      <q-table
-       :data="sortedDate"
-       :columns="columns"
-       class="text-white"
-       dark
-       style="max-width:1000px;"
-       row-key="name"
-       grid
+         :data="sortedDate"
+         :columns="columns"
+         :rows-per-page-options="[0]"
+         class="text-white"
+         dark
+         row-key="name"
+         grid
          >
      <template #item="props">
        <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:900px">
@@ -123,13 +125,16 @@
       label="Create Suggestion"/>
     </div>
   </div>
+
 </template>
 
 <script>
 import DataService from 'src/services/data-service.js';
+import Suggestion from './Suggestion';
 
 export default {
   name: 'Dashboard',
+  components: { Suggestion },
   data() {
     return {
       data: [],
@@ -192,6 +197,9 @@ export default {
           color: 'red',
         });
       }
+    async refreshSuggestions() {
+      const displaySuggestion = await DataService.getSuggestionForms();
+      this.suggestionForms = displaySuggestion.data;
     },
   },
   computed: {
@@ -217,12 +225,14 @@ export default {
     },
   },
   created() {
-    (async () => {
-      const displaySuggestion = await DataService.getSuggestionForms();
-      this.suggestionForms = displaySuggestion.data;
-    })();
+    this.refreshSuggestions();
+    this.$root.$on('added-suggestion', this.refreshSuggestions);
+  },
+  beforeDestroy() {
+    this.$root.$off('added-suggestion');
   },
 };
+
 </script>
 
 <style scoped>
