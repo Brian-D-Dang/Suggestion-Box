@@ -6,7 +6,6 @@ import com.eworld.server.password.PasswordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -27,22 +26,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean createUserLogin(CreateUserAccount createUserAccount) throws UsernameException {
+        // This function creates users
         Date todayDate = new Date();
-        System.out.println(createUserAccount.getEmail());
         String emailPattern = "^[\\w\\-_\\.+]+\\@([\\w]+\\.)+[\\w]+[\\w]$";
         Pattern pat = Pattern.compile(emailPattern);
         Matcher matcher = pat.matcher(createUserAccount.getEmail());
+        // The emailPattern is used to match up certain email requirements i.e @ signs, periods, letters, and when to end.
         List<UserAccountEntity> usernameCheckExist = userRepository.findUserAccountEntityByUsernameOrEmail(createUserAccount.getUsername(), createUserAccount.getEmail());
+        // This list checks if the username and email exists in the data base. It could return at least one user.
         if ((createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()) && (matcher.matches()))) {
+            // This checks if the password is the same as the confirm password input and checks if the email matches the email pattern before allowing user to be created
             if (usernameCheckExist.isEmpty()) {
+                // This checks to see if the usernameCheckExist found a username that already exists in the data base, but if it doesn't it creates the user.
                 UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername(), createUserAccount.getManager());
                 userAccountEntity = userRepository.save(userAccountEntity);
                 PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), createUserAccount.getPassword(), todayDate);
                 passwordEntity = passwordRepository.save(passwordEntity);
                 return (userAccountEntity != null) && (passwordEntity != null);
             } else if (usernameCheckExist.size() == 2) {
+                // If two users exist in the CheckExist then the function will throw an error to the UI side declaring that the username and email exists.
                 throw new UsernameException("Email and Username already exists");
             } else {
+                // If there is one item in the CheckExist list then it will be ran through here to see if the username or email exists.
                 UserAccountEntity userAccountEntity = usernameCheckExist.get(0);
                 if (userAccountEntity.getUsername().equals(createUserAccount.getUsername())) {
                     if (userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
@@ -59,6 +64,7 @@ public class UserServiceImpl implements UserService {
             }
         }
         else {
+            // This runs if the password or email doesn't match the requirements at the start of the function.
             if(!(createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()))) {
                 if(!matcher.matches()) {
                     throw new UsernameException("Email does not exist and the password conformation is incorrect");
@@ -72,32 +78,9 @@ public class UserServiceImpl implements UserService {
                 throw new UsernameException("Email does not exist");
             }
         }
+        // return false if everything fails to run in general. This is used to show that the entirety of the code broke.
         return false;
     }
-
-
-
-
-
-//        Iterable<UserAccountEntity> userAccountEntityIterable = userRepository.findAll();
-//        Iterator<UserAccountEntity> iterator = userAccountEntityIterable.iterator();
-//        while (iterator.hasNext()) {
-//            UserAccountEntity newUser = iterator.next();
-//            if (newUser.getUsername().equals(createUserAccount.getUsername())) {
-//                if (newUser.getEmail().equals(createUserAccount.getEmail())) {
-//                    throw new UsernameException("Email already exists");
-//                }
-//                throw new UsernameException("Username already exists");
-//            }
-//            else if (newUser.getEmail().equals(createUserAccount.getEmail())) {
-//                if (newUser.getUsername().equals(createUserAccount.getUsername())) {
-//                    throw new UsernameException("Username already exists");
-//                }
-//                throw new UsernameException("Email already exists");
-//            }
-//
-//        }
-
 
 
     @Override
