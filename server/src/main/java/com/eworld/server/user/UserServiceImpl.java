@@ -1,6 +1,6 @@
 package com.eworld.server.user;
 
-import com.eworld.server.exception.UsernameException;
+import com.eworld.server.exception.UserExceptions;
 import com.eworld.server.password.PasswordEntity;
 import com.eworld.server.password.PasswordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean createUserLogin(CreateUserAccount createUserAccount) throws UsernameException {
+    public boolean createUserLogin(CreateUserAccount createUserAccount) throws UserExceptions {
         // This function creates users
         Date todayDate = new Date();
         String emailPattern = "^[\\w\\-_\\.+]+\\@([\\w]+\\.)+[\\w]+[\\w]$";
@@ -45,21 +45,21 @@ public class UserServiceImpl implements UserService {
                 return (userAccountEntity != null) && (passwordEntity != null);
             } else if (usernameCheckExist.size() == 2) {
                 // If two users exist in the CheckExist then the function will throw an error to the UI side declaring that the username and email exists.
-                throw new UsernameException("Email and Username already exists");
+                throw new UserExceptions("Email and Username already exists");
             } else {
                 // If there is one item in the CheckExist list then it will be ran through here to see if the username or email exists.
                 UserAccountEntity userAccountEntity = usernameCheckExist.get(0);
                 if (userAccountEntity.getUsername().equals(createUserAccount.getUsername())) {
                     if (userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
-                        throw new UsernameException("Email and Username already exists");
+                        throw new UserExceptions("Email and Username already exists");
                     }
-                    throw new UsernameException("Username already exists");
+                    throw new UserExceptions("Username already exists");
                 }
                 if (userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
                     if (userAccountEntity.getUsername().equals(createUserAccount.getEmail())) {
-                        throw new UsernameException("Email and Username already exists");
+                        throw new UserExceptions("Email and Username already exists");
                     }
-                    throw new UsernameException("Email already exists");
+                    throw new UserExceptions("Email already exists");
                 }
             }
         }
@@ -67,15 +67,15 @@ public class UserServiceImpl implements UserService {
             // This runs if the password or email doesn't match the requirements at the start of the function.
             if(!(createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()))) {
                 if(!matcher.matches()) {
-                    throw new UsernameException("Email does not exist and the password conformation is incorrect");
+                    throw new UserExceptions("Email does not exist and the password conformation is incorrect");
                 }
-                throw new UsernameException("Incorrect password conformation");
+                throw new UserExceptions("Incorrect password conformation");
             }
             else if(!matcher.matches()) {
                 if(!(createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()))) {
-                    throw new UsernameException("Email does not exist and the password conformation is incorrect");
+                    throw new UserExceptions("Email does not exist and the password conformation is incorrect");
                 }
-                throw new UsernameException("Email does not exist");
+                throw new UserExceptions("Email does not exist");
             }
         }
         // return false if everything fails to run in general. This is used to show that the entirety of the code broke.
