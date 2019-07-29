@@ -1,4 +1,4 @@
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <div>
    <div class="column row items-center justify-center">
      <div class="q-pa-md row justify-center" style="max-width: 500px">
@@ -74,7 +74,8 @@
                                <q-btn
                                  color="brand"
                                  class="block q-mx-md q-mb-md"
-                                 size="20px" style="min-width:500px"
+                                 size="20px"
+                                 style="min-width:500px"
                                  type="submit"
                                  @click="updateSuggestion(props.row)"
                                  label="Submit" :disable="!activateButton"
@@ -109,10 +110,6 @@
                   <q-item-label caption class="text-white" style="font-size:12px">
                     Date: {{ props.row.date }}
                   </q-item-label>
-
-                  <q-item-label caption class="text-white" style="font-size:12px" v-show="false">
-                    Suggestion ID: {{ props.row.suggestionId }}
-                  </q-item-label>
                 </q-item-section>
              </q-item>
             </q-list>
@@ -137,7 +134,6 @@ export default {
     return {
       data: [],
       postAnonymously: false,
-      showthis: '{{ props.row.suggestionId }}',
       editSurvey: {
         category: '',
         subject: '',

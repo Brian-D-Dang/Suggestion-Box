@@ -1,7 +1,5 @@
 package com.eworld.server.suggestion;
 
-import com.eworld.server.user.UserAccountEntity;
-import com.eworld.server.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,36 +11,27 @@ public class SuggestionServiceImpl implements SuggestionService {
     @Autowired
     private SuggestionRepository suggestionRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     public SuggestionServiceImpl() {
     }
 
     @Override
     public boolean updateSug(UpdateSuggestion updateSuggestion) {
-        Iterable<SuggestionEntity> suggestionEntities = suggestionRepository.findAll();
-        Iterator<SuggestionEntity> iterator = suggestionEntities.iterator();
+        // This function was made to update the users suggestion
         SuggestionEntity suggestionEntity = suggestionRepository.getSuggestionEntityBySuggestionId(updateSuggestion.getSuggestionId());
-        while (iterator.hasNext()) {
-            SuggestionEntity updatingSuggestion = iterator.next();
-            if (updateSuggestion.getUserAccountId() == updatingSuggestion.getUserAccountId()) {
-                if ((updateSuggestion.getSuggestionId() == updatingSuggestion.getSuggestionId())) {
-                    Date todayDate = new Date();
-                    updatingSuggestion.setCategory(updateSuggestion.getCategory());
-                    updatingSuggestion.setSubject(updateSuggestion.getSubject());
-                    updatingSuggestion.setSuggestion(updateSuggestion.getSuggestion());
-                    updatingSuggestion.setDate(todayDate);
-                    suggestionEntity = suggestionRepository.save(updatingSuggestion);
-                    return suggestionEntity != null;
-                }
-                else {
-                    return suggestionEntity != null;
-                }
+        // This line of code classifies which suggestion the user was refering to
+        if ((updateSuggestion.getUserAccountId() == suggestionEntity.getUserAccountId())&&(updateSuggestion.getSuggestionId() == suggestionEntity.getSuggestionId())) {
+            // This if statement double checks if the correct suggestion was called by comparing UserIds
+                Date todayDate = new Date();
+                suggestionEntity.setCategory(updateSuggestion.getCategory());
+                suggestionEntity.setSubject(updateSuggestion.getSubject());
+                suggestionEntity.setSuggestion(updateSuggestion.getSuggestion());
+                suggestionEntity.setDate(todayDate);
+                suggestionEntity = suggestionRepository.save(suggestionEntity);
+                return suggestionEntity != null;
             }
+            return false;
+        // Returns false if the user does not have the correct suggestionid or the correct userAccountId
         }
-        return false;
-    }
 
 
 
@@ -51,9 +40,9 @@ public class SuggestionServiceImpl implements SuggestionService {
         Iterable<SuggestionEntity> suggestions = suggestionRepository.findAll();
         Iterator<SuggestionEntity> iterator = suggestions.iterator();
         List<DisplayedSuggestion> showSuggestionData = new ArrayList<>();
+        String pattern = "MM-dd-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         while (iterator.hasNext()) {
-            String pattern = "MM-dd-yyyy";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
             SuggestionEntity nextElement = iterator.next();
             DisplayedSuggestion suggestionData = new DisplayedSuggestion();
             suggestionData.setCategory(nextElement.getCategory());
