@@ -69,7 +69,7 @@ export default {
       } catch (error) {
         this.$q.notify({
           message: 'Form did not send successfully',
-          color: 'red',
+          color: 'red-9',
         });
       }
     },

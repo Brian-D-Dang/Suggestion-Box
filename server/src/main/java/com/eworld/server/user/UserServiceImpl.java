@@ -10,6 +10,8 @@ import java.awt.*;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,24 +28,49 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean createUserLogin(CreateUserAccount createUserAccount) throws UsernameException {
         Date todayDate = new Date();
+        System.out.println(createUserAccount.getEmail());
+        String emailPattern = "^[\\w\\-_\\.+]+\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        Pattern pat = Pattern.compile(emailPattern);
+        Matcher matcher = pat.matcher(createUserAccount.getEmail());
         List<UserAccountEntity> usernameCheckExist = userRepository.findUserAccountEntityByUsernameOrEmail(createUserAccount.getUsername(), createUserAccount.getEmail());
-        if (usernameCheckExist.isEmpty()) {
-            UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername(), createUserAccount.getManager());
-            userAccountEntity = userRepository.save(userAccountEntity);
-            PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), createUserAccount.getPassword(), todayDate);
-            passwordEntity = passwordRepository.save(passwordEntity);
-            return (userAccountEntity != null) && (passwordEntity != null);
-        } else if (usernameCheckExist.size() == 2) {
-            throw new UsernameException("Email and Username already exists");
-        } else {
-            UserAccountEntity userAccountEntity = usernameCheckExist.get(0);
-            if (userAccountEntity.getUsername().equals(createUserAccount.getUsername())) {
-                throw new UsernameException("Username already exists");
+        if ((createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()) && (matcher.matches()))) {
+            if (usernameCheckExist.isEmpty()) {
+                UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername(), createUserAccount.getManager());
+                userAccountEntity = userRepository.save(userAccountEntity);
+                PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), createUserAccount.getPassword(), todayDate);
+                passwordEntity = passwordRepository.save(passwordEntity);
+                return (userAccountEntity != null) && (passwordEntity != null);
+            } else if (usernameCheckExist.size() == 2) {
+                throw new UsernameException("Email and Username already exists");
+            } else {
+                UserAccountEntity userAccountEntity = usernameCheckExist.get(0);
+                if (userAccountEntity.getUsername().equals(createUserAccount.getUsername())) {
+                    if (userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
+                        throw new UsernameException("Email and Username already exists");
+                    }
+                    throw new UsernameException("Username already exists");
+                }
+                if (userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
+                    if (userAccountEntity.getUsername().equals(createUserAccount.getEmail())) {
+                        throw new UsernameException("Email and Username already exists");
+                    }
+                    throw new UsernameException("Email already exists");
+                }
             }
-            if (userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
-                throw new UsernameException("Username already exists");
+        }
+        else {
+            if(!(createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()))) {
+                if(!matcher.matches()) {
+                    throw new UsernameException("Email does not exist and the password conformation is incorrect");
+                }
+                throw new UsernameException("Incorrect password conformation");
             }
-
+            else if(!matcher.matches()) {
+                if(!(createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()))) {
+                    throw new UsernameException("Email does not exist and the password conformation is incorrect");
+                }
+                throw new UsernameException("Email does not exist");
+            }
         }
         return false;
     }

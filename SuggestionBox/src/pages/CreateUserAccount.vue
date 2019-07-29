@@ -36,6 +36,7 @@
               square
               outlined
               v-model="userAccount.email"
+              type="email"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Missing Email']"
               class="col-12 q-pa-md" label="Email" />
@@ -111,24 +112,18 @@ export default {
         const check = await DataService.createUser(this.userAccount);
         if ((this.userAccount.password === this.userAccount.confirmPassword)
           && (this.userAccount.email.match(this.mailformat))) {
-          if (!check) {
+          if (check) {
             this.$router.push('/home');
             this.$q.notify({
               message: 'Account was created successfully',
-              color: 'green',
-              textColor: 'black',
-            });
-          } else {
-            this.$q.notify({
-              message: 'Username already exists',
-              color: 'red',
+              color: 'green-10',
             });
           }
         }
       } catch (error) {
         this.$q.notify({
-          message: 'Account was not created successfully',
-          color: 'red',
+          message: error.response.data.message,
+          color: 'red-9',
         });
       }
     },

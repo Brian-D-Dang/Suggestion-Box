@@ -63,7 +63,7 @@ export default {
       } catch (error) {
         this.$q.notify({
           message: 'Username or password is incorrect',
-          color: 'red',
+          color: 'red-9',
         });
       }
     },

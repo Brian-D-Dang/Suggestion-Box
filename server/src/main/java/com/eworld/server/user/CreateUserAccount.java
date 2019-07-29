@@ -8,6 +8,7 @@ public class CreateUserAccount {
     private String email;
     private String username;
     private String password;
+    private String confirmPassword;
     private boolean manager;
 
     public CreateUserAccount() {}
@@ -53,6 +54,13 @@ public class CreateUserAccount {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public boolean getManager() {
