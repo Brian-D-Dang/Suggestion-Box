@@ -6,7 +6,7 @@
       </q-card-section>
       <q-separator color="white" style="min-height:1px"></q-separator>
       <q-form>
-        <q-card-section class="row" style="max-width:575px">
+        <q-card-section class="row" style="max-width:600px; min-width:600px">
         <div class="q-pa-md col-12">
           <q-select
             square
@@ -67,7 +67,7 @@ export default {
           });
           this.$router.push('/dashboard');
         }
-        this.$root.$emit('added-suggestion');
+        this.$root.$emit('refresh');
       } catch (error) {
         this.$q.notify({
           message: 'Form did not send successfully',

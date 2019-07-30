@@ -14,7 +14,7 @@
           <q-separator color="white" style="min-height:1px"></q-separator>
           <q-card-section>
             <q-form>
-              <div class="q-pa-md col" style="min-width: 500px">
+              <div class="q-pa-md col" style="min-width: 520px">
                 <q-select
                   square
                   outlined
@@ -57,6 +57,7 @@
       </q-dialog>
 
      <div class="column items-center col-lg-5 col-xl-6  ">
+       <div class="q-pa-md row justify-center">
        <q-select
          outlined
          style="min-width:230px"
@@ -77,7 +78,7 @@
        grid
          >
      <template #item="props">
-       <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:900px">
+       <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:500px">
         <div
           class="float-right"
           v-if="props.row.userAccountId === editSurvey.userAccountId"
@@ -123,11 +124,7 @@
          </q-card>
      </template>
         </q-table>
-    <q-btn
-      class="q-ma-md col"
-      to="/suggestion"
-      color="brand"
-      label="Create Suggestion"/>
+     </div>
     </div>
   </div>
 </template>
@@ -190,6 +187,7 @@ export default {
     },
     async updateSuggestion() {
       try {
+        this.display = false;
         const updateCheck = await DataService.updateSuggestion(this.editSurvey);
         if (updateCheck) {
           this.$q.notify({
@@ -197,6 +195,7 @@ export default {
             color: 'primary',
           });
           this.$router.push('/dashboard');
+          this.$root.$emit('refresh');
         }
       } catch (error) {
         this.$q.notify({
@@ -234,10 +233,10 @@ export default {
   },
   created() {
     this.refreshSuggestions();
-    this.$root.$on('added-suggestion', this.refreshSuggestions);
+    this.$root.$on('refresh', this.refreshSuggestions);
   },
   beforeDestroy() {
-    this.$root.$off('added-suggestion');
+    this.$root.$off('refresh');
   },
 };
 </script>
