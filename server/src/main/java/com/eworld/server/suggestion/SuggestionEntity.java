@@ -63,11 +63,11 @@ public class SuggestionEntity {
         this.category = category;
     }
 
-    public Date getDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
-    public void setDate(Date date) {
-        this.createdDate = date;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public String getSubject() {
