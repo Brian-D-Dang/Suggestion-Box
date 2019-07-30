@@ -37,8 +37,9 @@ public class UserServiceImpl implements UserService {
         if ((createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()) && (matcher.matches()))) {
             // This checks if the password is the same as the confirm password input and checks if the email matches the email pattern before allowing user to be created
             if (usernameCheckExist.isEmpty()) {
+                int failedLoginAttempts = 0;
                 // This checks to see if the usernameCheckExist found a username that already exists in the data base, but if it doesn't it creates the user.
-                UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername(), createUserAccount.getManager());
+                UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername(), createUserAccount.getManager(), failedLoginAttempts, null);
                 userAccountEntity = userRepository.save(userAccountEntity);
                 PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), createUserAccount.getPassword(), todayDate);
                 passwordEntity = passwordRepository.save(passwordEntity);
