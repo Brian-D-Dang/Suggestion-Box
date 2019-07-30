@@ -14,7 +14,7 @@ public class SuggestionController {
     private SuggestionServiceImpl suggestionServiceImpl;
 
     @RequestMapping(method = RequestMethod.PUT, value = "/updateSuggestion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean updateSuggestion(@RequestBody UpdateSuggestion updateSuggestion) {
+    public boolean updateSuggestion(@RequestBody Suggestion updateSuggestion) {
         return suggestionServiceImpl.updateSug(updateSuggestion);
     }
 

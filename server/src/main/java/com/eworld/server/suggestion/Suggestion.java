@@ -6,14 +6,16 @@ public class Suggestion {
     private String subject;
     private String suggestion;
     private int userAccountId;
+    private int suggestionId;
 
     public Suggestion() {
     }
-    public Suggestion(String category, String subject, String suggestion, int userAccountId) {
+    public Suggestion(String category, String subject, String suggestion, int userAccountId, int suggestionId) {
         this.category = category;
         this.subject = subject;
         this.suggestion = suggestion;
         this.userAccountId = userAccountId;
+        this.suggestionId = suggestionId;
     }
 
     public String getCategory() {
@@ -42,5 +44,12 @@ public class Suggestion {
     }
     public void setUserAccountId(int userAccountId) {
         this.userAccountId = userAccountId;
+    }
+
+    public int getSuggestionId() {
+        return suggestionId;
+    }
+    public void setSuggestionId(int suggestionId) {
+        this.suggestionId = suggestionId;
     }
 }

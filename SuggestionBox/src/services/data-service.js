@@ -8,18 +8,7 @@ export default {
   userFirstName: null,
   userLastName: null,
   async updateSuggestion(updatedSuggestion) {
-    const {
-      category: cat, subject: sub, suggestion: sug, userAccountId: userAccId, suggestionId: sugId,
-    } = updatedSuggestion;
-    console.log(updatedSuggestion);
-    const suggestion = {
-      category: cat,
-      subject: sub,
-      suggestion: sug,
-      userAccountId: userAccId,
-      suggestionId: sugId,
-    };
-    return axiosInstance.put('/SuggestionForm/updateSuggestion', suggestion)
+    return axiosInstance.put('/SuggestionForm/updateSuggestion', updatedSuggestion)
       .then(response => response);
   },
   async saveSurvey(saved) {

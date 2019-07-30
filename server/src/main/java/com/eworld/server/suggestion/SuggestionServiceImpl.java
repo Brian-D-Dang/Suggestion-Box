@@ -14,13 +14,13 @@ public class SuggestionServiceImpl implements SuggestionService {
     public SuggestionServiceImpl() {
     }
 
+    // This function was made to update the users suggestion
     @Override
-    public boolean updateSug(UpdateSuggestion updateSuggestion) {
-        // This function was made to update the users suggestion
-        SuggestionEntity suggestionEntity = suggestionRepository.getSuggestionEntityBySuggestionId(updateSuggestion.getSuggestionId());
+    public boolean updateSug(Suggestion updateSuggestion) {
         // This line of code classifies which suggestion the user was refering to
-        if ((updateSuggestion.getUserAccountId() == suggestionEntity.getUserAccountId())&&(updateSuggestion.getSuggestionId() == suggestionEntity.getSuggestionId())) {
-            // This if statement double checks if the correct suggestion was called by comparing UserIds
+        SuggestionEntity suggestionEntity = suggestionRepository.getSuggestionEntityBySuggestionId(updateSuggestion.getSuggestionId());
+        // This if statement double checks if the correct suggestion was called by comparing UserIds
+        if (null != suggestionEntity) {
                 Date todayDate = new Date();
                 suggestionEntity.setCategory(updateSuggestion.getCategory());
                 suggestionEntity.setSubject(updateSuggestion.getSubject());
@@ -29,8 +29,9 @@ public class SuggestionServiceImpl implements SuggestionService {
                 suggestionEntity = suggestionRepository.save(suggestionEntity);
                 return suggestionEntity != null;
             }
-            return false;
         // Returns false if the user does not have the correct suggestionid or the correct userAccountId
+            return false;
+
         }
 
 

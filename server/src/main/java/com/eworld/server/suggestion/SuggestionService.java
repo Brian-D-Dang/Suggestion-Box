@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface SuggestionService {
     boolean saveSuggestion(Suggestion suggestion);
-    boolean updateSug(UpdateSuggestion updateSuggestion);
+    boolean updateSug(Suggestion updateSuggestion);
     List<DisplayedSuggestion> returnSuggestions();
 }

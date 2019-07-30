@@ -1,6 +1,60 @@
 <template>
   <div>
-   <div class="column row items-center justify-center">
+    <div class="column row items-center justify-center">
+    <q-dialog
+      v-model="display"
+      class="row q-pa-xl">
+      <q-card
+        class="column col-5 bg-grey-9 items-center"
+        dark>
+        <q-card-section class="col">
+          EDIT SUGGESTION
+        </q-card-section>
+        <q-separator color="white" style="min-height:1px"></q-separator>
+        <q-card-section>
+          <q-form>
+            <div class="q-pa-md col" style="min-width: 500px">
+              <q-select
+                square
+                outlined
+                v-model="editSurvey.category"
+                :options="editCategory" label="Category" dark/>
+            </div>
+            <div class="q-pa-md col" style="min-width: 500px">
+              <q-input
+                square
+                outlined
+                v-model="editSurvey.subject" label="Subject" dark/>
+            </div>
+            <div class="q-pa-md col" style="min-width: 500px">
+              <q-checkbox
+                class="q-pb-lg"
+                color="brand"
+                v-model="postAnonymously" label="Post Anonymously" dark>
+              </q-checkbox>
+              <q-input
+                dark
+                square
+                outlined
+                v-model="editSurvey.suggestion"
+                label="Description"
+                filled type="textarea" counter maxlength="64"/>
+            </div>
+            <br>
+            <q-btn
+              color="brand"
+              class="block q-mx-md q-mb-md"
+              size="20px"
+              style="min-width:500px"
+              type="submit"
+              @click="updateSuggestion(props.row)"
+              label="Submit" :disable="!activateButton"
+            />
+          </q-form>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+
      <div class="q-pa-md row justify-center" style="max-width: 500px">
        <q-select
          outlined
@@ -11,6 +65,7 @@
          style="min-width:230px"
          v-model='sortingCategory' :options="Category" label="Category" dark class="q-pl-md"/>
      </div>
+
      <q-table
        :data="sortedDate"
        :columns="columns"
@@ -24,66 +79,17 @@
        <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:900px">
         <div
           class="float-right"
-             v-if="props.row.userAccountId === editSurvey.userAccountId"
+          v-if="props.row.userAccountId === editSurvey.userAccountId"
           >
            <q-icon
              class="q-ma-sm"
              size="25px"
              name="more_vert">
-             <q-menu>
+             <q-menu auto-close>
                <q-list>
                  <q-item>
                    <q-item-section class="column items-center">
-                     <q-btn label="EDIT" flat>
-                       <q-popup-proxy breakpoint="600">
-                         <q-card class="column fixed-center bg-grey-9 items-center" dark>
-                           <q-card-section class="col">
-                             EDIT SUGGESTION
-                           </q-card-section>
-                           <q-separator color="white" style="min-height:1px"></q-separator>
-                           <q-card-section>
-                             <q-form>
-                               <div class="q-pa-md col" style="min-width: 500px">
-                                 <q-select
-                                   square
-                                   outlined
-                                   v-model="editSurvey.category"
-                                   :options="editCategory" label="Category" dark/>
-                               </div>
-                               <div class="q-pa-md col" style="min-width: 500px">
-                                 <q-input
-                                   square
-                                   outlined
-                                   v-model="editSurvey.subject" label="Subject" dark/>
-                               </div>
-                               <div class="q-pa-md col" style="min-width: 500px">
-                                 <q-checkbox
-                                   class="q-pb-lg"
-                                   color="brand"
-                                   v-model="postAnonymously" label="Post Anonymously" dark>
-                                 </q-checkbox>
-                                 <q-input
-                                   dark
-                                   square
-                                   outlined
-                                   v-model="editSurvey.suggestion"
-                                   label="Description"
-                                   filled type="textarea" counter maxlength="64"/>
-                               </div>
-                               <br>
-                               <q-btn
-                                 color="brand"
-                                 class="block q-mx-md q-mb-md"
-                                 size="20px"
-                                 style="min-width:500px"
-                                 type="submit"
-                                 @click="updateSuggestion(props.row)"
-                                 label="Submit" :disable="!activateButton"
-                               />
-                             </q-form>
-                           </q-card-section>
-                         </q-card>
-                       </q-popup-proxy>
+                     <q-btn label="EDIT" @click="display = true" flat>
                      </q-btn>
                    </q-item-section>
                  </q-item>
@@ -134,6 +140,7 @@ export default {
     return {
       data: [],
       postAnonymously: false,
+      display: false,
       editSurvey: {
         category: '',
         subject: '',
