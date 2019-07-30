@@ -1,61 +1,62 @@
 <template>
   <div>
-    <div class="column row items-center justify-center">
-    <q-dialog
-      v-model="display"
-      class="row q-pa-xl">
-      <q-card
-        class="column col-5 bg-grey-9 items-center"
-        dark>
-        <q-card-section class="col">
-          EDIT SUGGESTION
-        </q-card-section>
-        <q-separator color="white" style="min-height:1px"></q-separator>
-        <q-card-section>
-          <q-form>
-            <div class="q-pa-md col" style="min-width: 500px">
-              <q-select
-                square
-                outlined
-                v-model="editSurvey.category"
-                :options="editCategory" label="Category" dark/>
-            </div>
-            <div class="q-pa-md col" style="min-width: 500px">
-              <q-input
-                square
-                outlined
-                v-model="editSurvey.subject" label="Subject" dark/>
-            </div>
-            <div class="q-pa-md col" style="min-width: 500px">
-              <q-checkbox
-                class="q-pb-lg"
+    <div class="row justify-center items-center">
+      <suggestion class="col-lg-6 col-xl-5"></suggestion>
+      <q-dialog
+        v-model="display"
+        class="row q-pa-xl">
+        <q-card
+          class="column col-5 bg-grey-9 items-center"
+          dark>
+          <q-card-section class="col">
+            EDIT SUGGESTION
+          </q-card-section>
+          <q-separator color="white" style="min-height:1px"></q-separator>
+          <q-card-section>
+            <q-form>
+              <div class="q-pa-md col" style="min-width: 500px">
+                <q-select
+                  square
+                  outlined
+                  v-model="editSurvey.category"
+                  :options="editCategory" label="Category" dark/>
+              </div>
+              <div class="q-pa-md col" style="min-width: 500px">
+                <q-input
+                  square
+                  outlined
+                  v-model="editSurvey.subject" label="Subject" dark/>
+              </div>
+              <div class="q-pa-md col" style="min-width: 500px">
+                <q-checkbox
+                  class="q-pb-lg"
+                  color="brand"
+                  v-model="postAnonymously" label="Post Anonymously" dark>
+                </q-checkbox>
+                <q-input
+                  dark
+                  square
+                  outlined
+                  v-model="editSurvey.suggestion"
+                  label="Description"
+                  filled type="textarea" counter maxlength="64"/>
+              </div>
+              <br>
+              <q-btn
                 color="brand"
-                v-model="postAnonymously" label="Post Anonymously" dark>
-              </q-checkbox>
-              <q-input
-                dark
-                square
-                outlined
-                v-model="editSurvey.suggestion"
-                label="Description"
-                filled type="textarea" counter maxlength="64"/>
-            </div>
-            <br>
-            <q-btn
-              color="brand"
-              class="block q-mx-md q-mb-md"
-              size="20px"
-              style="min-width:500px"
-              type="submit"
-              @click="updateSuggestion"
-              label="Submit" :disable="!activateButton"
-            />
-          </q-form>
-        </q-card-section>
-      </q-card>
-    </q-dialog>
+                class="block q-mx-md q-mb-md"
+                size="20px"
+                style="min-width:500px"
+                type="submit"
+                @click="updateSuggestion"
+                label="Submit" :disable="!activateButton"
+              />
+            </q-form>
+          </q-card-section>
+        </q-card>
+      </q-dialog>
 
-     <div class="q-pa-md row justify-center" style="max-width: 500px">
+     <div class="column items-center col-lg-5 col-xl-6  ">
        <q-select
          outlined
          style="min-width:230px"
@@ -69,9 +70,9 @@
      <q-table
        :data="sortedDate"
        :columns="columns"
+       :rows-per-page-options="[0]"
        class="text-white"
        dark
-       style="max-width:1000px;"
        row-key="name"
        grid
          >
@@ -133,9 +134,11 @@
 
 <script>
 import DataService from 'src/services/data-service.js';
+import Suggestion from './Suggestion';
 
 export default {
   name: 'Dashboard',
+  components: { Suggestion },
   data() {
     return {
       data: [],
@@ -202,6 +205,10 @@ export default {
         });
       }
     },
+    async refreshSuggestions() {
+      const displaySuggestion = await DataService.getSuggestionForms();
+      this.suggestionForms = displaySuggestion.data;
+    },
   },
   computed: {
     sortedDate() {
@@ -226,10 +233,11 @@ export default {
     },
   },
   created() {
-    (async () => {
-      const displaySuggestion = await DataService.getSuggestionForms();
-      this.suggestionForms = displaySuggestion.data;
-    })();
+    this.refreshSuggestions();
+    this.$root.$on('added-suggestion', this.refreshSuggestions);
+  },
+  beforeDestroy() {
+    this.$root.$off('added-suggestion');
   },
 };
 </script>
