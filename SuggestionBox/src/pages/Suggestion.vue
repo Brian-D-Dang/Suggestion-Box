@@ -65,7 +65,9 @@ export default {
             message: 'Form sent successfully',
             color: 'primary',
           });
-          this.$router.push('/dashboard');
+          this.survey.category = '';
+          this.survey.subject = '';
+          this.survey.suggestion = '';
         }
         this.$root.$emit('refresh');
       } catch (error) {

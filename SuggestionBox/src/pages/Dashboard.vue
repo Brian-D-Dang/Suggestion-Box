@@ -184,6 +184,9 @@ export default {
     displayEditSuggestion(saveProps) {
       this.display = true;
       this.editSurvey.suggestionId = saveProps.suggestionId;
+      this.editSurvey.category = saveProps.category;
+      this.editSurvey.subject = saveProps.subject;
+      this.editSurvey.suggestion = saveProps.suggestion;
     },
     async updateSuggestion() {
       try {
