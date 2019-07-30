@@ -31,49 +31,50 @@ public class UserServiceImpl implements UserService {
         String emailPattern = "^[\\w\\-_\\.+]+\\@([\\w]+\\.)+[\\w]+[\\w]$";
         Pattern pat = Pattern.compile(emailPattern);
         Matcher matcher = pat.matcher(createUserAccount.getEmail());
-        // The emailPattern is used to match up certain email requirements i.e @ signs, periods, letters, and when to end.
-        List<UserAccountEntity> usernameCheckExist = userRepository.findUserAccountEntityByUsernameOrEmail(createUserAccount.getUsername(), createUserAccount.getEmail());
+        String userUsername = createUserAccount.getUsername();
+        String userEmail = createUserAccount.getEmail();
+        String userPassword = createUserAccount.getPassword();
+        String userConfirmPassword = createUserAccount.getConfirmPassword();
+        String userFirstName = createUserAccount.getFirstName();
+        String userLastName = createUserAccount.getLastName();
+        boolean userManagerId = createUserAccount.getManager();
+                // The emailPattern is used to match up certain email requirements i.e @ signs, periods, letters, and when to end.
+        List<UserAccountEntity> usernameCheckExist = userRepository.findUserAccountEntityByUsername(userUsername);
+        List<UserAccountEntity> emailCheckExist = userRepository.findUserAccountEntityByEmail(userEmail);
         // This list checks if the username and email exists in the data base. It could return at least one user.
-        if ((createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()) && (matcher.matches()))) {
+        if ((userPassword.equals(userConfirmPassword) && (matcher.matches()))) {
             // This checks if the password is the same as the confirm password input and checks if the email matches the email pattern before allowing user to be created
-            if (usernameCheckExist.isEmpty()) {
+            if (usernameCheckExist.isEmpty() && emailCheckExist.isEmpty()) {
                 int failedLoginAttempts = 0;
                 // This checks to see if the usernameCheckExist found a username that already exists in the data base, but if it doesn't it creates the user.
-                UserAccountEntity userAccountEntity = new UserAccountEntity(createUserAccount.getFirstName(), createUserAccount.getLastName(), createUserAccount.getEmail(), createUserAccount.getUsername(), createUserAccount.getManager(), failedLoginAttempts, null);
+                UserAccountEntity userAccountEntity = new UserAccountEntity(userFirstName, userLastName, userEmail, userUsername, userManagerId, failedLoginAttempts, null);
                 userAccountEntity = userRepository.save(userAccountEntity);
-                PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), createUserAccount.getPassword(), todayDate);
+                PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), userPassword, todayDate);
                 passwordEntity = passwordRepository.save(passwordEntity);
                 return (userAccountEntity != null) && (passwordEntity != null);
-            } else if (usernameCheckExist.size() == 2) {
+            } else if ((usernameCheckExist.size() == 1) && emailCheckExist.size() == 1) {
                 // If two users exist in the CheckExist then the function will throw an error to the UI side declaring that the username and email exists.
                 throw new UserExceptions("Email and Username already exists");
             } else {
                 // If there is one item in the CheckExist list then it will be ran through here to see if the username or email exists.
-                UserAccountEntity userAccountEntity = usernameCheckExist.get(0);
-                if (userAccountEntity.getUsername().equals(createUserAccount.getUsername())) {
-                    if (userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
-                        throw new UserExceptions("Email and Username already exists");
-                    }
+                if (usernameCheckExist.size() == 1) {
                     throw new UserExceptions("Username already exists");
                 }
-                if (userAccountEntity.getEmail().equals(createUserAccount.getEmail())) {
-                    if (userAccountEntity.getUsername().equals(createUserAccount.getEmail())) {
-                        throw new UserExceptions("Email and Username already exists");
-                    }
+                if (emailCheckExist.size() == 1) {
                     throw new UserExceptions("Email already exists");
                 }
             }
         }
         else {
             // This runs if the password or email doesn't match the requirements at the start of the function.
-            if(!(createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()))) {
+            if(!(userPassword.equals(userConfirmPassword))) {
                 if(!matcher.matches()) {
                     throw new UserExceptions("Email does not exist and the password conformation is incorrect");
                 }
                 throw new UserExceptions("Incorrect password conformation");
             }
             else if(!matcher.matches()) {
-                if(!(createUserAccount.getPassword().equals(createUserAccount.getConfirmPassword()))) {
+                if(!(userPassword.equals(userConfirmPassword))) {
                     throw new UserExceptions("Email does not exist and the password conformation is incorrect");
                 }
                 throw new UserExceptions("Email does not exist");

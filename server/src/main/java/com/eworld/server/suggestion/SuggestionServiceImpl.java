@@ -27,7 +27,7 @@ public class SuggestionServiceImpl implements SuggestionService {
             suggestionData.setCategory(nextElement.getCategory());
             suggestionData.setSubject(nextElement.getSubject());
             suggestionData.setSuggestion(nextElement.getSuggestion());
-            suggestionData.setDate(simpleDateFormat.format(nextElement.getDate()));
+            suggestionData.setDate(simpleDateFormat.format(nextElement.getCreatedDate()));
             showSuggestionData.add(suggestionData);
         }
         return showSuggestionData;

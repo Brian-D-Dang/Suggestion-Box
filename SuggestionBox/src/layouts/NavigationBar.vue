@@ -58,7 +58,6 @@ export default {
   data() {
     return {
       left: true,
-      ManagerId: 0,
     };
   },
   methods: {
@@ -81,9 +80,7 @@ export default {
       return DataService.userEmail;
     },
     checkManagerId() {
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      this.ManagerId = DataService.userManagerId;
-      return this.ManagerId;
+      return DataService.userManagerId;
     },
   },
 };

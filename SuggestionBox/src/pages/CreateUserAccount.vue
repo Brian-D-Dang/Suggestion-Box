@@ -109,9 +109,9 @@ export default {
   methods: {
     async createUserAccount() {
       try {
-        const check = await DataService.createUser(this.userAccount);
         if ((this.userAccount.password === this.userAccount.confirmPassword)
           && (this.userAccount.email.match(this.mailformat))) {
+          const check = await DataService.createUser(this.userAccount);
           if (check) {
             this.$router.push('/home');
             this.$q.notify({
