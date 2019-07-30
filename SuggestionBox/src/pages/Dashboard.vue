@@ -47,7 +47,7 @@
               size="20px"
               style="min-width:500px"
               type="submit"
-              @click="updateSuggestion(props.row)"
+              @click="updateSuggestion"
               label="Submit" :disable="!activateButton"
             />
           </q-form>
@@ -89,7 +89,7 @@
                <q-list>
                  <q-item>
                    <q-item-section class="column items-center">
-                     <q-btn label="EDIT" @click="display = true" flat>
+                     <q-btn label="EDIT" @click="displayEditSuggestion(props.row)" flat>
                      </q-btn>
                    </q-item-section>
                  </q-item>
@@ -181,9 +181,11 @@ export default {
     };
   },
   methods: {
-    async updateSuggestion(suggestion) {
-      console.log(suggestion);
-      this.editSurvey.suggestionId = suggestion.suggestionId;
+    displayEditSuggestion(saveProps) {
+      this.display = true;
+      this.editSurvey.suggestionId = saveProps.suggestionId;
+    },
+    async updateSuggestion() {
       try {
         const updateCheck = await DataService.updateSuggestion(this.editSurvey);
         if (updateCheck) {
