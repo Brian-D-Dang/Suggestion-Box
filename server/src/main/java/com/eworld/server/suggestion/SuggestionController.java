@@ -1,6 +1,6 @@
 package com.eworld.server.suggestion;
 
-import com.eworld.server.exception.suggestionExceptions;
+import com.eworld.server.exception.SuggestionExceptions;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class SuggestionController {
     private SuggestionServiceImpl suggestionServiceImpl;
 
     @RequestMapping(method = RequestMethod.PUT, value = "/updateSuggestion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean updateSuggestion(@RequestBody Suggestion updateSuggestion) throws suggestionExceptions {
+    public boolean updateSuggestion(@RequestBody Suggestion updateSuggestion) throws SuggestionExceptions {
         return suggestionServiceImpl.updateSug(updateSuggestion);
     }
 

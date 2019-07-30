@@ -198,7 +198,7 @@ export default {
             color: 'primary',
           });
           this.$router.push('/dashboard');
-          this.$root.$emit('refresh');
+          this.refreshSuggestions();
         }
       } catch (error) {
         this.$q.notify({

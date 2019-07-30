@@ -1,6 +1,6 @@
 package com.eworld.server.suggestion;
 
-import com.eworld.server.exception.suggestionExceptions;
+import com.eworld.server.exception.SuggestionExceptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class SuggestionServiceImpl implements SuggestionService {
 
     // This function was made to update the users suggestion
     @Override
-    public boolean updateSug(Suggestion updateSuggestion) throws suggestionExceptions{
+    public boolean updateSug(Suggestion updateSuggestion) throws SuggestionExceptions {
         // This line of code classifies which suggestion the user was refering to
         SuggestionEntity suggestionEntity = suggestionRepository.getSuggestionEntityBySuggestionId(updateSuggestion.getSuggestionId());
         // This if statement double checks if the correct suggestion was called by comparing UserIds
@@ -31,7 +31,7 @@ public class SuggestionServiceImpl implements SuggestionService {
                 return suggestionEntity != null;
             }
         // Returns false if the user does not have the correct suggestionid or the correct userAccountId
-            throw new suggestionExceptions("Suggestion edit did not send properly");
+            throw new SuggestionExceptions("Suggestion edit did not send properly");
 
         }
 

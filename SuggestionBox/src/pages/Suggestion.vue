@@ -6,7 +6,7 @@
       </q-card-section>
       <q-separator color="white" style="min-height:1px"></q-separator>
       <q-form>
-        <q-card-section class="row" style="max-width:600px; min-width:600px">
+        <q-card-section class="row" style="width: 600px">
         <div class="q-pa-md col-12">
           <q-select
             square
