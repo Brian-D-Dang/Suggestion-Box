@@ -97,22 +97,26 @@
              name="more_vert">
              <q-menu auto-close>
                <q-list>
-                 <q-item>
                    <q-item class="column items-center justify-center">
                      <q-item-section>
                        <q-btn label="IMPLEMENT" flat />
                      </q-item-section>
+                   </q-item>
+                   <q-item>
                      <q-item-section>
                        <q-btn label="DENY" flat />
                      </q-item-section>
-                     <q-item-section @click="displayEditSuggestion(props.row)">
+                   </q-item>
+                   <q-item @click="displayEditSuggestion(props.row)">
+                     <q-item-section>
                        <q-btn label="EDIT" flat />
                      </q-item-section>
+                   </q-item>
+                   <q-item>
                      <q-item-section>
                        <q-btn label="DELETE" flat />
                      </q-item-section>
                    </q-item>
-                 </q-item>
                </q-list>
              </q-menu>
            </q-icon>
