@@ -91,35 +91,31 @@
           class="float-right"
           v-if="props.row.userAccountId === editSurvey.userAccountId"
           >
-           <q-icon
+           <q-btn
+             flat
+             round
              class="q-ma-sm"
-             size="25px"
-             name="more_vert">
-             <q-menu auto-close>
-               <q-list>
-                   <q-item class="column items-center justify-center">
-                     <q-item-section>
-                       <q-btn label="IMPLEMENT" flat />
-                     </q-item-section>
+             size="12px"
+             icon="more_vert"
+           >
+             <q-menu auto-close >
+               <q-list
+                 style="min-width:115px">
+                   <q-item clickable>
+                       IMPLEMENT
                    </q-item>
-                   <q-item>
-                     <q-item-section>
-                       <q-btn label="DENY" flat />
-                     </q-item-section>
+                   <q-item clickable>
+                       DENY
                    </q-item>
-                   <q-item>
-                     <q-item-section @click="displayEditSuggestion(props.row)">
-                       <q-btn label="EDIT" flat />
-                     </q-item-section>
+                   <q-item clickable @click="displayEditSuggestion(props.row)">
+                       EDIT
                    </q-item>
-                   <q-item>
-                     <q-item-section>
-                       <q-btn label="DELETE" flat />
-                     </q-item-section>
+                   <q-item clickable>
+                       DELETE
                    </q-item>
                </q-list>
              </q-menu>
-           </q-icon>
+           </q-btn>
            </div>
             <q-list class="col">
               <q-item>
