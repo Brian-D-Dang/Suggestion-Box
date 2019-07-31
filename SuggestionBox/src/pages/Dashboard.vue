@@ -101,8 +101,14 @@
                    <q-item class="column items-center justify-center">
                      <q-item-section>
                        <q-btn label="IMPLEMENT" flat />
+                     </q-item-section>
+                     <q-item-section>
                        <q-btn label="DENY" flat />
-                       <q-btn label="EDIT" @click="displayEditSuggestion(props.row)" flat />
+                     </q-item-section>
+                     <q-item-section @click="displayEditSuggestion(props.row)">
+                       <q-btn label="EDIT" flat />
+                     </q-item-section>
+                     <q-item-section>
                        <q-btn label="DELETE" flat />
                      </q-item-section>
                    </q-item>
@@ -201,7 +207,7 @@ export default {
         const updateCheck = await DataService.updateSuggestion(this.editSurvey);
         if (updateCheck) {
           this.$q.notify({
-            message: 'Form sent successfully',
+            message: 'Form updated successfully',
             color: 'primary',
           });
           this.$router.push('/dashboard');
@@ -209,7 +215,7 @@ export default {
         }
       } catch (error) {
         this.$q.notify({
-          message: 'Form did not send successfully',
+          message: 'Form did not update successfully',
           color: 'red',
         });
       }
