@@ -107,8 +107,8 @@
                        <q-btn label="DENY" flat />
                      </q-item-section>
                    </q-item>
-                   <q-item @click="displayEditSuggestion(props.row)">
-                     <q-item-section>
+                   <q-item>
+                     <q-item-section @click="displayEditSuggestion(props.row)">
                        <q-btn label="EDIT" flat />
                      </q-item-section>
                    </q-item>
