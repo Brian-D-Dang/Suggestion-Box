@@ -16,7 +16,7 @@ public class SuggestionController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/updateSuggestion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean updateSuggestion(@RequestBody Suggestion updateSuggestion) throws SuggestionExceptions {
-        return suggestionServiceImpl.updateSug(updateSuggestion);
+        return suggestionServiceImpl.updateSuggestion(updateSuggestion);
     }
 
     @RequestMapping(value = "/getSuggestions", produces = MediaType.APPLICATION_JSON_VALUE)

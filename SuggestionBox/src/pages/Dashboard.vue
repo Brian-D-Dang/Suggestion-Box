@@ -6,13 +6,21 @@
         v-model="display"
         class="row q-pa-xl">
         <q-card
-          class="column col-5 bg-grey-9 items-center"
+          class="bg-grey-9"
           dark>
-          <q-card-section class="col">
-            EDIT SUGGESTION
+            <q-card-section class="row justify-end">
+              <p class="q-ma-sm float-left col-6">EDIT SUGGESTION</p>
+              <q-icon
+                class="float-right col-1 text-red"
+                size="20px"
+                name="clear"
+              @click="display = false"></q-icon>
           </q-card-section>
-          <q-separator color="white" style="min-height:1px"></q-separator>
-          <q-card-section>
+
+          <q-separator
+            color="white" style="min-height:1px">
+          </q-separator>
+          <q-card-section class="column col-6 bg-grey-9 items-center">
             <q-form>
               <div class="q-pa-md col" style="min-width: 520px">
                 <q-select
@@ -90,15 +98,14 @@
              <q-menu auto-close>
                <q-list>
                  <q-item>
-                   <q-item-section class="column items-center">
-                     <q-btn label="EDIT" @click="displayEditSuggestion(props.row)" flat>
-                     </q-btn>
-                   </q-item-section>
-                 </q-item>
-                 <q-item>
-                   <q-item-section>
-                     <q-btn>DELETE</q-btn>
-                   </q-item-section>
+                   <q-item class="column items-center justify-center">
+                     <q-item-section>
+                       <q-btn label="IMPLEMENT" flat />
+                       <q-btn label="DENY" flat />
+                       <q-btn label="EDIT" @click="displayEditSuggestion(props.row)" flat />
+                       <q-btn label="DELETE" flat />
+                     </q-item-section>
+                   </q-item>
                  </q-item>
                </q-list>
              </q-menu>

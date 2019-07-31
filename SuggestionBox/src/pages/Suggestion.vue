@@ -2,7 +2,7 @@
   <div  >
     <q-card class="column items-center bg-grey-9 q-ma-md" dark>
       <q-card-section class="col">
-        Create Suggestion
+        CREATE SUGGESTION
       </q-card-section>
       <q-separator color="white" style="min-height:1px"></q-separator>
       <q-form>

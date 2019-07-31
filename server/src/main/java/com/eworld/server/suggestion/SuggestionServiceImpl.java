@@ -17,7 +17,7 @@ public class SuggestionServiceImpl implements SuggestionService {
 
     // This function was made to update the users suggestion
     @Override
-    public boolean updateSug(Suggestion updateSuggestion) throws SuggestionExceptions {
+    public boolean updateSuggestion(Suggestion updateSuggestion) throws SuggestionExceptions {
         // This line of code classifies which suggestion the user was refering to
         SuggestionEntity suggestionEntity = suggestionRepository.getSuggestionEntityBySuggestionId(updateSuggestion.getSuggestionId());
         // This if statement double checks if the correct suggestion was called by comparing UserIds
