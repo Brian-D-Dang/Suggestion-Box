@@ -1,64 +1,71 @@
 <template>
   <q-layout class="bg-grey-10 text-white">
     <div class="column justify-center items-center">
-        <q-card class="bg-grey-9 q-pa-lg q-ma-lg column items-center">
+        <q-card class="bg-grey-9 q-ma-lg column items-center" style="width:600px">
           <q-card-section
             style="font-size:20px " class="q-mb-sm">Create User Account</q-card-section>
-        <q-separator color="white" style="min-height: 1px"></q-separator>
-          <q-card-section class="column justify-center">
-            <q-form style="max-width: 500px;" class="row justify-center" >
-            <q-input
-              dark
-              square
-              outlined
-              v-model="userAccount.username"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Missing Username']"
-              class="col-12 q-pa-md" label="Username" autofocus />
-            <q-input
-              dark
-              square
-              outlined
-              v-model="userAccount.firstName"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Missing First Name']"
-              class="col-6 q-pa-md" label="First Name" />
-            <q-input
-              dark
-              square
-              outlined
-              v-model="userAccount.lastName"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Missing Last Name']"
-              class="col-6 q-pa-md" label="Last Name" />
-            <q-input
-              dark
-              square
-              outlined
-              v-model="userAccount.email"
-              type="email"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Missing Email']"
-              class="col-12 q-pa-md" label="Email" />
+          <q-separator color="white" style="min-height: 1px"></q-separator>
+            <q-card-section class="column justify-center">
+              <q-form style="max-width: 500px;" class="row justify-center" >
               <q-input
                 dark
                 square
                 outlined
-                v-model="userAccount.password"
-                type="password"
+                v-model="userAccount.username"
                 lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Missing Password']"
-                class="col-6 q-pa-md" label="Password" />
+                color="white"
+                :rules="[ val => val && val.length > 0 || 'Missing Username']"
+                class="col-12 q-pa-md" label="Username" autofocus />
               <q-input
                 dark
                 square
                 outlined
-                v-model="userAccount.confirmPassword"
-                type="password"
+                v-model="userAccount.firstName"
                 lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Missing Confirm Password']"
-                class="col-6 q-pa-md"
-                label="Confirm Password"  />
+                color="white"
+                :rules="[ val => val && val.length > 0 || 'Missing First Name']"
+                class="col-6 q-pa-md" label="First Name" />
+              <q-input
+                dark
+                square
+                outlined
+                v-model="userAccount.lastName"
+                lazy-rules
+                color="white"
+                :rules="[ val => val && val.length > 0 || 'Missing Last Name']"
+                class="col-6 q-pa-md" label="Last Name" />
+              <q-input
+                dark
+                square
+                outlined
+                v-model="userAccount.email"
+                type="email"
+                lazy-rules
+                color="white"
+                :rules="[ val => val && val.length > 0 || 'Missing Email']"
+                class="col-12 q-pa-md" label="Email" />
+                <q-input
+                  dark
+                  square
+                  outlined
+                  v-model="userAccount.password"
+                  type="password"
+                  lazy-rules
+                  color="white"
+                  :rules="[ val => val && val.length > 0 || 'Missing Password']"
+                  class="col-6 q-pa-md" label="Password"/>
+                  <q-input
+                    dark
+                    square
+                    outlined
+                    v-model="userAccount.confirmPassword"
+                    type="password"
+                    lazy-rules
+                    color="white"
+                    :rules="[ val => val && val.length > 0 || 'Missing Confirm Password']"
+                    class="col-6 q-pa-md" label="Confirm Password"
+                    />
+
               <div class="col-12 q-pa-md">
                 <q-checkbox
                   class="q-pb-lg"
@@ -111,6 +118,7 @@ export default {
       try {
         if ((this.userAccount.password === this.userAccount.confirmPassword)
           && (this.userAccount.email.match(this.mailformat))) {
+          console.log('work');
           const check = await DataService.createUser(this.userAccount);
           if (check) {
             this.$router.push('/home');
@@ -119,6 +127,11 @@ export default {
               color: 'green-10',
             });
           }
+        } else {
+          this.$q.notify({
+            message: 'Invalid email',
+            color: 'red-9',
+          });
         }
       } catch (error) {
         this.$q.notify({
@@ -128,9 +141,13 @@ export default {
       }
     },
   },
+  computed: {
+    length() {
+      return this.userAccount.confirmPassword.length > 0;
+    },
+  },
 };
 </script>
 
 <style scoped>
-
 </style>

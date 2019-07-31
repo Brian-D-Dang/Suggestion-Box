@@ -53,6 +53,7 @@ module.exports = function (ctx) {
         'QSeparator',
         'QCheckbox',
         'QForm',
+        'QField',
       ],
 
       directives: [

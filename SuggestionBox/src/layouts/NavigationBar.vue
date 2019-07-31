@@ -27,7 +27,7 @@
               <q-item-label>Dashboard</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable v-ripple @click="createUserAccount" v-if="checkManagerId === true">
+          <q-item clickable v-ripple @click="createUserAccount" v-if="checkManagerId">
           <q-item-section>
             <q-item-label>
               <q-item-label>Create Account</q-item-label>

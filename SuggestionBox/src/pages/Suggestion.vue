@@ -10,10 +10,14 @@
         <div class="q-pa-md col-12">
           <q-select
             square
-            outlined v-model="survey.category" :options="category" label="Category" dark/>
+            outlined
+            color="white"
+            v-model="survey.category"
+            :options="category"
+            label="Category" dark/>
         </div>
         <div class="q-pa-md col-12">
-         <q-input square outlined v-model="survey.subject" label="Subject" dark/>
+         <q-input square outlined color="white" v-model="survey.subject" label="Subject" dark/>
         </div>
         <div class="q-pa-md col-12">
           <q-checkbox class="q-pb-lg"
@@ -23,6 +27,7 @@
             dark
             square
             outlined
+            color="white"
             v-model="survey.suggestion"
             label="Description" filled type="textarea" counter maxlength="64"/>
           <q-btn
