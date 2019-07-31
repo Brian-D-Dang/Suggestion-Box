@@ -1,5 +1,6 @@
 package com.eworld.server.suggestion;
 
+import com.eworld.server.exception.SuggestionExceptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,31 @@ import java.util.*;
 public class SuggestionServiceImpl implements SuggestionService {
     @Autowired
     private SuggestionRepository suggestionRepository;
-    public SuggestionServiceImpl() {
 
+    public SuggestionServiceImpl() {
     }
+
+    // This function was made to update the users suggestion
+    @Override
+    public boolean updateSuggestion(Suggestion updateSuggestion) throws SuggestionExceptions {
+        // This line of code classifies which suggestion the user was refering to
+        SuggestionEntity suggestionEntity = suggestionRepository.getSuggestionEntityBySuggestionId(updateSuggestion.getSuggestionId());
+        // This if statement double checks if the correct suggestion was called by comparing UserIds
+        if (suggestionEntity != null) {
+                Date todayDate = new Date();
+                suggestionEntity.setCategory(updateSuggestion.getCategory());
+                suggestionEntity.setSubject(updateSuggestion.getSubject());
+                suggestionEntity.setSuggestion(updateSuggestion.getSuggestion());
+                suggestionEntity.setDate(todayDate);
+                suggestionEntity = suggestionRepository.save(suggestionEntity);
+                return suggestionEntity != null;
+            }
+        // Returns false if the user does not have the correct suggestionid or the correct userAccountId
+            throw new SuggestionExceptions("Suggestion edit did not send properly");
+
+        }
+
+
 
     @Override
     public List<DisplayedSuggestion> returnSuggestions() {
@@ -28,6 +51,8 @@ public class SuggestionServiceImpl implements SuggestionService {
             suggestionData.setSubject(nextElement.getSubject());
             suggestionData.setSuggestion(nextElement.getSuggestion());
             suggestionData.setDate(simpleDateFormat.format(nextElement.getDate()));
+            suggestionData.setSuggestionId(nextElement.getSuggestionId());
+            suggestionData.setUserAccountId(nextElement.getUserAccountId());
             showSuggestionData.add(suggestionData);
         }
         return showSuggestionData;

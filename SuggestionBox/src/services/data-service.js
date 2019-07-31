@@ -2,11 +2,15 @@ import { axiosInstance } from 'src/boot/axios.js';
 
 export default {
   savedForms: null,
-  saveAccountId: 0,
+  saveAccountId: null,
   userUsername: null,
   userEmail: null,
   userFirstName: null,
   userLastName: null,
+  async updateSuggestion(updatedSuggestion) {
+    return axiosInstance.put('/SuggestionForm/updateSuggestion', updatedSuggestion)
+      .then(response => response);
+  },
   async saveSurvey(saved) {
     const { category: cat, subject: sub, suggestion: sug } = saved;
     const suggestion = {
@@ -14,6 +18,7 @@ export default {
       subject: sub,
       suggestion: sug,
       userAccountId: this.saveAccountId,
+
     };
     return axiosInstance.post('/SuggestionForm/addSuggestion', suggestion)
       .then(response => response);
@@ -48,4 +53,5 @@ export default {
     // eslint-disable-next-line no-return-assign
       .then(response => response);
   },
+
 };

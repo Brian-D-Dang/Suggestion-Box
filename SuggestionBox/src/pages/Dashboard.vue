@@ -1,56 +1,147 @@
 <template>
-   <div class="row justify-center items-center">
-     <suggestion class="col-lg-6 col-xl-5"></suggestion>
+  <div>
+    <div class="row justify-center items-center">
+      <suggestion class="col-lg-6 col-xl-5"></suggestion>
+      <q-dialog
+        v-model="display"
+        class="row q-pa-xl">
+        <q-card
+          class="bg-grey-9"
+          dark>
+            <q-card-section class="row justify-end">
+              <p class="q-ma-sm float-left col-6">EDIT SUGGESTION</p>
+              <q-btn
+                flat
+                round
+                class="float-right col-1"
+                size="15px"
+                icon="clear"
+              @click="display = false"></q-btn>
+          </q-card-section>
+
+          <q-separator
+            color="white" style="min-height:1px">
+          </q-separator>
+          <q-card-section class="column col-6 bg-grey-9 items-center">
+            <q-form>
+              <div class="q-pa-md col" style="min-width: 520px">
+                <q-select
+                  square
+                  outlined
+                  v-model="editSurvey.category"
+                  :options="editCategory" label="Category" dark/>
+              </div>
+              <div class="q-pa-md col" style="min-width: 500px">
+                <q-input
+                  square
+                  outlined
+                  v-model="editSurvey.subject" label="Subject" dark/>
+              </div>
+              <div class="q-pa-md col" style="min-width: 500px">
+                <q-checkbox
+                  class="q-pb-lg"
+                  color="brand"
+                  v-model="postAnonymously" label="Post Anonymously" dark>
+                </q-checkbox>
+                <q-input
+                  dark
+                  square
+                  outlined
+                  v-model="editSurvey.suggestion"
+                  label="Description"
+                  filled type="textarea" counter maxlength="64"/>
+              </div>
+              <br>
+              <q-btn
+                color="brand"
+                class="block q-mx-md q-mb-md"
+                size="20px"
+                style="min-width:500px"
+                type="submit"
+                @click="updateSuggestion"
+                label="Submit" :disable="!activateButton"
+              />
+            </q-form>
+          </q-card-section>
+        </q-card>
+      </q-dialog>
 
      <div class="column items-center col-lg-5 col-xl-6  ">
        <div class="q-pa-md row justify-center">
-         <q-select
-           outlined
-           style="min-width:230px"
-           v-model="sortingList" :options="options" label="Sort" dark class="q-pr-md"/>
-         <q-select
-           outlined
-           style="min-width:230px"
-           v-model="sortingCategory" :options="Category" label="Category" dark class="q-pl-md"/>
-       </div>
-       <q-table
-         :data="sortedDate"
-         :columns="columns"
-         :rows-per-page-options="[0]"
-         class="text-white"
-         dark
-         row-key="name"
-         grid
-       >
-         <template #item="props">
-           <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:500px">
-             <div class="float-right">
-               <q-btn round unelevated icon="more_vert"></q-btn>
-             </div>
-             <q-list class="col">
-               <q-item>
-                 <q-item-section>
-                   <q-item-label style="font-size:25px;" class="float-left">
-                     {{ props.row.name }}
-                   </q-item-label>
-                   <q-item-label style="font-size:25px;">{{ props.row.subject }}</q-item-label>
-                   <q-item-label caption class="text-white" style="font-size:20px;">
-                     {{ props.row.category }}</q-item-label>
-                   <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
+       <q-select
+         outlined
+         style="min-width:230px"
+         v-model='sortingList' :options="options" label="Sort" dark class="q-pr-md"/>
+       <q-select
+         outlined
+         style="min-width:230px"
+         v-model='sortingCategory' :options="Category" label="Category" dark class="q-pl-md"/>
+     </div>
 
-                       <q-item-label caption class="text-white" style="font-size:12px">
-                         Date: {{ props.row.date }}
-                       </q-item-label>
-
-                     </q-item-section>
+     <q-table
+       :data="sortedDate"
+       :columns="columns"
+       :rows-per-page-options="[0]"
+       class="text-white"
+       dark
+       row-key="name"
+       grid
+         >
+     <template #item="props">
+       <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:500px">
+        <div
+          class="float-right"
+          v-if="props.row.userAccountId === editSurvey.userAccountId"
+          >
+           <q-btn
+             flat
+             round
+             class="q-ma-sm"
+             size="12px"
+             icon="more_vert"
+           >
+             <q-menu auto-close >
+               <q-list
+                 style="min-width:115px">
+                   <q-item clickable>
+                       IMPLEMENT
                    </q-item>
-                 </q-list>
-               </q-card>
-             </template>
-           </q-table>
-         </div>
-       </div>
+                   <q-item clickable>
+                       DENY
+                   </q-item>
+                   <q-item clickable @click="displayEditSuggestion(props.row)">
+                       EDIT
+                   </q-item>
+                   <q-item clickable>
+                       DELETE
+                   </q-item>
+               </q-list>
+             </q-menu>
+           </q-btn>
+           </div>
+            <q-list class="col">
+              <q-item>
+                <q-item-section>
+                  <q-item-label style="font-size:25px;" class="float-left">
+                    {{ props.row.name }}
+                  </q-item-label>
+                  <q-item-label style="font-size:25px;">{{ props.row.category }}</q-item-label>
+                  <q-item-label caption class="text-white" style="font-size:20px;">
+                    {{ props.row.subject }}</q-item-label>
+                  <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
 
+                  <q-item-label caption class="text-white" style="font-size:12px">
+                    Date: {{ props.row.date }}
+                  </q-item-label>
+                </q-item-section>
+             </q-item>
+            </q-list>
+         </q-card>
+     </template>
+        </q-table>
+     </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -63,6 +154,19 @@ export default {
   data() {
     return {
       data: [],
+      postAnonymously: false,
+      display: false,
+      editSurvey: {
+        category: '',
+        subject: '',
+        suggestion: '',
+        userAccountId: DataService.saveAccountId,
+        suggestionId: 0,
+        // postAnonymously: this.postAnonymously,
+      },
+      editCategory: [
+        'Company Improvement', 'Employee Happiness', 'Other',
+      ],
       sortingList: 'Date Descending',
       sortingCategory: 'All',
       columns: [
@@ -78,6 +182,9 @@ export default {
         {
           name: 'Date', align: 'center', label: 'Date', field: 'date',
         },
+        {
+          name: 'Suggestion Id', align: 'center', label: 'Suggestion Id', field: 'suggestionId',
+        },
       ],
       suggestionForms: [],
       options: [
@@ -89,6 +196,32 @@ export default {
     };
   },
   methods: {
+    displayEditSuggestion(saveProps) {
+      this.display = true;
+      this.editSurvey.suggestionId = saveProps.suggestionId;
+      this.editSurvey.category = saveProps.category;
+      this.editSurvey.subject = saveProps.subject;
+      this.editSurvey.suggestion = saveProps.suggestion;
+    },
+    async updateSuggestion() {
+      try {
+        this.display = false;
+        const updateCheck = await DataService.updateSuggestion(this.editSurvey);
+        if (updateCheck) {
+          this.$q.notify({
+            message: 'Form updated successfully',
+            color: 'primary',
+          });
+          this.$router.push('/dashboard');
+          this.refreshSuggestions();
+        }
+      } catch (error) {
+        this.$q.notify({
+          message: 'Form did not update successfully',
+          color: 'red',
+        });
+      }
+    },
     async refreshSuggestions() {
       const displaySuggestion = await DataService.getSuggestionForms();
       this.suggestionForms = displaySuggestion.data;
@@ -111,16 +244,19 @@ export default {
       }
       return this.suggestionForms.filter(topic => topic.category === this.sortingCategory);
     },
+    activateButton() {
+      const { category, subject, suggestion } = this.editSurvey;
+      return category && subject && suggestion;
+    },
   },
   created() {
     this.refreshSuggestions();
-    this.$root.$on('added-suggestion', this.refreshSuggestions);
+    this.$root.$on('refresh', this.refreshSuggestions);
   },
   beforeDestroy() {
-    this.$root.$off('added-suggestion');
+    this.$root.$off('refresh');
   },
 };
-
 </script>
 
 <style scoped>

@@ -53,10 +53,17 @@ module.exports = function (ctx) {
         'QSeparator',
         'QCheckbox',
         'QForm',
+        'QMenu',
+        'QPopupEdit',
+        'QPopupProxy',
+        'QDate',
+        'QBanner',
+        'QDialog',
       ],
 
       directives: [
         'Ripple',
+        'ClosePopup',
       ],
 
       // Quasar plugins
