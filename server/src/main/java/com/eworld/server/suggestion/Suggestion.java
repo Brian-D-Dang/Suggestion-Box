@@ -5,15 +5,17 @@ public class Suggestion {
     private String category;
     private String subject;
     private String suggestion;
-    private Integer userAccountId;
+    private int userAccountId;
+    private int suggestionId;
 
     public Suggestion() {
     }
-    public Suggestion(String category, String subject, String suggestion, Integer userAccountId) {
+    public Suggestion(String category, String subject, String suggestion, int userAccountId, int suggestionId) {
         this.category = category;
         this.subject = subject;
         this.suggestion = suggestion;
         this.userAccountId = userAccountId;
+        this.suggestionId = suggestionId;
     }
 
     public String getCategory() {
@@ -37,10 +39,17 @@ public class Suggestion {
         this.suggestion = suggestion;
     }
 
-    public Integer getUserAccountId() {
+    public int getUserAccountId() {
         return userAccountId;
     }
-    public void setUserAccountId(Integer userAccountId) {
+    public void setUserAccountId(int userAccountId) {
         this.userAccountId = userAccountId;
+    }
+
+    public int getSuggestionId() {
+        return suggestionId;
+    }
+    public void setSuggestionId(int suggestionId) {
+        this.suggestionId = suggestionId;
     }
 }

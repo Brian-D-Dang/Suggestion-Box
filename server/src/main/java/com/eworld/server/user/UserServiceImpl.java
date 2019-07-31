@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
                     int userAccountId = passwordEntity.getUserAccountId();
                     Iterable<UserAccountEntity> userAccounts = userRepository.findAll();
                     Iterator<UserAccountEntity> iterator = userAccounts.iterator();
-                    User userData= new User();
+                    User userData = new User();
                     while (iterator.hasNext()) {
                         UserAccountEntity nextFirstLastName = iterator.next();
                         //this creates a new object and iterates through the list of firstnames and lastnames

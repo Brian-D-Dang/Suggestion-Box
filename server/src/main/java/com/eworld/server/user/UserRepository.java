@@ -11,6 +11,8 @@ public interface UserRepository extends CrudRepository<UserAccountEntity, Intege
     UserAccountEntity getUserAccountEntityByUsername(String username);
     List<UserAccountEntity> findUserAccountEntityByUsername(String username);
     List<UserAccountEntity> findUserAccountEntityByEmail(String email);
+    UserAccountEntity getUserAccountEntityByUserAccountId(int userAccountId);
+
 }
 
 
