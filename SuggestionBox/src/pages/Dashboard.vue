@@ -10,11 +10,13 @@
           dark>
             <q-card-section class="row justify-end">
               <p class="q-ma-sm float-left col-6">EDIT SUGGESTION</p>
-              <q-icon
-                class="float-right col-1 text-red"
-                size="20px"
-                name="clear"
-              @click="display = false"></q-icon>
+              <q-btn
+                flat
+                round
+                class="float-right col-1"
+                size="15px"
+                icon="clear"
+              @click="display = false"></q-btn>
           </q-card-section>
 
           <q-separator
