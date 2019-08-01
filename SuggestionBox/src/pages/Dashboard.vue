@@ -1,7 +1,22 @@
 <template>
   <div>
     <div class="row justify-center items-center">
-      <suggestion class="col-lg-6 col-xl-5"></suggestion>
+      <div class="row col-12">
+        <div class="offset-xl-6 offset-lg-6"></div>
+        <div class="col-xl-5 col-lg-6">
+          <div class="col-xl-6 q-pa-md row justify-center">
+            <q-select
+            outlined
+            style="min-width:230px"
+            v-model='sortingList' :options="options" label="Sort" dark class="q-pr-md"/>
+            <q-select
+              outlined
+              style="min-width:230px"
+              v-model='sortingCategory' :options="Category" label="Category" dark class="q-pl-md"/>
+          </div>
+        </div>
+      </div>
+
       <q-dialog
         v-model="display"
         class="row q-pa-xl">
@@ -66,85 +81,75 @@
         </q-card>
       </q-dialog>
 
-     <div class="column items-center col-lg-5 col-xl-6  ">
-       <div class="q-pa-md row justify-center">
-       <q-select
-         outlined
-         style="min-width:230px"
-         v-model='sortingList' :options="options" label="Sort" dark class="q-pr-md"/>
-       <q-select
-         outlined
-         style="min-width:230px"
-         v-model='sortingCategory' :options="Category" label="Category" dark class="q-pl-md"/>
-     </div>
-
-     <q-table
-       :data="sortedDate"
-       :columns="columns"
-       :rows-per-page-options="[0]"
-       class="text-white"
-       dark
-       row-key="name"
-       grid
-         >
-     <template #item="props">
-       <q-card class="q-ma-sm bg-grey-9 col" dark  style="min-width:500px">
-        <div
-          class="float-right"
+     <div class="col-12 row justify-center">
+       <div class="col-lg-6 col-xl-5"><suggestion class="q-mx-sm"></suggestion></div>
+       <div class="col-lg-6 col-xl-6">
+         <q-table
+         :data="sortedDate"
+         :columns="columns"
+         :rows-per-page-options="[0]"
+         class="text-white"
+         dark
+         style="height:0px"
+         row-key="name"
+         grid
           >
-           <q-btn
-             flat
-             round
-             class="q-ma-sm"
-             size="12px"
-             icon="more_vert"
-             :text-color="displayYourSuggestion(props.row)"
-             v-if="showEditSuggestion(displayYourSuggestion(props.row))"
-           >
-             <q-menu auto-close >
-               <q-list
-                 style="min-width:115px">
-                   <q-item clickable v-if="checkManagerId">
+         <template #item="props">
+           <q-card class="q-mb-sm q-mx-sm bg-grey-9 col" dark  style="min-width:500px">
+             <div
+               class="float-right"
+             >
+               <q-btn
+                 flat
+                 round
+                 class="q-ma-sm"
+                 size="12px"
+                 icon="more_vert"
+                 :text-color="displayYourSuggestion(props.row)"
+                 v-if="showEditSuggestion(displayYourSuggestion(props.row))"
+               >
+                 <q-menu auto-close >
+                   <q-list
+                     style="min-width:115px">
+                     <q-item clickable v-if="checkManagerId">
                        IMPLEMENT
-                   </q-item>
-                   <q-item clickable v-if="checkManagerId">
+                     </q-item>
+                     <q-item clickable v-if="checkManagerId">
                        DENY
-                   </q-item>
-                   <q-item
+                     </q-item>
+                     <q-item
                      clickable
                      @click="displayEditSuggestion(props.row)"
                      v-if="props.row.userAccountId === editSurvey.userAccountId">
                        EDIT
-                   </q-item>
-                   <q-item
+                     </q-item>
+                     <q-item
                      clickable
                      v-if="props.row.userAccountId === editSurvey.userAccountId">
                        DELETE
-                   </q-item>
-               </q-list>
-             </q-menu>
-           </q-btn>
-           </div>
-            <q-list class="col">
-              <q-item>
-                <q-item-section>
-                  <q-item-label style="font-size:25px;" class="float-left">
-                    {{ props.row.name }}
-                  </q-item-label>
-                  <q-item-label style="font-size:25px;">{{ props.row.category }}</q-item-label>
-                  <q-item-label caption class="text-white" style="font-size:20px;">
-                    {{ props.row.subject }}</q-item-label>
-                  <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
+                     </q-item>
+                   </q-list>
+                 </q-menu>
+               </q-btn>
+             </div>
+             <q-list class="col">
+               <q-item>
+                 <q-item-section>
+                   <q-item-label style="font-size:25px;">{{ props.row.subject }}</q-item-label>
+                   <q-item-label caption class="text-white" style="font-size:20px;">
+                     {{ props.row.category }}</q-item-label>
+                   <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
 
-                  <q-item-label caption class="text-white" style="font-size:12px">
-                    Date: {{ props.row.date }}
-                  </q-item-label>
-                </q-item-section>
-             </q-item>
-            </q-list>
-         </q-card>
-     </template>
-        </q-table>
+                   <q-item-label caption class="text-white" style="font-size:12px">
+                     Created Date: {{ props.row.date }}
+                   </q-item-label>
+                 </q-item-section>
+               </q-item>
+             </q-list>
+           </q-card>
+         </template>
+       </q-table>
+       </div>
      </div>
     </div>
   </div>
@@ -206,18 +211,21 @@ export default {
       let display = false;
       if ((trueFalse === 'white') || (trueFalse === 'blue')) {
         display = true;
-      } else if (trueFalse === '') {
+      } else if (trueFalse === 'grey') {
         display = false;
       }
       return display;
     },
     displayYourSuggestion(saveProps) {
-      let color = '';
+      let color = 'grey';
+      console.log(color);
+      console.log(DataService.userManagerId);
       if (DataService.userManagerId) {
         if (DataService.saveAccountId === saveProps.userAccountId) {
           color = 'blue';
         } else {
           color = 'white';
+          console.log(color);
         }
       } else if (DataService.saveAccountId === saveProps.userAccountId) {
         color = 'white';
@@ -257,7 +265,7 @@ export default {
   },
   computed: {
     checkManagerId() {
-      return DataService.saveAccountId;
+      return DataService.userManagerId;
     },
     sortedDate() {
       if (!this.suggestionForms) {

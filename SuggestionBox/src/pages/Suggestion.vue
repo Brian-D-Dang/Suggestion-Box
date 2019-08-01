@@ -1,6 +1,5 @@
 <template>
-  <div  >
-    <q-card class="column items-center bg-grey-9 q-ma-md" dark>
+    <q-card class="column items-center bg-grey-9" dark>
       <q-card-section class="col">
         CREATE SUGGESTION
       </q-card-section>
@@ -40,7 +39,6 @@
         </q-card-section>
       </q-form>
     </q-card>
-  </div>
 </template>
 
 <script>
