@@ -153,8 +153,8 @@
                <q-item>
                  <q-item-section>
                    <q-item-label style="font-size:25px;">
-                    {{ props.row.subject }
-                   }</q-item-label>
+                    {{ props.row.subject }}
+                    </q-item-label>
                    <q-item-label caption class="text-white" style="font-size:20px;">
                     {{ props.row.category }}
                    </q-item-label>
