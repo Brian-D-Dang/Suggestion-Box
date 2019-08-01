@@ -2,11 +2,11 @@
   <div  >
     <q-card class="column items-center bg-grey-9 q-ma-md" dark>
       <q-card-section class="col">
-        Create Suggestion
+        CREATE SUGGESTION
       </q-card-section>
       <q-separator color="white" style="min-height:1px"></q-separator>
       <q-form>
-        <q-card-section class="row" style="max-width:575px">
+        <q-card-section class="row" style="width: 600px">
         <div class="q-pa-md col-12">
           <q-select
             square
@@ -70,9 +70,11 @@ export default {
             message: 'Form sent successfully',
             color: 'primary',
           });
-          this.$router.push('/dashboard');
+          this.survey.category = '';
+          this.survey.subject = '';
+          this.survey.suggestion = '';
         }
-        this.$root.$emit('added-suggestion');
+        this.$root.$emit('refresh');
       } catch (error) {
         this.$q.notify({
           message: 'Form did not send successfully',

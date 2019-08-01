@@ -2,7 +2,7 @@ import { axiosInstance } from 'src/boot/axios.js';
 
 export default {
   savedForms: null,
-  saveAccountId: 0,
+  saveAccountId: null,
   userUsername: null,
   userEmail: null,
   userFirstName: null,
@@ -10,6 +10,10 @@ export default {
   userManagerId: false,
   async createUser(createUserCred) {
     return axiosInstance.post('/User/createUserAccount', createUserCred)
+      .then(response => response);
+  },
+  async updateSuggestion(updatedSuggestion) {
+    return axiosInstance.put('/SuggestionForm/updateSuggestion', updatedSuggestion)
       .then(response => response);
   },
   async saveSurvey(saved) {
