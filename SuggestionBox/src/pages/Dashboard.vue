@@ -125,13 +125,18 @@
                   <q-item-label style="font-size:25px;" class="float-left">
                     {{ props.row.name }}
                   </q-item-label>
-                  <q-item-label style="font-size:25px;">{{ props.row.category }}</q-item-label>
+                  <q-item-label style="font-size:25px;">
+                    {{ props.row.subject }}
+                  </q-item-label>
                   <q-item-label caption class="text-white" style="font-size:20px;">
-                    {{ props.row.subject }}</q-item-label>
-                  <q-item-label style="font-size:15px">{{ props.row.suggestion }}</q-item-label>
+                    {{ props.row.category }}
+                  </q-item-label>
+                  <q-item-label style="font-size:15px">
+                    {{ props.row.suggestion }}
+                  </q-item-label>
 
                   <q-item-label caption class="text-white" style="font-size:12px">
-                    Date: {{ props.row.date }}
+                    Created Date: {{ props.row.date }}
                   </q-item-label>
                 </q-item-section>
              </q-item>
