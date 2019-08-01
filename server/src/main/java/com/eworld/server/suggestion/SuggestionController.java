@@ -14,6 +14,11 @@ public class SuggestionController {
     @Autowired
     private SuggestionServiceImpl suggestionServiceImpl;
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteSuggestion", produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean deleteSuggestion(@RequestParam(value="deleteSuggestionId") int deleteSuggestionId) {
+        return suggestionServiceImpl.deleteSuggestion(deleteSuggestionId);
+    }
+
     @RequestMapping(method = RequestMethod.PUT, value = "/updateSuggestion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean updateSuggestion(@RequestBody Suggestion updateSuggestion) throws SuggestionExceptions {
         return suggestionServiceImpl.updateSuggestion(updateSuggestion);
