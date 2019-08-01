@@ -127,6 +127,11 @@ export default {
               color: 'green-10',
             });
           }
+        } else if (!(this.userAccount.password === this.userAccount.confirmPassword)) {
+          this.$q.notify({
+            message: 'Invalid password',
+            color: 'red-9',
+          });
         } else {
           this.$q.notify({
             message: 'Invalid email',

@@ -214,7 +214,6 @@ export default {
     displayYourSuggestion(saveProps) {
       let color = '';
       if (DataService.userManagerId) {
-        console.log(saveProps.userAccountId);
         if (DataService.saveAccountId === saveProps.userAccountId) {
           color = 'blue';
         } else {
