@@ -22,7 +22,7 @@
               <q-item-label header class="q-pa-sm">{{ email }}</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable v-ripple @click="Dashboard">
+          <q-item clickable v-ripple @click="Dashboard" v-if="checkManagerId">
             <q-item-section>
               <q-item-label>Dashboard</q-item-label>
             </q-item-section>
