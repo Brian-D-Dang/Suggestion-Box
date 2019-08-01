@@ -69,13 +69,13 @@ public class UserServiceImpl implements UserService {
             // This runs if the password or email doesn't match the requirements at the start of the function.
             if(!(userPassword.equals(userConfirmPassword))) {
                 if(!matcher.matches()) {
-                    throw new UserExceptions("Email does not exist and the password conformation is incorrect");
+                    throw new UserExceptions("Email does not exist and the password confirmation is incorrect");
                 }
-                throw new UserExceptions("Incorrect password conformation");
+                throw new UserExceptions("Incorrect password confirmation");
             }
             else if(!matcher.matches()) {
                 if(!(userPassword.equals(userConfirmPassword))) {
-                    throw new UserExceptions("Email does not exist and the password conformation is incorrect");
+                    throw new UserExceptions("Email does not exist and the password confirmation is incorrect");
                 }
                 throw new UserExceptions("Email does not exist");
             }

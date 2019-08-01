@@ -218,14 +218,11 @@ export default {
     },
     displayYourSuggestion(saveProps) {
       let color = 'grey';
-      console.log(color);
-      console.log(DataService.userManagerId);
       if (DataService.userManagerId) {
         if (DataService.saveAccountId === saveProps.userAccountId) {
           color = 'blue';
         } else {
           color = 'white';
-          console.log(color);
         }
       } else if (DataService.saveAccountId === saveProps.userAccountId) {
         color = 'white';

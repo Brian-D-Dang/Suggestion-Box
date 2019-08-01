@@ -116,7 +116,6 @@ export default {
       try {
         if ((this.userAccount.password === this.userAccount.confirmPassword)
           && (this.userAccount.email.match(this.mailformat))) {
-          console.log('work');
           const check = await DataService.createUser(this.userAccount);
           if (check) {
             this.$router.push('/home');
