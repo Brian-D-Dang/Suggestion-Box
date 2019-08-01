@@ -7,6 +7,14 @@ export default {
   userEmail: null,
   userFirstName: null,
   userLastName: null,
+  async deleteSuggestion(deleteSuggestionId) {
+    return axiosInstance.delete('/SuggestionForm/deleteSuggestion', {
+      params: {
+        deleteSuggestionId: deleteSuggestionId.suggestionId,
+      },
+    })
+      .then(response => response);
+  },
   async updateSuggestion(updatedSuggestion) {
     return axiosInstance.put('/SuggestionForm/updateSuggestion', updatedSuggestion)
       .then(response => response);
@@ -30,7 +38,6 @@ export default {
         password: userExist.password,
       },
     })
-    // eslint-disable-next-line no-return-assign
       .then(response => response);
   },
   setUserInfo(saved) {

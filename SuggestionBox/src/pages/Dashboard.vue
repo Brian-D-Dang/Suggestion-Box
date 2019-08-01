@@ -112,7 +112,7 @@
                    <q-item clickable @click="displayEditSuggestion(props.row)">
                        EDIT
                    </q-item>
-                   <q-item clickable>
+                   <q-item clickable @click="sendDelete(props.row)">
                        DELETE
                    </q-item>
                </q-list>
@@ -203,6 +203,23 @@ export default {
       this.editSurvey.subject = saveProps.subject;
       this.editSurvey.suggestion = saveProps.suggestion;
     },
+    async sendDelete(saveProps) {
+      try {
+        const deleteSuggestion = await DataService.deleteSuggestion(saveProps);
+        if (deleteSuggestion) {
+          this.$q.notify({
+            message: 'Suggestion Deleted',
+            color: 'green',
+          });
+          this.refreshSuggestions();
+        }
+      } catch (error) {
+        this.$q.notify({
+          message: 'Delete error',
+          color: 'red-9',
+        });
+      }
+    },
     async updateSuggestion() {
       try {
         this.display = false;
@@ -218,7 +235,7 @@ export default {
       } catch (error) {
         this.$q.notify({
           message: 'Form did not update successfully',
-          color: 'red',
+          color: 'red-9',
         });
       }
     },
