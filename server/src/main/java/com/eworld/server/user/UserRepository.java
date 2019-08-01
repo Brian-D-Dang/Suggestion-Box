@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface UserRepository extends CrudRepository<UserAccountEntity, Integer> {
     UserAccountEntity getUserAccountEntityByUsername(String username);
-    UserAccountEntity getUserAccountEntityByUserAccountId(int userAccountId);
     List<UserAccountEntity> findUserAccountEntityByUsername(String username);
     List<UserAccountEntity> findUserAccountEntityByEmail(String email);
+    UserAccountEntity getUserAccountEntityByUserAccountId(int userAccountId);
 }
 
 
