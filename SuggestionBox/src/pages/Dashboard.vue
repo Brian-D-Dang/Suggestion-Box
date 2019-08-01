@@ -3,7 +3,24 @@
     <div class="row justify-center items-center">
       <suggestion class="col-lg-6 col-xl-5"></suggestion>
       <q-dialog
-        v-model="display"
+      v-model="displayDelete">
+        <q-card style="color:white" class="column items-center bg-grey-9">
+          <q-card-section style="color:#fc3236">
+            WARNING
+          </q-card-section>
+          <q-card-section>
+            Are you sure you want to DELETE this suggestion?
+          </q-card-section>
+        <q-card-actions align="right">
+          <q-btn label="Cancel" color="brand" v-close-popup />
+          <q-btn
+            label="Delete"
+            color="brand" @click="sendDelete(deleteThisProp)" v-close-popup />
+        </q-card-actions>
+        </q-card>
+      </q-dialog>
+      <q-dialog
+        v-model="displayEdit"
         class="row q-pa-xl">
         <q-card
           class="bg-grey-9"
@@ -16,7 +33,7 @@
                 class="float-right col-1"
                 size="15px"
                 icon="clear"
-              @click="display = false"></q-btn>
+              @click="displayEdit = false"></q-btn>
           </q-card-section>
 
           <q-separator
@@ -112,7 +129,7 @@
                    <q-item clickable @click="displayEditSuggestion(props.row)">
                        EDIT
                    </q-item>
-                   <q-item clickable @click="sendDelete(props.row)">
+                   <q-item clickable @click="displayDeleteSuggestion(props.row)">
                        DELETE
                    </q-item>
                </q-list>
@@ -160,7 +177,9 @@ export default {
     return {
       data: [],
       postAnonymously: false,
-      display: false,
+      displayEdit: false,
+      displayDelete: false,
+      deleteThisProp: null,
       editSurvey: {
         category: '',
         subject: '',
@@ -201,8 +220,12 @@ export default {
     };
   },
   methods: {
+    displayDeleteSuggestion(saveProps) {
+      this.displayDelete = true;
+      this.deleteThisProp = saveProps;
+    },
     displayEditSuggestion(saveProps) {
-      this.display = true;
+      this.displayEdit = true;
       this.editSurvey.suggestionId = saveProps.suggestionId;
       this.editSurvey.category = saveProps.category;
       this.editSurvey.subject = saveProps.subject;
@@ -227,7 +250,7 @@ export default {
     },
     async updateSuggestion() {
       try {
-        this.display = false;
+        this.displayEdit = false;
         const updateCheck = await DataService.updateSuggestion(this.editSurvey);
         if (updateCheck) {
           this.$q.notify({
