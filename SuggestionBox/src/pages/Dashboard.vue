@@ -10,7 +10,6 @@
           dark>
             <q-card-section class="row justify-end">
               <p class="q-ma-sm float-left col-6">EDIT SUGGESTION</p>
-              <div v-if="displaypart">
               <q-btn
                 flat
                 round
@@ -18,7 +17,6 @@
                 size="15px"
                 icon="clear"
               @click="display = false"></q-btn>
-                </div>
           </q-card-section>
 
           <q-separator
@@ -216,6 +214,7 @@ export default {
     displayYourSuggestion(saveProps) {
       let color = '';
       if (DataService.userManagerId) {
+        console.log(saveProps.userAccountId);
         if (DataService.saveAccountId === saveProps.userAccountId) {
           color = 'blue';
         } else {
@@ -223,10 +222,6 @@ export default {
         }
       } else if (DataService.saveAccountId === saveProps.userAccountId) {
         color = 'white';
-        // if (!DataService.userManagerId) {
-        //   this.displaypart = false;
-        //   console.log('dont display');
-        // }
       }
       return color;
     },
@@ -263,7 +258,7 @@ export default {
   },
   computed: {
     checkManagerId() {
-      return DataService.userManagerId;
+      return DataService.saveAccountId;
     },
     sortedDate() {
       if (!this.suggestionForms) {
