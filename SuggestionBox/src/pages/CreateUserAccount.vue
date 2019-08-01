@@ -77,14 +77,18 @@
                 type="submit"
                 class="q-pa-md full-width"
                 size="20px"
-                label="SIGN UP"></q-btn>
+                label="SIGN UP"
+                :disable="!activateButton"></q-btn>
             </div>
               <q-btn
                 flat
                 to="/home"
                 size="10px"
                 style="min-width:100px"
-                class="q-pa-xs q-mt-xs" label="cancel" color="white" />
+                class="q-pa-xs q-mt-xs"
+                label="cancel"
+                color="white"
+                />
           </q-form>
 
          </q-card-section>
@@ -103,13 +107,6 @@ export default {
       // eslint-disable-next-line no-useless-escape
       mailformat: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
       userAccount: {
-        username: '',
-        password: '',
-        confirmPassword: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        manager: false,
       },
     };
   },
@@ -127,6 +124,12 @@ export default {
               color: 'green-10',
             });
           }
+        } else if (!(this.userAccount.password === this.userAccount.confirmPassword)
+          && (!this.userAccount.email.match(this.mailformat))) {
+          this.$q.notify({
+            message: 'Invalid password and email',
+            color: 'red-9',
+          });
         } else if (!(this.userAccount.password === this.userAccount.confirmPassword)) {
           this.$q.notify({
             message: 'Invalid password',
@@ -149,6 +152,17 @@ export default {
   computed: {
     length() {
       return this.userAccount.confirmPassword.length > 0;
+    },
+    activateButton() {
+      const {
+        username,
+        password,
+        confirmPassword,
+        firstName,
+        lastName,
+        email,
+      } = this.userAccount;
+      return username && password && confirmPassword && firstName && lastName && email;
     },
   },
 };
