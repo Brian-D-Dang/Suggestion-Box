@@ -150,9 +150,6 @@ export default {
     },
   },
   computed: {
-    length() {
-      return this.userAccount.confirmPassword.length > 0;
-    },
     activateButton() {
       const {
         username,
