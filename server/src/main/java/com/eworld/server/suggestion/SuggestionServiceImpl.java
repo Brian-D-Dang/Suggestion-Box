@@ -15,6 +15,12 @@ public class SuggestionServiceImpl implements SuggestionService {
 
     }
 
+    @Override
+    public boolean deleteSuggestion(int deleteSuggestionId) {
+        SuggestionEntity suggestionEntity = suggestionRepository.deleteById(deleteSuggestionId);
+        return true;
+    }
+
     // This function was made to update the users suggestion
     @Override
     public boolean updateSuggestion(Suggestion updateSuggestion) throws SuggestionExceptions {

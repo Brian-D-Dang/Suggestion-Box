@@ -10,6 +10,14 @@ export default {
   userManagerId: false,
   async createUser(createUserCred) {
     return axiosInstance.post('/User/createUserAccount', createUserCred)
+    .then(response => response);
+},
+  async deleteSuggestion(deleteSuggestionId) {
+    return axiosInstance.delete('/SuggestionForm/deleteSuggestion', {
+      params: {
+        deleteSuggestionId: deleteSuggestionId.suggestionId,
+      },
+    })
       .then(response => response);
   },
   async updateSuggestion(updatedSuggestion) {
@@ -34,7 +42,6 @@ export default {
         password: userExist.password,
       },
     })
-    // eslint-disable-next-line no-return-assign
       .then(response => response);
   },
   setUserInfo(saved) {
