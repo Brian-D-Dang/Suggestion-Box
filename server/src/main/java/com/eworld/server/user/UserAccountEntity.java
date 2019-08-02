@@ -4,12 +4,13 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "USER_ACCOUNT")
 public class UserAccountEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "USER_ACCOUNT_ID")
     private int userAccountId;
 
@@ -23,12 +24,27 @@ public class UserAccountEntity {
     private String lastName;
 
     @Column(name = "MANAGER")
-    private int manager;
+    private boolean manager;
 
     @Column(name = "USERNAME")
     private String username;
 
+    @Column(name = "FAILED_LOGIN_ATTEMPTS")
+    private int failedLoginAttempts;
+
+    @Column(name = "LAST_LOGIN_ATTEMPT")
+    private Date lastLoginAttempt;
+
     public UserAccountEntity() {}
+    public UserAccountEntity(String firstName, String lastName, String email, String username, boolean manager, int failedLoginAttempts, Date lastLoginAttempt) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.manager = manager;
+        this.failedLoginAttempts = failedLoginAttempts;
+        this.lastLoginAttempt = lastLoginAttempt;
+    }
 
     public int getUserAccountId() {
         return userAccountId;
@@ -58,10 +74,10 @@ public class UserAccountEntity {
         this.lastName = lastName;
     }
 
-    public int getManager() {
+    public boolean getManager() {
         return manager;
     }
-    public void setManager(int manager) {
+    public void setManager(boolean manager) {
         this.manager = manager;
     }
 
@@ -71,4 +87,19 @@ public class UserAccountEntity {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public int getFailedLoginAttempts() {
+        return failedLoginAttempts;
+    }
+    public void setFailedLoginAttempts(int failedLoginAttempts) {
+        this.failedLoginAttempts = failedLoginAttempts;
+    }
+
+    public Date getLastLoginAttempt() {
+        return lastLoginAttempt;
+    }
+    public void setLastLoginAttempt(Date lastLoginAttempt) {
+        this.lastLoginAttempt = lastLoginAttempt;
+    }
 }
+

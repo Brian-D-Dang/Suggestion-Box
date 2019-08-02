@@ -59,6 +59,7 @@ module.exports = function (ctx) {
         'QDate',
         'QBanner',
         'QDialog',
+        'QField',
       ],
 
       directives: [

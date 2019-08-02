@@ -22,18 +22,26 @@
               <q-item-label header class="q-pa-sm">{{ email }}</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable v-ripple @click="Dashboard">
+          <q-item clickable v-ripple @click="Dashboard" v-if="checkManagerId">
             <q-item-section>
               <q-item-label>Dashboard</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable v-ripple @click="logout">
+          <q-item clickable v-ripple @click="createUserAccount" v-if="checkManagerId">
+          <q-item-section>
+            <q-item-label>
+              <q-item-label>Create Account</q-item-label>
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+          <q-item clickable v-ripple @click="logout" >
             <q-item-section>
               <q-item-label>
                 <q-item-label>Logout</q-item-label>
               </q-item-label>
             </q-item-section>
           </q-item>
+
         </q-list>
     </q-drawer>
     <q-page-container>
@@ -60,6 +68,9 @@ export default {
       this.$router.push('/');
       DataService.resetUserInfo();
     },
+    createUserAccount() {
+      this.$router.push('/create-user-account');
+    },
   },
   computed: {
     username() {
@@ -67,6 +78,9 @@ export default {
     },
     email() {
       return DataService.userEmail;
+    },
+    checkManagerId() {
+      return DataService.userManagerId;
     },
   },
 };

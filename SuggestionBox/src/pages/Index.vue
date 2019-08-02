@@ -1,13 +1,24 @@
 <template>
   <q-layout class="bg-grey-10 text-white">
-    <div class="
-    absolute-center
-    column
-    items-center"
-    style="min-width:600px"
+    <q-card
+      class="
+        bg-grey-9
+        absolute-center
+        column
+        justify-center
+        items-center"
+        style="min-width:600px; height:500px"
     >
-      <img src="../statics/icons/logo.png">
-      <p class="text">Suggestion Box</p>
+      <div>
+        <q-card-section
+        class="column items-center col-3">
+        <img src="../statics/icons/logo.png">
+        <p class="text">SUGGESTION BOX</p>
+
+      </q-card-section></div>
+
+      <q-separator color="white" style="max-height: 1px"></q-separator>
+      <q-card-section>
       <q-form style="min-width:500px">
         <q-input dark
         color="white"
@@ -23,6 +34,7 @@
           lazy-rules
           :rules="[ val => val && val.length > 0 || 'Missing Password']"
         />
+
       <q-btn
         unelevated
         type="submit"
@@ -32,7 +44,8 @@
         :disable="!activateButton" @click="checkCred" label="LOGIN"
       />
       </q-form>
-    </div>
+      </q-card-section>
+    </q-card>
   </q-layout>
 </template>
 
@@ -62,7 +75,7 @@ export default {
       } catch (error) {
         this.$q.notify({
           message: 'Username or password is incorrect',
-          color: 'red',
+          color: 'red-9',
         });
       }
     },

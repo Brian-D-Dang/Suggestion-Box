@@ -11,8 +11,8 @@ import java.util.*;
 public class SuggestionServiceImpl implements SuggestionService {
     @Autowired
     private SuggestionRepository suggestionRepository;
-
     public SuggestionServiceImpl() {
+
     }
 
     @Override
@@ -32,7 +32,7 @@ public class SuggestionServiceImpl implements SuggestionService {
                 suggestionEntity.setCategory(updateSuggestion.getCategory());
                 suggestionEntity.setSubject(updateSuggestion.getSubject());
                 suggestionEntity.setSuggestion(updateSuggestion.getSuggestion());
-                suggestionEntity.setDate(todayDate);
+                suggestionEntity.setCreatedDate(todayDate);
                 suggestionEntity = suggestionRepository.save(suggestionEntity);
                 return suggestionEntity != null;
             }
@@ -56,7 +56,7 @@ public class SuggestionServiceImpl implements SuggestionService {
             suggestionData.setCategory(nextElement.getCategory());
             suggestionData.setSubject(nextElement.getSubject());
             suggestionData.setSuggestion(nextElement.getSuggestion());
-            suggestionData.setDate(simpleDateFormat.format(nextElement.getDate()));
+            suggestionData.setDate(simpleDateFormat.format(nextElement.getCreatedDate()));
             suggestionData.setSuggestionId(nextElement.getSuggestionId());
             suggestionData.setUserAccountId(nextElement.getUserAccountId());
             showSuggestionData.add(suggestionData);

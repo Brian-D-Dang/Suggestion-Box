@@ -1,21 +1,23 @@
 package com.eworld.server.user;
 
-public class User {
+import java.util.Date;
+
+public class CreateUserAccount {
     private String firstName;
     private String lastName;
     private String email;
     private String username;
-    private int userAccountId;
+    private String password;
+    private String confirmPassword;
     private boolean manager;
 
-    public User() {
-    }
-    public User(String firstName, String lastName, String email, String username, int userAccountId, boolean manager) {
+    public CreateUserAccount() {}
+    public CreateUserAccount(String firstName, String lastName, String email, String username, String password, boolean manager) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
-        this.userAccountId = userAccountId;
+        this.password = password;
         this.manager = manager;
     }
 
@@ -47,11 +49,18 @@ public class User {
         this.username = username;
     }
 
-    public int getUserAccountId() {
-        return userAccountId;
+    public String getPassword() {
+        return password;
     }
-    public void setUserAccountId(int userAccountId) {
-        this.userAccountId = userAccountId;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public boolean getManager() {

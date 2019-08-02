@@ -11,10 +11,10 @@ const routes = [
     path: '/home',
     component: () => import('layouts/NavigationBar.vue'),
     children: [
-      { path: '/index', component: () => import('pages/Index.vue') },
       { path: '/dashboard', component: () => import('pages/Dashboard.vue') },
       { path: '/suggestion', component: () => import('pages/Suggestion.vue') },
       { path: '', component: () => import('pages/Dashboard.vue') },
+      { path: '/create-user-account', component: () => import('pages/CreateUserAccount') },
     ],
   },
 ];

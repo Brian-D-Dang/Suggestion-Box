@@ -7,6 +7,11 @@ export default {
   userEmail: null,
   userFirstName: null,
   userLastName: null,
+  userManagerId: false,
+  async createUser(createUserCred) {
+    return axiosInstance.post('/User/createUserAccount', createUserCred)
+    .then(response => response);
+},
   async deleteSuggestion(deleteSuggestionId) {
     return axiosInstance.delete('/SuggestionForm/deleteSuggestion', {
       params: {
@@ -26,7 +31,6 @@ export default {
       subject: sub,
       suggestion: sug,
       userAccountId: this.saveAccountId,
-
     };
     return axiosInstance.post('/SuggestionForm/addSuggestion', suggestion)
       .then(response => response);
@@ -46,6 +50,7 @@ export default {
     this.userLastName = saved.lastName;
     this.userUsername = saved.username;
     this.userEmail = saved.email;
+    this.userManagerId = saved.manager;
   },
   resetUserInfo() {
     this.saveAccountId = 0;
@@ -53,6 +58,7 @@ export default {
     this.userLastName = null;
     this.userUsername = null;
     this.userEmail = null;
+    this.userManagerId = false;
   },
   // eslint-disable-next-line no-return-assign
   async getSuggestionForms() {
@@ -60,5 +66,4 @@ export default {
     // eslint-disable-next-line no-return-assign
       .then(response => response);
   },
-
 };
