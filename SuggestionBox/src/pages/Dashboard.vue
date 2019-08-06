@@ -30,7 +30,7 @@
           <q-btn label="Cancel" color="brand" v-close-popup />
           <q-btn
             label="Delete"
-            color="brand" @click="sendDelete(deleteThisProp)" v-close-popup />
+            color="brand" @click="sendDelete(deleteThisProp)" v-close-popup/>
         </q-card-actions>
         </q-card>
       </q-dialog>
@@ -128,10 +128,18 @@
                  <q-menu auto-close >
                    <q-list
                      style="min-width:115px">
-                     <q-item clickable v-if="checkManagerId">
+                     <q-item
+                       clickable
+                       v-if="
+                       !(editSurvey.userAccountId === props.row.userAccountId)
+                      ">
                        IMPLEMENT
                      </q-item>
-                     <q-item clickable v-if="checkManagerId">
+                     <q-item
+                       clickable
+                       v-if="
+                       !(editSurvey.userAccountId === props.row.userAccountId)
+                       ">
                        DENY
                      </q-item>
                      <q-item
@@ -142,6 +150,7 @@
                      </q-item>
                      <q-item
                      clickable
+                     @click="displayDeleteSuggestion(props.row)"
                      v-if="props.row.userAccountId === editSurvey.userAccountId">
                        DELETE
                      </q-item>
@@ -189,7 +198,7 @@ export default {
       postAnonymously: false,
       displayEdit: false,
       displayDelete: false,
-      deleteThisProp: null,
+      deleteThisProp: 0,
       editSurvey: {
         category: '',
         subject: '',
@@ -251,6 +260,7 @@ export default {
         color = 'white';
       }
       return color;
+    },
     displayDeleteSuggestion(saveProps) {
       this.displayDelete = true;
       this.deleteThisProp = saveProps;
@@ -264,6 +274,7 @@ export default {
     },
     async sendDelete(saveProps) {
       try {
+        console.log(saveProps);
         const deleteSuggestion = await DataService.deleteSuggestion(saveProps);
         if (deleteSuggestion) {
           this.$q.notify({
@@ -286,7 +297,7 @@ export default {
         if (updateCheck) {
           this.$q.notify({
             message: 'Form updated successfully',
-            color: 'primary',
+            color: 'green-10',
           });
           this.$router.push('/dashboard');
           this.refreshSuggestions();

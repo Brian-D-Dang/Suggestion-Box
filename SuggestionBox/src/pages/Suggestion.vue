@@ -66,7 +66,7 @@ export default {
         if (suggestionCheck) {
           this.$q.notify({
             message: 'Form sent successfully',
-            color: 'primary',
+            color: 'green-10',
           });
           this.survey.category = '';
           this.survey.subject = '';

@@ -3,7 +3,7 @@
     <div class="column justify-center items-center">
         <q-card class="bg-grey-9 q-ma-lg column items-center" style="width:600px">
           <q-card-section
-            style="font-size:20px " class="q-mb-sm">Create User Account</q-card-section>
+            style="font-size:20px " class="q-mb-sm">CREATE USER ACCOUNT</q-card-section>
           <q-separator color="white" style="min-height: 1px"></q-separator>
             <q-card-section class="column justify-center">
               <q-form style="max-width: 500px;" class="row justify-center" >

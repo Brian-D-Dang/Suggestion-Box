@@ -10,8 +10,8 @@ export default {
   userManagerId: false,
   async createUser(createUserCred) {
     return axiosInstance.post('/User/createUserAccount', createUserCred)
-    .then(response => response);
-},
+      .then(response => response);
+  },
   async deleteSuggestion(deleteSuggestionId) {
     return axiosInstance.delete('/SuggestionForm/deleteSuggestion', {
       params: {
