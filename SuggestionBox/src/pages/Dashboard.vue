@@ -70,11 +70,6 @@
                   v-model="editSurvey.subject" label="Subject" dark/>
               </div>
               <div class="q-pa-md col" style="min-width: 500px">
-                <q-checkbox
-                  class="q-pb-lg"
-                  color="brand"
-                  v-model="postAnonymously" label="Post Anonymously" dark>
-                </q-checkbox>
                 <q-input
                   dark
                   square
@@ -195,7 +190,6 @@ export default {
   data() {
     return {
       data: [],
-      postAnonymously: false,
       displayEdit: false,
       displayDelete: false,
       deleteThisProp: 0,

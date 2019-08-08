@@ -7,6 +7,9 @@
       <q-form>
         <q-card-section class="row" style="width: 600px">
         <div class="q-pa-md col-12">
+          <q-input square outlined color="white" v-model="survey.subject" label="Subject" dark/>
+        </div>
+        <div class="q-pa-md col-12">
           <q-select
             square
             outlined
@@ -16,12 +19,6 @@
             label="Category" dark/>
         </div>
         <div class="q-pa-md col-12">
-         <q-input square outlined color="white" v-model="survey.subject" label="Subject" dark/>
-        </div>
-        <div class="q-pa-md col-12">
-          <q-checkbox class="q-pb-lg"
-            color="brand" v-model="postAnonymously" label="Post Anonymously" dark>
-          </q-checkbox>
           <q-input
             dark
             square
@@ -48,7 +45,6 @@ export default {
   name: 'Suggestion',
   data() {
     return {
-      postAnonymously: false,
       survey: {
         category: '',
         subject: '',
