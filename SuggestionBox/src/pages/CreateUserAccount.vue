@@ -132,7 +132,7 @@ export default {
           });
         } else if (!(this.userAccount.password === this.userAccount.confirmPassword)) {
           this.$q.notify({
-            message: 'Invalid password',
+            message: 'Password and Confirm password does not match',
             color: 'red-9',
           });
         } else {

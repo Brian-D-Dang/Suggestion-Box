@@ -279,7 +279,7 @@ export default {
         }
       } catch (error) {
         this.$q.notify({
-          message: 'Delete error',
+          message: 'Delete failed',
           color: 'red-9',
         });
       }
