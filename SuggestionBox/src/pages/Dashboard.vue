@@ -56,19 +56,20 @@
           </q-separator>
           <q-card-section class="column col-6 bg-grey-9 items-center">
             <q-form>
-              <div class="q-pa-md col" style="min-width: 520px">
-                <q-select
-                  square
-                  outlined
-                  v-model="editSurvey.category"
-                  :options="editCategory" label="Category" dark/>
-              </div>
+
               <div class="q-pa-md col" style="min-width: 500px">
                 <q-input
                   square
                   outlined
                   v-model="editSurvey.subject" label="Subject" dark/>
               </div>
+              <div class="q-pa-md col" style="min-width: 520px">
+                <q-select
+                square
+                outlined
+                v-model="editSurvey.category"
+                :options="editCategory" label="Category" dark/>
+            </div>
               <div class="q-pa-md col" style="min-width: 500px">
                 <q-input
                   dark
@@ -273,7 +274,7 @@ export default {
         if (deleteSuggestion) {
           this.$q.notify({
             message: 'Suggestion Deleted',
-            color: 'green',
+            color: 'green-10',
           });
           this.refreshSuggestions();
         }
