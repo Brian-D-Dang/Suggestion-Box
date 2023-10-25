@@ -29,21 +29,22 @@ public class UserAccountEntity {
     @Column(name = "USERNAME")
     private String username;
 
-    @Column(name = "FAILED_LOGIN_ATTEMPTS")
-    private int failedLoginAttempts;
-
-    @Column(name = "LAST_LOGIN_ATTEMPT")
-    private Date lastLoginAttempt;
+//    @Column(name = "FAILED_LOGIN_ATTEMPTS")
+//    private int failedLoginAttempts;
+//
+//    @Column(name = "LAST_LOGIN_ATTEMPT")
+//    private Date lastLoginAttempt;
 
     public UserAccountEntity() {}
-    public UserAccountEntity(String firstName, String lastName, String email, String username, boolean manager, int failedLoginAttempts, Date lastLoginAttempt) {
+//    public UserAccountEntity(String firstName, String lastName, String email, String username, boolean manager, int failedLoginAttempts, Date lastLoginAttempt) {
+    public UserAccountEntity(String firstName, String lastName, String email, String username, boolean manager) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.manager = manager;
-        this.failedLoginAttempts = failedLoginAttempts;
-        this.lastLoginAttempt = lastLoginAttempt;
+//        this.failedLoginAttempts = failedLoginAttempts;
+//        this.lastLoginAttempt = lastLoginAttempt;
     }
 
     public int getUserAccountId() {
@@ -88,18 +89,18 @@ public class UserAccountEntity {
         this.username = username;
     }
 
-    public int getFailedLoginAttempts() {
-        return failedLoginAttempts;
-    }
-    public void setFailedLoginAttempts(int failedLoginAttempts) {
-        this.failedLoginAttempts = failedLoginAttempts;
-    }
-
-    public Date getLastLoginAttempt() {
-        return lastLoginAttempt;
-    }
-    public void setLastLoginAttempt(Date lastLoginAttempt) {
-        this.lastLoginAttempt = lastLoginAttempt;
-    }
+//    public int getFailedLoginAttempts() {
+//        return failedLoginAttempts;
+//    }
+//    public void setFailedLoginAttempts(int failedLoginAttempts) {
+//        this.failedLoginAttempts = failedLoginAttempts;
+//    }
+//
+//    public Date getLastLoginAttempt() {
+//        return lastLoginAttempt;
+//    }
+//    public void setLastLoginAttempt(Date lastLoginAttempt) {
+//        this.lastLoginAttempt = lastLoginAttempt;
+//    }
 }
 

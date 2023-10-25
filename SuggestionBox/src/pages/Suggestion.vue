@@ -1,7 +1,9 @@
 <template>
     <q-card class="column items-center bg-grey-9" dark>
       <q-card-section class="col">
-        CREATE SUGGESTION
+<!--        BRIAN testing-->
+        <slot name="suggestion-type" />
+        Create Suggestion
       </q-card-section>
       <q-separator color="white" style="min-height:1px"></q-separator>
       <q-form>
@@ -24,7 +26,7 @@
             square
             outlined
             color="white"
-            v-model="survey.suggestion"
+            :v-model="editSurvey != null ? survey.suggestion : editSurvey.suggestion"
             label="Description" filled type="textarea" counter maxlength="64"/>
           <q-btn
             color="brand"
@@ -43,6 +45,14 @@ import DataService from 'src/services/data-service.js';
 
 export default {
   name: 'Suggestion',
+  props: {
+    editSurvey: {
+      type: Object,
+      default() {
+        return null;
+      },
+    },
+  },
   data() {
     return {
       survey: {

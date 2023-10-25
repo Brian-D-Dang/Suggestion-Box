@@ -47,9 +47,11 @@ public class UserServiceImpl implements UserService {
             if (usernameCheckExist.isEmpty() && emailCheckExist.isEmpty()) {
                 int failedLoginAttempts = 0;
                 // This checks to see if the usernameCheckExist found a username that already exists in the data base, but if it doesn't it creates the user.
-                UserAccountEntity userAccountEntity = new UserAccountEntity(userFirstName, userLastName, userEmail, userUsername, userManagerId, failedLoginAttempts, null);
+//                UserAccountEntity userAccountEntity = new UserAccountEntity(userFirstName, userLastName, userEmail, userUsername, userManagerId, failedLoginAttempts, null);
+                UserAccountEntity userAccountEntity = new UserAccountEntity(userFirstName, userLastName, userEmail, userUsername, userManagerId);
                 userAccountEntity = userRepository.save(userAccountEntity);
-                PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), userPassword, todayDate);
+//                PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), userPassword, todayDate);
+                PasswordEntity passwordEntity = new PasswordEntity(userAccountEntity.getUserAccountId(), userPassword);
                 passwordEntity = passwordRepository.save(passwordEntity);
                 return (userAccountEntity != null) && (passwordEntity != null);
             } else if ((usernameCheckExist.size() == 1) && emailCheckExist.size() == 1) {

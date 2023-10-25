@@ -37,6 +37,18 @@
       <q-dialog
         v-model="displayEdit"
         class="row q-pa-xl">
+<!--        <suggestion>-->
+<!--          <template v-slot:suggestion-type>-->
+<!--              <p class="q-ma-sm float-left col-6">EDIT SUGGESTION</p>-->
+<!--              <q-btn-->
+<!--                flat-->
+<!--                round-->
+<!--                class="float-right col-1"-->
+<!--                size="15px"-->
+<!--                icon="clear"-->
+<!--                @click="displayEdit = false"></q-btn>-->
+<!--          </template>-->
+<!--        </suggestion>-->
         <q-card
           class="bg-grey-9"
           dark>

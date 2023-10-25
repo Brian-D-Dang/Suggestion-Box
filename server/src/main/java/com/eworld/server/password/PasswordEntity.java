@@ -20,15 +20,17 @@ public class PasswordEntity {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "EFFECTIVE_DATE")
-    private Date effectiveDate;
+//    @Column(name = "EFFECTIVE_DATE")
+//    private Date effectiveDate;
 
     public PasswordEntity() {
     }
-    public PasswordEntity(int userAccountId, String password, Date effectiveDate) {
+
+//    public PasswordEntity(int userAccountId, String password, Date effectiveDate) {
+    public PasswordEntity(int userAccountId, String password) {
         this.userAccountId = userAccountId;
         this.password = password;
-        this.effectiveDate = effectiveDate;
+//        this.effectiveDate = effectiveDate;
     }
 
     public int getPasswordId() {
@@ -52,10 +54,10 @@ public class PasswordEntity {
         this.password = password;
     }
 
-    public Date getEffectiveDate() {
-        return effectiveDate;
-    }
-    public void setEffectiveDate(Date effectiveDate) {
-        this.effectiveDate = effectiveDate;
-    }
+//    public Date getEffectiveDate() {
+//        return effectiveDate;
+//    }
+//    public void setEffectiveDate(Date effectiveDate) {
+//        this.effectiveDate = effectiveDate;
+//    }
 }
