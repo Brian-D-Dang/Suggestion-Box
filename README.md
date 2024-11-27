@@ -1,7 +1,7 @@
 # Description
 The eWorld Suggestion Box is an online platform designed for employees, both onsite and at-home, to submit, comments, workplace issues, and complaints anonymously.
 
-User Guide: 
+[User Guide](https://github.com/Brian-D-Dang/Suggestion-Box/blob/master/User%20Guide.pdf)
 
 ## Tools
 The project was developed using Java, Node.js, Spring Boot, Quasar, Vue.js, and MySQL.
